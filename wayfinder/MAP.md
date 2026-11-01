@@ -35,6 +35,7 @@ status: open
 - [T10 输入表单与历法换算 UX](tickets/T10-birth-input-form-ux.md):公历/农历双模式(闰月条件显示、即时校验);12 时辰选择 + 可选"精确时间→真太阳时"高级模式;城市 autocomplete(拼音/英文可搜,降级北京时区要明示);时辰未知 = 午时试排 + 显著标注;shadcn `<Field />` + TanStack Form。
 - [T15 补录闰月黄金用例](tickets/T15-golden-cases-leap-month.md):10 条闰月后半月用例(#20–29,闰二/四/五/六/七/九月,1974–2020)已补进研究文档 §6.3,split 等价校验 10/10 通过;探针脚本在 D:\tmp\ziwei-doushu-research\scripts\leap-month-probe.ts。黄金用例共 29 条,T13 可用。
 - [T11 性能预算与验收清单](tickets/T11-performance-budget.md):landing 零 three(JS≤150kb gz);/chart three chunk ≤250kb gz 懒加载;**2D 先渲、3D 异步接管**(SVG 骨架=LCP);验收三层 next dev loop + Lighthouse CI 硬门禁 + Speed Insights;中文衬线 fontTools 子集化+swap;材质程序化生成为主。
+- [T13 测试与引擎正确性策略](tickets/T13-testing-and-correctness.md):29 条黄金对照 + 属性测试(边界/闰月/晚子时,不变量校验);Vitest + Playwright + Testing Library;E2E 五条关键流;覆盖率引擎/解读 ≥90%、全站 ≥80%,CI 门禁。
 
 ## Not yet specified
 

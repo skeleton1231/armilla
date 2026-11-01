@@ -3,7 +3,7 @@ id: T14
 title: Landing 首屏与文案结构
 labels: [wayfinder:grilling]
 blocked-by: [T05]
-claimed-by:
+claimed-by: claude-main
 status: open
 ---
 
