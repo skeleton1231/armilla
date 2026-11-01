@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Noto_Serif_SC, Spectral } from 'next/font/google';
+import { Spectral } from 'next/font/google';
+import localFont from 'next/font/local';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -8,9 +9,12 @@ import { routing, type Locale } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import './globals.css';
 
-const notoSerifSC = Noto_Serif_SC({
-  subsets: ['latin'],
-  weight: ['400', '600'],
+/** 中文字体:站内字表子集化(T11)—— scripts/subset-fonts.py 生成;新增文案需重跑 */
+const notoSerifSC = localFont({
+  src: [
+    { path: '../fonts/noto-serif-sc-400.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/noto-serif-sc-600.woff2', weight: '600', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--font-noto-serif-sc',
 });
