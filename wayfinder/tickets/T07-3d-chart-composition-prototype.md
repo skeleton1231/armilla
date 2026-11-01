@@ -30,3 +30,12 @@ status: closed
 - 余下动画微时序(首屏引导、转场时长)属执行细节,随实现调校,不开票。
 
 **资产**:`wayfinder/prototypes/t07/variant-{a-ring,b-grid,c-armillary}.html`(three 0.187 本地 importmap,需本地 server 打开;冒烟截图见 `wayfinder/prototypes/screenshots/`)。
+
+## Addendum · 视觉精修轮(v2,2026-11-01)
+
+用户反馈粗样"很丑"(合理:粗样只服务构图决策)。已产出精修版 `variant-a-v2-polished.html` 并经无头浏览器验证,定为**执行阶段 3D 视觉与材质基准**:
+
+- 材质升级:青铜 `MeshPhysicalMaterial`(clearcoat 清漆 + RoomEnvironment 环境反射 + 做旧色差);星曜鎏金 emissive + **UnrealBloom 后期泛光 + additive 辉光贴片**(主星辉光 2.1,辅曜 1.2);朱砂自发光带红晕;
+- 细节:72 细刻度 + 12 宫界刻线 + 双圈刻环;盘芯十字轴 + "璇玑 / ARMILLA"刻字;双层远景星野;暗角氛围;
+- 动效:入场缩放缓动、星曜相位闪烁、交互即停自转;
+- 反馈回路:视觉 AI 复核两轮,终版评"博物馆展柜质感,无过曝,文字清晰"。构图决策(环形)不变。
