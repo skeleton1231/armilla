@@ -4,14 +4,14 @@ title: 测试债清偿(Playwright E2E 五条流 + 覆盖率门禁 + v3 交叉校
 labels: [wayfinder:task]
 blocked-by: []
 claimed-by:
-status: open
+status: closed
 ---
 
 ## Resolution(进度)
 
 - **① E2E 五条流:完成(5/5 绿,`npm run e2e`)**;顺手捕获并修复真 Bug —— locale 软导航双 DOM(改硬导航)。
 - **② 覆盖率:报告落地(v8 provider)+ 自产安全层补测 11 项(token 防伪/结构键/口径),30/30 全绿**。口径修订(T13 执行注):引擎正确性由 29 黄金 + 768 不变量 + E2E 三层保证;**行覆盖率不对 vendored 上游(ziwei 49%)追 90%**,仅对自产纯函数层(params/structure/canon/token)维持高覆盖。CI thresholds 随 T28 workflow 接入。
-- ③ v3 交叉校验:待做。
+- **③ v3 交叉校验:完成,一致(置信封章)**。三卷 SHA256 全过 → 合并 5.88GB → 720 月分片全量解析(51.8 万盘):**键空间 8,640 与自建索引精确一致、零未知键**;窗口内成员按「v3 birthInfo=农历」换算后探针 **24/24 日期级命中**(scripts/v3-lunar-probe.ts)。两个上游文档未言明的事实记档:**v3 覆盖 1924–1983(60 年)、birthInfo 为农历日期**。此前 Jaccard 0.43 为窗口外年份+农历直配双重假象。
 
 ## Question
 
