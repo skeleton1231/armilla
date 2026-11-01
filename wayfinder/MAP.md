@@ -37,6 +37,7 @@ status: open
 - [T11 性能预算与验收清单](tickets/T11-performance-budget.md):landing 零 three(JS≤150kb gz);/chart three chunk ≤250kb gz 懒加载;**2D 先渲、3D 异步接管**(SVG 骨架=LCP);验收三层 next dev loop + Lighthouse CI 硬门禁 + Speed Insights;中文衬线 fontTools 子集化+swap;材质程序化生成为主。
 - [T13 测试与引擎正确性策略](tickets/T13-testing-and-correctness.md):29 条黄金对照 + 属性测试(边界/闰月/晚子时,不变量校验);Vitest + Playwright + Testing Library;E2E 五条关键流;覆盖率引擎/解读 ≥90%、全站 ≥80%,CI 门禁。
 - [T14 Landing 首屏与文案结构](tickets/T14-landing-copy-and-structure.md):slogan「星有轨迹,盘有出处 / Every star placed. Every word sourced.」;首屏左叙事右表单(canvas 星空非 three);下探五段式含"不是什么"诚实边界;hero 双语基准样张已定稿在票内。
+- [T16 解读条目 DoD 与双语样张](tickets/T16-interpretation-entry-dod-and-samples.md):字段=主体(庙旺/落陷分档)+四化钩 4 句+内链+source;语气红线 lint 进 CI;两条金样(紫微·财帛宫 / 天机·迁移宫)已定稿在票内,为 168 条生产基准。
 
 ## Not yet specified
 

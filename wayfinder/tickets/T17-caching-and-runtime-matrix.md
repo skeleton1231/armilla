@@ -3,7 +3,7 @@ id: T17
 title: 缓存/ISR 与运行时策略
 labels: [wayfinder:grilling]
 blocked-by: [T11]
-claimed-by:
+claimed-by: claude-main
 status: open
 ---
 
