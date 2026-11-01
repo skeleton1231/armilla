@@ -32,6 +32,7 @@ export async function generateMetadata(props: {
   const { locale } = await props.params;
   const t = await getTranslations({ locale, namespace: 'brand' });
   return {
+    metadataBase: new URL(process.env.SITE_URL ?? 'http://localhost:3000'),
     title: {
       default: `${t('name')} · ${t('tagline')}`,
       template: `%s · ${t('name')}`,

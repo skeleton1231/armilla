@@ -4,6 +4,13 @@ import { routing } from './i18n/routing';
 export default createMiddleware(routing);
 
 export const config = {
-  // 显式白名单:只处理根路径与两个语言前缀(带点静态路径如 /favicon.ico 绝不进 [locale])
-  matcher: ['/', '/zh', '/zh/:path*', '/en', '/en/:path*'],
+  // 显式白名单:根路径、无前缀的页面路径(交给 next-intl 做 locale 协商重定向)、两个语言树。
+  // 静态路径(/favicon.ico 等)与未知路径绝不进 proxy/[locale]。
+  matcher: [
+    '/',
+    '/zh', '/zh/:path*',
+    '/en', '/en/:path*',
+    '/chart/:path*', '/stars/:path*', '/palaces/:path*',
+    '/famous', '/method',
+  ],
 };
