@@ -1,0 +1,112 @@
+{
+  "brand": {
+    "name": "Armilla",
+    "nameEn": "Armilla",
+    "tagline": "Zi Wei Dou Shu Chart Casting",
+    "slogan": "Every star placed. Every word sourced."
+  },
+  "nav": {
+    "home": "Home",
+    "stars": "Stars",
+    "palaces": "Palaces",
+    "famous": "Famous Charts",
+    "method": "Method & Sources",
+    "switchLocale": "中文"
+  },
+  "landing": {
+    "heroTitle": "Armilla · Zi Wei Dou Shu Chart Casting",
+    "heroSub": "Enter your birth details to cast your twelve-palace chart. Every star placed by algorithm; every reading traced to the classics.",
+    "whatTitle": "What this is",
+    "whatBody": "A chart-casting and reading tool: enter a solar or lunar birth date, a server-side engine casts the full twelve-palace chart, with deterministic readings across thirteen dimensions. Same input, same output — auditable end to end.",
+    "notTitle": "What this is not",
+    "notBody": "Not AI-generated. No fortune verdicts, no event prediction. We present traditional star lore and classical configurations; the judgment stays with you.",
+    "palacesTitle": "The Twelve Palaces",
+    "palacesBody": "The Life Palace is the pivot; eleven others each govern a domain — click any palace to see what it rules.",
+    "starsTitle": "The Fourteen Major Stars",
+    "starsBody": "From the sovereign Zi Wei to the general Po Jun: each star's nature and behavior in each palace, entry by entry.",
+    "methodTitle": "Method & Sources",
+    "methodBody": "The engine, the calendar conversions, the datasets and classical sources — all listed on this page. Every instrument has its scale marks."
+  },
+  "form": {
+    "title": "Cast your chart",
+    "calendar": "Calendar",
+    "solar": "Solar",
+    "lunar": "Lunar",
+    "leapMonth": "Leap month {month}",
+    "year": "Year",
+    "month": "Month",
+    "day": "Day",
+    "hour": "Hour (Shichen)",
+    "hourUnknown": "Hour unknown",
+    "hourUnknownHint": "Will cast with the noon hour; treat as approximate",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "city": "Birth city (for true solar time)",
+    "cityPlaceholder": "e.g. Beijing / Shanghai / Hangzhou",
+    "cityFallback": "Left blank = Beijing meridian convention",
+    "submit": "Cast Chart",
+    "recent": "Recent charts",
+    "errDate": "That date does not exist — please check",
+    "errLunar": "Invalid lunar date (check month length / leap month)",
+    "lunarPreview": "Solar equivalent: {date}",
+    "converting": "Converting…"
+  },
+  "chart": {
+    "title": "Your chart",
+    "birthInfo": "Birth data",
+    "unknownHour": "Hour unknown · cast at noon hour, approximate",
+    "share": "Copy share link",
+    "copied": "Copied",
+    "dimsTitle": "Thirteen dimensions",
+    "sameDaysTitle": "Days of the same chart",
+    "sameDaysBody": "Within the {start}–{end} data window, {count} moments share your chart's exact structure. This is a structural count, not a population statistic.",
+    "sameDaysYears": "Year distribution",
+    "famousMatchTitle": "Same chart as the famous",
+    "famousMatchBody": "Your chart structure is identical to:",
+    "datasetNotice": "Readings on this page come from an open dataset ({start}–{end} coverage); this date falls outside the window, so generic readings are shown.",
+    "kbNotice": "Readings assembled from the local knowledge base; dataset-backed readings activate once the data source is connected.",
+    "attribution": "Reading texts adapted from the Renhuai123/ziwei-doushu dataset, CC BY 4.0",
+    "genericTag": "General",
+    "comboTag": "Dedicated entry",
+    "patternTag": "Configuration",
+    "sihuaTag": "Transformation",
+    "summaryTag": "Life-palace summary",
+    "palacePanelHint": "Click any palace on the ring",
+    "gradeMajor": "Major star",
+    "gradeMinor": "Minor star",
+    "resetView": "Reset view",
+    "viewChart": "View this chart"
+  },
+  "wiki": {
+    "starsTitle": "Fourteen Major Stars",
+    "palacesTitle": "Twelve Palaces",
+    "essence": "Nature",
+    "domain": "Domain",
+    "castCta": "Check this palace in your chart",
+    "comboTitle": "{star} · {palace}",
+    "notFound": "Entry not found",
+    "backToStars": "Back to stars",
+    "backToPalaces": "Back to palaces"
+  },
+  "famous": {
+    "title": "Famous Charts Hall",
+    "body": "Eleven historical figures, charts cast and open to compare. A same-structure match is highlighted automatically on your chart page.",
+    "viewChart": "View this chart"
+  },
+  "method": {
+    "title": "Method & Sources",
+    "engineTitle": "Chart engine",
+    "engineBody": "Built on the open-source iztro engine (MIT) with lunar-javascript (MIT) for calendar conversion, plus a vendored calibration layer (leap-month mid-split, brightness transformation school, true solar time). Verified against 29 golden test cases.",
+    "dataTitle": "Data & texts",
+    "dataBody": "The thirteen-dimension reading texts are adapted from the Renhuai123/ziwei-doushu open dataset (CC BY 4.0); configuration detection uses its open pattern library (MIT, classical-first conditions). All in-house copy follows the tone rule: no fortune verdicts.",
+    "boundaryTitle": "Boundaries",
+    "boundaryBody": "This site declares no fortunes, predicts no events, and offers no medical or investment advice. Zi Wei Dou Shu is a traditional symbolic system; we present it as it is. Whether to use it, and what to believe, is yours to decide.",
+    "privacyTitle": "Privacy",
+    "privacyBody": "No accounts, no database, no behavioral tracking. Your birth data lives only in the URL you choose to share and in your own browser (localStorage for recent charts)."
+  },
+  "footer": {
+    "slogan": "Every star placed. Every word sourced.",
+    "license": "Engine & data sources on the method page · No fortune verdicts"
+  }
+}

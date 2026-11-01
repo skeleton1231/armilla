@@ -1,0 +1,112 @@
+{
+  "brand": {
+    "name": "璇玑",
+    "nameEn": "Armilla",
+    "tagline": "紫微斗数排盘",
+    "slogan": "星有轨迹,盘有出处"
+  },
+  "nav": {
+    "home": "首页",
+    "stars": "星曜",
+    "palaces": "宫位",
+    "famous": "名人盘",
+    "method": "方法与出处",
+    "switchLocale": "English"
+  },
+  "landing": {
+    "heroTitle": "璇玑 · 紫微斗数排盘",
+    "heroSub": "输入生辰,排出你的十二宫命盘。每颗星的位置由算法推演,每句解读都有古籍与格局出处。",
+    "whatTitle": "这是什么",
+    "whatBody": "一个排盘与解读工具:输入公历或农历生辰,服务端引擎排出完整十二宫命盘,并给出十三个维度的确定性解读。同输入必得同结果,全程可复核。",
+    "notTitle": "不是什么",
+    "notBody": "不是 AI 生成,不作祸福断言,不预测具体事件。我们只呈现传统星情与古籍格局,判断留给你自己。",
+    "palacesTitle": "十二宫",
+    "palacesBody": "命宫为枢纽,十一宫各司其事——点击任意宫位,看它司掌什么。",
+    "starsTitle": "十四主星",
+    "starsBody": "帝座紫微到破军之将,每颗星的星性与入宫表现,皆有词条。",
+    "methodTitle": "方法与出处",
+    "methodBody": "排盘引擎、历法换算、数据集与古籍来源,全部开列于此页——器有刻度,文有出处。"
+  },
+  "form": {
+    "title": "排出你的命盘",
+    "calendar": "历法",
+    "solar": "公历",
+    "lunar": "农历",
+    "leapMonth": "闰{month}月",
+    "year": "年",
+    "month": "月",
+    "day": "日",
+    "hour": "时辰",
+    "hourUnknown": "时辰未知",
+    "hourUnknownHint": "将以午时试排,结果仅供参考",
+    "gender": "性别",
+    "male": "男",
+    "female": "女",
+    "city": "出生城市(用于真太阳时)",
+    "cityPlaceholder": "如:北京 / 上海 / 杭州",
+    "cityFallback": "未填则按北京时区口径",
+    "submit": "排 盘",
+    "recent": "最近命盘",
+    "errDate": "该日期不存在,请检查",
+    "errLunar": "农历日期无效(检查大小月/闰月)",
+    "lunarPreview": "对应公历:{date}",
+    "converting": "换算中…"
+  },
+  "chart": {
+    "title": "你的命盘",
+    "birthInfo": "生辰",
+    "unknownHour": "时辰未知 · 午时试排,结果仅供参考",
+    "share": "复制分享链接",
+    "copied": "已复制",
+    "dimsTitle": "十三维解读",
+    "sameDaysTitle": "同盘之日",
+    "sameDaysBody": "在 {start}–{end} 数据窗口内,与你的盘面结构完全相同的时刻共 {count} 个。这是结构相同的口径,不代表人口统计。",
+    "sameDaysYears": "分布年份",
+    "famousMatchTitle": "与名人同盘",
+    "famousMatchBody": "你的盘面结构与下列名人完全相同:",
+    "datasetNotice": "本页解读来自开源数据集(覆盖 {start}–{end});该日期不在覆盖窗口,已切换通用解读。",
+    "kbNotice": "解读由本地知识库生成;专属数据集解读待接入后启用。",
+    "attribution": "解读文本改编自 Renhuai123/ziwei-doushu 数据集,CC BY 4.0",
+    "genericTag": "通用解读",
+    "comboTag": "专属条目",
+    "patternTag": "格局",
+    "sihuaTag": "四化",
+    "summaryTag": "命宫提要",
+    "palacePanelHint": "点击环上任意宫位",
+    "gradeMajor": "十四主星",
+    "gradeMinor": "辅曜",
+    "resetView": "复位视角",
+    "viewChart": "查看此盘"
+  },
+  "wiki": {
+    "starsTitle": "十四主星",
+    "palacesTitle": "十二宫",
+    "essence": "星性",
+    "domain": "司掌",
+    "castCta": "查你的此宫",
+    "comboTitle": "{star} · {palace}",
+    "notFound": "词条不存在",
+    "backToStars": "返回星曜列表",
+    "backToPalaces": "返回宫位列表"
+  },
+  "famous": {
+    "title": "名人命盘馆",
+    "body": "十一位历史名人的命盘,结构可对照、可复核。与你同盘者,命盘页会自动高亮。",
+    "viewChart": "查看此盘"
+  },
+  "method": {
+    "title": "方法与出处",
+    "engineTitle": "排盘引擎",
+    "engineBody": "基于开源引擎 iztro(MIT)与 lunar-javascript(MIT)换算历法,并移植开源校准层(闰月月中分界、亮度四化派、真太阳时)。金标准用例对照测试 29 例。",
+    "dataTitle": "数据与文本",
+    "dataBody": "十三维解读文本改编自 Renhuai123/ziwei-doushu 开源数据集(CC BY 4.0);格局识别基于其开源格局库(MIT,古书条件优先)。站内自产文案遵循「不作祸福断言」的语气红线。",
+    "boundaryTitle": "边界声明",
+    "boundaryBody": "本站不断祸福、不预测事件、不提供医疗/投资建议。紫微斗数是一套传统的象义体系,我们把它如实呈现,使用与否、信与不信,由你决定。",
+    "privacyTitle": "隐私",
+    "privacyBody": "无账号、无数据库、无行为追踪。你的生辰只存在于你分享的 URL 与你自己的浏览器(localStorage 最近命盘)。"
+  },
+  "footer": {
+    "slogan": "星有轨迹,盘有出处",
+    "license": "引擎与数据来源见方法页 · 不作祸福断言"
+  }
+}
