@@ -123,6 +123,12 @@ export async function generateMetadata(props: {
   if (!params) return { title: t('title') };
   return {
     title: `${params.y}-${params.m}-${params.d} · ${t('title')}`,
+    openGraph: {
+      images: [{
+        url: `/api/og?y=${params.y}&m=${params.m}&d=${params.d}&h=${params.h}&locale=${locale}`,
+        width: 1200, height: 630,
+      }],
+    },
     robots: { index: false }, // 参数空间不入 sitemap(T12),由分享与内链发现
   };
 }
