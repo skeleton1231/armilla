@@ -6,3 +6,7 @@ export function canonPalaceName(name: string): string {
   if (name.endsWith('宫')) return name;
   return `${name}宫`;
 }
+
+/** 地支双刻(en 站用拼音):索引对齐引擎 branch(0=子 … 11=亥) */
+export const BRANCH_ZH = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+export const BRANCH_PINYIN = ['Zi', 'Chou', 'Yin', 'Mao', 'Chen', 'Si', 'Wu', 'Wei', 'Shen', 'You', 'Xu', 'Hai'];

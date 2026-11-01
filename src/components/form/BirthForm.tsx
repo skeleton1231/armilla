@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { SHICHEN } from '@/lib/ziwei/constants';
+import { BRANCH_PINYIN } from '@/lib/interpret/canon';
 import { CITY_LIST } from '@/lib/engine/cities';
 import { encodeChartParams, type ChartParams } from '@/lib/engine/params';
 import { Button } from '@/components/ui/button';
@@ -240,7 +241,7 @@ export function BirthForm({ locale }: { locale: string }): React.JSX.Element {
           >
             {SHICHEN.map((s) => (
               <option key={s.branch} value={s.branch}>
-                {locale === 'zh' ? `${s.name}(${s.range})` : `${s.name} ${s.range}`}
+                {locale === 'zh' ? `${s.name}(${s.range})` : `${BRANCH_PINYIN[s.branch]} Shi ${s.range}`}
               </option>
             ))}
           </select>

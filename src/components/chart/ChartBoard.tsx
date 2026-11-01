@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import type { Paragraph, ReadingSection } from '@/lib/interpret/assemble';
-import { canonPalaceName } from '@/lib/interpret/canon';
+import { canonPalaceName, BRANCH_ZH, BRANCH_PINYIN } from '@/lib/interpret/canon';
 import type { Palace, Star, ZiweiChart } from '@/lib/engine';
 import { STAR_BY_NAME } from '@/content/wiki/stars';
 import { palaceEntryByName } from '@/content/wiki/palaces';
@@ -16,10 +16,6 @@ const R_TICK = 341;
 const R_LABEL = 372;
 const R_BRANCH = 350;
 const R_STAR = 263;
-
-/** 地支双刻:zh 汉字 / en 拼音(en 站盘面刻字的本地化口径) */
-const BRANCH_ZH = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
-const BRANCH_PINYIN = ['Zi', 'Chou', 'Yin', 'Mao', 'Chen', 'Si', 'Wu', 'Wei', 'Shen', 'You', 'Xu', 'Hai'];
 
 /** 极坐标:0° = 正下方(命宫),顺时针为正 */
 function pt(r: number, deg: number): [number, number] {
