@@ -10,8 +10,17 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({ locale, namespace: 'famous' });
-  return { title: t('title'), description: t('body') };
+  return {
+    title: t('title'),
+    description: t('body'),
+    alternates: { languages: { zh: '/zh/famous', en: '/en/famous' } },
+  };
 }
+
+/** 分类双语映射(数据层保持中文枚举,展示层按 locale 映射) */
+const CATEGORY_EN: Record<string, string> = {
+  '商业': 'Business', '文艺': 'Arts', '历史': 'History', '体育': 'Sports', '科技': 'Tech',
+};
 
 export default async function FamousPage(props: {
   params: Promise<{ locale: string }>;
@@ -36,7 +45,9 @@ export default async function FamousPage(props: {
           });
           return (
             <div key={person.id} className="rounded-[3px] border border-[var(--border)] bg-[var(--card)] p-6">
-              <p className="text-xs tracking-label text-[var(--muted-foreground)]">{person.category}</p>
+              <p className="text-xs tracking-label text-[var(--muted-foreground)]">
+                {zh ? person.category : (CATEGORY_EN[person.category] ?? person.category)}
+              </p>
               <h2 className="mt-2 text-xl font-semibold text-[var(--foreground)]">
                 {zh ? person.name : person.nameEn}
               </h2>

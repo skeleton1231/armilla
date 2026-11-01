@@ -40,7 +40,7 @@ export default async function LandingPage(props: {
           <p className="mt-3 text-sm leading-8 text-[var(--muted-foreground)]">{t('whatBody')}</p>
         </div>
         <div className="rounded-[3px] border border-[var(--border)] bg-[var(--card)] p-8">
-          <h2 className="text-sm tracking-label text-[var(--cinnabar)]">{t('notTitle')}</h2>
+          <h2 className="text-sm tracking-label text-[var(--cinnabar-bright)]">{t('notTitle')}</h2>
           <p className="mt-3 text-sm leading-8 text-[var(--muted-foreground)]">{t('notBody')}</p>
         </div>
       </section>
@@ -48,7 +48,7 @@ export default async function LandingPage(props: {
       {/* ———— 十二宫 ———— */}
       <section id="palaces" className="mt-20 scroll-mt-24">
         <h2 className="text-sm tracking-label text-[var(--muted-foreground)]">{t('palacesTitle')}</h2>
-        <p className="mt-2 text-sm text-[var(--muted-foreground)] opacity-75">{t('palacesBody')}</p>
+        <p className="mt-2 text-sm text-[var(--muted-foreground)]">{t('palacesBody')}</p>
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {PALACES.map((p) => (
             <Link
@@ -66,7 +66,7 @@ export default async function LandingPage(props: {
       {/* ———— 十四主星 ———— */}
       <section id="stars" className="mt-20 scroll-mt-24">
         <h2 className="text-sm tracking-label text-[var(--muted-foreground)]">{t('starsTitle')}</h2>
-        <p className="mt-2 text-sm text-[var(--muted-foreground)] opacity-75">{t('starsBody')}</p>
+        <p className="mt-2 text-sm text-[var(--muted-foreground)]">{t('starsBody')}</p>
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {MAIN_STARS.map((s) => (
             <Link

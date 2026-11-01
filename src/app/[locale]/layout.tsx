@@ -74,11 +74,11 @@ export default async function LocaleLayout(props: {
                   {tBrand('name')}
                 </span>
               </Link>
-              <nav className="flex items-center gap-5 text-sm text-[var(--muted-foreground)]">
-                <Link href="/#palaces" className="transition-colors hover:text-[var(--gold)]">{tNav('palaces')}</Link>
-                <Link href="/#stars" className="transition-colors hover:text-[var(--gold)]">{tNav('stars')}</Link>
-                <Link href="/famous" className="transition-colors hover:text-[var(--gold)]">{tNav('famous')}</Link>
-                <Link href="/method" className="transition-colors hover:text-[var(--gold)]">{tNav('method')}</Link>
+              <nav className="flex items-center gap-1 text-sm text-[var(--muted-foreground)]">
+                <Link href="/#palaces" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('palaces')}</Link>
+                <Link href="/#stars" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('stars')}</Link>
+                <Link href="/famous" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('famous')}</Link>
+                <Link href="/method" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('method')}</Link>
                 <LocaleSwitcher locale={locale} />
               </nav>
             </div>
@@ -89,7 +89,7 @@ export default async function LocaleLayout(props: {
           <footer className="mt-24 border-t border-[var(--border)]">
             <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-6 py-10 text-xs text-[var(--muted-foreground)]">
               <p className="tracking-label">{tFooter('slogan')}</p>
-              <p className="opacity-70">{tFooter('license')}</p>
+              <p>{tFooter('license')}</p>
             </div>
           </footer>
         </NextIntlClientProvider>

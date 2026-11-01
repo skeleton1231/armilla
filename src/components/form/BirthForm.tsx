@@ -310,7 +310,7 @@ export function BirthForm({ locale }: { locale: string }): React.JSX.Element {
             ))}
           </ul>
         )}
-        <p className="mt-1 text-[11px] text-[var(--muted-foreground)]/70">{t('cityFallback')}</p>
+        <p className="mt-1 text-[12px] text-[var(--muted-foreground)]">{t('cityFallback')}</p>
       </div>
 
       {cal === 'lunar' && (

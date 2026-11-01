@@ -18,6 +18,7 @@ export async function generateMetadata(props: {
   return {
     title: locale === 'zh' ? p.name : p.en,
     description: locale === 'zh' ? p.domain.zh : p.domain.en,
+    alternates: { languages: { zh: `/zh/palaces/${slug}`, en: `/en/palaces/${slug}` } },
   };
 }
 

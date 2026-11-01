@@ -7,7 +7,10 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { locale } = await props.params;
   const t = await getTranslations({ locale, namespace: 'method' });
-  return { title: t('title') };
+  return {
+    title: t('title'),
+    alternates: { languages: { zh: '/zh/method', en: '/en/method' } },
+  };
 }
 
 const SECTIONS = [

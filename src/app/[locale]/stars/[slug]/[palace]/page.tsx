@@ -25,6 +25,9 @@ export async function generateMetadata(props: {
   return {
     title: locale === 'zh' ? `${star.name}入${p.name}` : `${star.en} in the ${p.en}`,
     description: locale === 'zh' ? star.essence.zh : star.essence.en,
+    alternates: {
+      languages: { zh: `/zh/stars/${slug}/${palace}`, en: `/en/stars/${slug}/${palace}` },
+    },
   };
 }
 

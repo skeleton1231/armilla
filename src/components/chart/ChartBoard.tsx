@@ -17,6 +17,10 @@ const R_LABEL = 372;
 const R_BRANCH = 350;
 const R_STAR = 263;
 
+/** 地支双刻:zh 汉字 / en 拼音(en 站盘面刻字的本地化口径) */
+const BRANCH_ZH = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+const BRANCH_PINYIN = ['Zi', 'Chou', 'Yin', 'Mao', 'Chen', 'Si', 'Wu', 'Wei', 'Shen', 'You', 'Xu', 'Hai'];
+
 /** 极坐标:0° = 正下方(命宫),顺时针为正 */
 function pt(r: number, deg: number): [number, number] {
   const a = ((deg + 90) * Math.PI) / 180;
@@ -149,7 +153,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
             const isSelected = selected === i;
             const [nx, ny] = pt(R_LABEL, mid);
             const [bx, by] = pt(R_BRANCH, mid);
-            const branchName = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'][p.branch];
+            const branchName = (locale === 'zh' ? BRANCH_ZH : BRANCH_PINYIN)[p.branch];
             const stars = p.stars.filter((s) => s.type === 'major' || s.type === 'minor' || s.type === 'lucky' || s.type === 'sha').slice(0, 4);
             return (
               <g
@@ -230,7 +234,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
             ARMILLA
           </text>
           <text x={CX} y={CY + 36} textAnchor="middle" className="fill-[var(--muted-foreground)] text-[13px]">
-            {chart.birthInfo.year} · {chart.birthInfo.month} · {chart.birthInfo.day} · {['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'][chart.birthInfo.hour]}
+            {chart.birthInfo.year} · {chart.birthInfo.month} · {chart.birthInfo.day} · {(locale === 'zh' ? BRANCH_ZH : BRANCH_PINYIN)[chart.birthInfo.hour]}
           </text>
           <circle cx={CX} cy={CY + 64} r={3.4} className="fill-[var(--gold)]" style={{ filter: 'drop-shadow(0 0 6px rgba(216,180,90,0.55))' }} />
         </svg>

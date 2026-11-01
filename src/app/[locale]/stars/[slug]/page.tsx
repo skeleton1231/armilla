@@ -20,6 +20,7 @@ export async function generateMetadata(props: {
   return {
     title: locale === 'zh' ? `${star.name}星曜` : star.en,
     description: locale === 'zh' ? star.essence.zh : star.essence.en,
+    alternates: { languages: { zh: `/zh/stars/${slug}`, en: `/en/stars/${slug}` } },
   };
 }
 
