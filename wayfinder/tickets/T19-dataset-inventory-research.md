@@ -3,8 +3,8 @@ id: T19
 title: 紫微数据集深度盘点(v3/v4/famous)
 labels: [wayfinder:research]
 blocked-by: []
-claimed-by: research-agent
-status: open
+claimed-by:
+status: closed
 ---
 
 ## Question
@@ -18,3 +18,13 @@ status: open
 5. **体积与切片**:若 v4 按年切 JSONL,单年多大、单条查询需拉多少字节;给出 2–3 种可行切片粒度(按年/按月/按 key 索引)的量化对比。
 
 产出 `wayfinder/research/dataset-inventory.md`:schema 表、生成能力结论(能否自生成)、切片方案对比、署名方案建议。T20/T21 依赖本票。
+
+## Context pointers
+
+- 研究产出: wayfinder/research/dataset-inventory.md(v4/v3/famous 逐字段盘点、自生成能力结论、切片量化对比与署名方案)
+
+## Resolution
+
+- **能否自生成:不能**(13 维解读文本依赖闭源断语库;`db-analysis.ts:54` STAR_DB 置空,README.md:386 开源边界,MANIFEST `engineCommit` 指向私有站仓 `c25dd495`)。命盘结构可由开源引擎自行枚举,数据集压缩后仅 161.4 MB/77 年份卷,须下载后一次预处理(zstd `--long=27` 整卷解压)建 key 索引。
+- 切片推荐:**存储按年(上游原生 77 卷)、服务按 key**(预处理建 ~19 MB 偏移索引,单查 84 KB);按月无增益、per-key 文件数爆炸,均不取。
+- 票面数字修正:v3 为 518,400(非 518,382);famous.ts 实为 11 人(非 3,770);"天盘/地势/人盘"与 CSV/Parquet 仓库内无证据;v4 覆盖冻结 1950–2026,窗口外无文本,T20/T21 需降级路径。
