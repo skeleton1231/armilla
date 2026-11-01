@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>T07 原型 A · 环形十二宫(浑仪刻度环)</title>
+<style>
+  :root { --bg:#16130f; --gold:#d8b45a; --cinnabar:#c03d2e; --ink:#e8ddc8; --muted:#a89a7c; }
+  * { margin:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:"Noto Serif SC","Source Han Serif SC","Songti SC",SimSun,serif; overflow:hidden; }
+  #stage { position:fixed; inset:0; }
+  .hud { position:fixed; top:20px; left:24px; z-index:5; }
+  .hud h1 { font-size:15px; letter-spacing:.35em; font-weight:600; color:var(--muted); }
+  .hud p  { font-size:12px; color:var(--muted); opacity:.75; margin-top:6px; letter-spacing:.12em; }
+  #panel { position:fixed; top:0; right:0; height:100%; width:300px; padding:28px 24px;
+           background:linear-gradient(to left, rgba(16,13,10,.92), rgba(16,13,10,.78));
+           border-left:1px solid #3a3122; transform:translateX(100%);
+           transition:transform .35s cubic-bezier(.16,1,.3,1); z-index:4; }
+  #panel.open { transform:none; }
+  #panel .tag { font-size:11px; letter-spacing:.4em; color:var(--muted); }
+  #panel h2 { font-size:26px; margin:10px 0 2px; color:var(--gold); font-weight:600; }
+  #panel .branch { font-size:13px; color:var(--muted); margin-bottom:18px; }
+  #panel .stars { list-style:none; margin:0 0 18px; padding:0; }
+  #panel .stars li { font-size:15px; padding:7px 0; border-bottom:1px solid #2c2620; display:flex; justify-content:space-between; }
+  #panel .stars .sihua { color:var(--cinnabar); font-size:13px; }
+  #panel .note { font-size:13px; line-height:2; color:#cbbfa6; }
+  #hint { position:fixed; bottom:18px; left:24px; font-size:12px; color:var(--muted); opacity:.7; letter-spacing:.15em; z-index:5; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div class="hud">
+  <h1>璇玑 · 原型 A 环形十二宫</h1>
+  <p>浑仪刻度环 · 鎏金星曜 · 朱砂四化</p>
+</div>
+<div id="hint">拖动旋转 · 滚轮缩放 · 点击宫位看解读</div>
+<aside id="panel">
+  <div class="tag">PALACE</div>
+  <h2 id="p-name">—</h2>
+  <div class="branch" id="p-branch">—</div>
+  <ul class="stars" id="p-stars"></ul>
+  <p class="note" id="p-note"></p>
+</aside>
+
+<script type="importmap">
+{ "imports": { "three": "../../lib/three.module.min.js",
+               "three/addons/controls/OrbitControls.js": "../../lib/addons/controls/OrbitControls.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// —— 盘面样例数据(构图原型用,非引擎输出)——
+const PALACES = [
+  { name:'命宫', branch:'午', stars:[['紫微','major','科'],['左辅','minor']], note:'紫微坐命,帝座临身:格局开阔,主见与担当并存,庙旺则众星拱卫、进退有度。' },
+  { name:'兄弟', branch:'未', stars:[['天机','major'],['天马','minor']], note:'天机入兄弟,手足各异志:彼此机敏善谋,聚少离多而情理常在。' },
+  { name:'夫妻', branch:'申', stars:[['太阳','major','权']], note:'太阳入夫妻化权,配偶明朗主事:光照他宫,家中有主心骨,唯争执亦直。' },
+  { name:'子女', branch:'酉', stars:[['武曲','major','忌'],['七杀','major']], note:'武曲化忌会七杀,子女刚毅果决:管教宜疏不宜堵,财物之教胜于言语。' },
+  { name:'财帛', branch:'戌', stars:[['天府','major']], note:'天府入财帛,库星守财:进财稳厚、善守善积,取财有道而格局大。' },
+  { name:'疾厄', branch:'亥', stars:[['太阴','major','禄']], note:'太阴入疾厄化禄,阴柔滋养:劳心多于劳力,睡眠与情绪为养生之首。' },
+  { name:'迁移', branch:'子', stars:[['贪狼','major'],['擎羊','minor']], note:'贪狼入迁移,动中取趣:异地多机遇亦多诱惑,择善而往。' },
+  { name:'交友', branch:'丑', stars:[['巨门','major']], note:'巨门入交友,口碑两极:言路畅通而口舌亦多,重诺者可深交。' },
+  { name:'官禄', branch:'寅', stars:[['天相','major'],['天梁','major']], note:'天相会天梁于官禄,辅弼之才:宜体制与专业路径,清望与实权相济。' },
+  { name:'田宅', branch:'卯', stars:[['天同','major'],['天姚','minor']], note:'天同入田宅,安居之福:居所安逸讲究,家宅和暖,置产宜稳。' },
+  { name:'福德', branch:'辰', stars:[['破军','major']], note:'破军入福德,心境常新:兴味多变、破立交替,静坐功课可养神。' },
+  { name:'父母', branch:'巳', stars:[['文昌','minor'],['文曲','minor']], note:'昌曲入父母,书香一脉:亲长重教,幼承文墨,荫庇在笔墨之间。' },
+];
+const SIHUA = { '禄':'禄', '权':'权', '科':'科', '忌':'忌' };
+
+// —— 基础三件套 ——
+const stage = document.getElementById('stage');
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.setClearColor(0x16130f);
+stage.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x16130f, 18, 42);
+const camera = new THREE.PerspectiveCamera(42, innerWidth/innerHeight, 0.1, 100);
+camera.position.set(0, 7.5, 11);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.dampingFactor = 0.06;
+controls.minDistance = 6; controls.maxDistance = 22; controls.maxPolarAngle = Math.PI * 0.52;
+
+scene.add(new THREE.AmbientLight(0x8a7c5e, 0.55));
+const key = new THREE.DirectionalLight(0xffe9b0, 1.1); key.position.set(6, 10, 4); scene.add(key);
+const rim = new THREE.PointLight(0xc03d2e, 0.35, 30); rim.position.set(-8, 4, -6); scene.add(rim);
+
+// —— 材质(程序化,无贴图)——
+const bronzeMat = new THREE.MeshStandardMaterial({ color:0x5c6b52, metalness:0.85, roughness:0.55 }); // 青铜锈绿
+const bronzeHi  = new THREE.MeshStandardMaterial({ color:0x7a8b6f, metalness:0.9, roughness:0.4, emissive:0x2a3324, emissiveIntensity:0.5 });
+const goldMat   = new THREE.MeshStandardMaterial({ color:0xd8b45a, metalness:1, roughness:0.28, emissive:0x6b4f16, emissiveIntensity:0.55 });
+const cinnabar  = new THREE.MeshStandardMaterial({ color:0xc03d2e, metalness:0.4, roughness:0.4, emissive:0x5c130a, emissiveIntensity:0.8 });
+
+// 文字贴图(刻字质感:细描金线)
+function label(text, size=64, color='#e8ddc8') {
+  const c = document.createElement('canvas'); c.width = 256; c.height = 128;
+  const g = c.getContext('2d');
+  g.font = `600 ${size}px "Noto Serif SC","Songti SC",SimSun,serif`;
+  g.textAlign='center'; g.textBaseline='middle';
+  g.fillStyle = color; g.fillText(text, 128, 64);
+  const t = new THREE.CanvasTexture(c); t.anisotropy = 4;
+  const m = new THREE.MeshBasicMaterial({ map:t, transparent:true, opacity:0.92, depthWrite:false });
+  return new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.75), m);
+}
+
+// —— 环形盘面 ——
+const chart = new THREE.Group(); scene.add(chart);
+const R_IN = 4.2, R_OUT = 7.6, SEG = Math.PI*2/12;
+const segs = [];
+PALACES.forEach((p, i) => {
+  const a0 = -Math.PI/2 - SEG/2 + i*SEG;             // 命宫(午)置于正下方,顺时针排布
+  const mid = a0 + SEG/2;
+  const seg = new THREE.Mesh(new THREE.RingGeometry(R_IN, R_OUT, 48, 1, 0, SEG), bronzeMat.clone());
+  seg.rotation.x = -Math.PI/2;
+  seg.rotation.z = 0;
+  seg.geometry = seg.geometry.clone();
+  seg.userData = { index:i };
+  // RingGeometry 起始角从 +x 轴起:直接重建几何以带起始角
+  seg.geometry.dispose();
+  seg.geometry = new THREE.RingGeometry(R_IN, R_OUT, 48, 1, a0, SEG);
+  seg.rotation.x = -Math.PI/2;
+  seg.position.y = 0;
+  chart.add(seg); segs.push(seg);
+
+  // 刻线(宫界):细金线
+  const edge = new THREE.Mesh(new THREE.RingGeometry(R_OUT-0.05, R_OUT, 48, 1, a0-0.006, 0.012),
+    new THREE.MeshBasicMaterial({ color:0xa89a7c, transparent:true, opacity:0.55 }));
+  edge.rotation.x = -Math.PI/2; chart.add(edge);
+
+  // 宫名刻字(平贴环面)
+  const nm = label(p.name, 66, '#d8b45a');
+  nm.rotation.x = -Math.PI/2; nm.rotation.z = -mid + Math.PI/2;
+  nm.position.set(Math.cos(mid)*(R_IN+1.05), 0.02, -Math.sin(mid)*(R_IN+1.05));
+  chart.add(nm);
+  const br = label(p.branch, 44, '#a89a7c');
+  br.rotation.x = -Math.PI/2; br.rotation.z = -mid + Math.PI/2;
+  br.position.set(Math.cos(mid)*(R_IN+0.42), 0.02, -Math.sin(mid)*(R_IN+0.42));
+  chart.add(br);
+
+  // 星曜:鎏金球,主星大辅曜小,沿弧排布
+  const stars = p.stars;
+  stars.forEach((s, j) => {
+    const r = R_OUT - 0.75 - (j % 2) * 1.15;
+    const t = mid + (Math.floor(j/2) - (stars.length-1)/4) * 0.16;
+    const size = s[1]==='major' ? 0.26 : 0.15;
+    const star = new THREE.Mesh(new THREE.SphereGeometry(size, 24, 24), goldMat);
+    star.position.set(Math.cos(t)*r, size+0.06, -Math.sin(t)*r);
+    chart.add(star);
+    if (s[2]) { // 四化:朱砂八面体悬浮于星曜上方
+      const mark = new THREE.Mesh(new THREE.OctahedronGeometry(0.12), cinnabar);
+      mark.position.set(star.position.x, size+0.42, star.position.z);
+      chart.add(mark);
+      const ml = label(SIHUA[s[2]], 52, '#e06a55');
+      ml.rotation.x = -Math.PI/2;
+      ml.position.set(mark.position.x, 0.03, mark.position.z - 0.5);
+      ml.scale.set(0.55, 0.28, 1);
+      chart.add(ml);
+    }
+  });
+});
+
+// 中宫仪芯:同心刻度环 + 心点
+[[R_IN-0.5, 0.03],[R_IN-1.3, 0.02],[1.1, 0.04]].forEach(([r, w], k) => {
+  const ring = new THREE.Mesh(new THREE.RingGeometry(r, r+w, 96),
+    new THREE.MeshBasicMaterial({ color:0xa89a7c, transparent:true, opacity:0.35 }));
+  ring.rotation.x = -Math.PI/2; ring.position.y = 0.01; chart.add(ring);
+});
+const core = new THREE.Mesh(new THREE.SphereGeometry(0.16, 24, 24), goldMat);
+core.position.y = 0.35; chart.add(core);
+const coreLabel = label('璇玑 · 一九九〇 · 六月十五 · 午', 40, '#a89a7c');
+coreLabel.rotation.x = -Math.PI/2; coreLabel.position.set(0, 0.02, -2.1);
+coreLabel.scale.set(2.1, 1.05, 1); chart.add(coreLabel);
+
+chart.rotation.x = 0.0; // 俯视倾角交给相机
+let hovered = -1;
+const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+renderer.domElement.addEventListener('pointermove', e => {
+  ptr.set(e.clientX/innerWidth*2-1, -(e.clientY/innerHeight)*2+1);
+  ray.setFromCamera(ptr, camera);
+  const hit = ray.intersectObjects(segs)[0];
+  const idx = hit ? hit.object.userData.index : -1;
+  if (idx !== hovered) {
+    segs.forEach((s, k) => s.material.emissive = null);
+    if (idx >= 0) { segs[idx].material = bronzeHi.clone(); segs[idx].material.emissiveIntensity = 0.6; }
+    hovered = idx; renderer.domElement.style.cursor = idx>=0 ? 'pointer' : 'grab';
+  }
+});
+renderer.domElement.addEventListener('click', () => {
+  if (hovered < 0) return;
+  const p = PALACES[hovered];
+  document.getElementById('p-name').textContent = p.name;
+  document.getElementById('p-branch').textContent = `地支 · ${p.branch}`;
+  document.getElementById('p-stars').innerHTML = p.stars.map(s =>
+    `<li><span>${s[0]}</span>${s[2] ? `<span class="sihua">化${s[2]}</span>` : '<span style="opacity:.4;font-size:12px">星曜</span>'}</li>`).join('');
+  document.getElementById('p-note').textContent = p.note;
+  document.getElementById('panel').classList.add('open');
+});
+
+let t0 = performance.now();
+(function loop(t) {
+  const dt = (t - t0)/1000; t0 = t;
+  chart.rotation.y += dt * 0.05;   // 缓慢自转,仪器感
+  core.position.y = 0.35 + Math.sin(t/900)*0.06;
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(loop);
+})(t0);
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>

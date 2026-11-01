@@ -38,11 +38,13 @@ status: open
 - [T13 测试与引擎正确性策略](tickets/T13-testing-and-correctness.md):29 条黄金对照 + 属性测试(边界/闰月/晚子时,不变量校验);Vitest + Playwright + Testing Library;E2E 五条关键流;覆盖率引擎/解读 ≥90%、全站 ≥80%,CI 门禁。
 - [T14 Landing 首屏与文案结构](tickets/T14-landing-copy-and-structure.md):slogan「星有轨迹,盘有出处 / Every star placed. Every word sourced.」;首屏左叙事右表单(canvas 星空非 three);下探五段式含"不是什么"诚实边界;hero 双语基准样张已定稿在票内。
 - [T16 解读条目 DoD 与双语样张](tickets/T16-interpretation-entry-dod-and-samples.md):字段=主体(庙旺/落陷分档)+四化钩 4 句+内链+source;语气红线 lint 进 CI;两条金样(紫微·财帛宫 / 天机·迁移宫)已定稿在票内,为 168 条生产基准。
+- [T17 缓存/ISR 与运行时策略](tickets/T17-caching-and-runtime-matrix.md):路由×缓存矩阵锁定(landing/词条/method 静态;/chart SSR + `'use cache'` 全参数路由缓存,部署即失效;168 组合页随内容分批静态);**全站 node runtime**(edge YAGNI);构建 ≤10min。
+- [T07 命盘 3D 构图原型](tickets/T07-3d-chart-composition-prototype.md):**环形十二宫(浑仪刻度环)定案**;鎏金星球两级+朱砂八面体四化;hover 高亮+点击出解读面板;自转 ≤0.05rad/s 交互即停;C 变体骨架留作沉浸模式可选层;原型三变体+冒烟截图在 wayfinder/prototypes/。
+- [T09 设计系统 tokens 与字体选型](tickets/T09-design-tokens-and-typography.md):tokens.css 定为执行基底(oklch 全套+shadcn 映射);**dark 单主题,亮色不做**;鎏金唯一高亮源、朱砂四化专属;Noto Serif SC(OFL)+ Spectral(OFL)主候选;3px 圆角、缓出动效禁弹跳;3D 材质与 UI tokens 同源。
 
 ## Not yet specified
 
-- 3D 交互细节规格(动画时序、首屏引导、性能档位)—— 等 T07 原型反馈
-- 命盘分享卡片视觉规格 —— 等 T12 的 OG 方案
+- 命盘分享卡片视觉规格 —— 等 T12 的 OG 方案(T12 为最后一张开放票)
 
 ## Out of scope
 

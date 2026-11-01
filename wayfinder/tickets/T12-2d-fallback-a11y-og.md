@@ -3,7 +3,7 @@ id: T12
 title: 2D 降级、无障碍与分享卡片
 labels: [wayfinder:grilling]
 blocked-by: [T07, T05]
-claimed-by:
+claimed-by: claude-main
 status: open
 ---
 

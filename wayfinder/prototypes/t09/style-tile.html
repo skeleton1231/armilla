@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>T09 · 璇玑设计系统样张(青铜浑仪 · dark 单主题)</title>
+<link rel="stylesheet" href="./tokens.css" />
+<style>
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-serif);
+         margin: 0; padding: 48px clamp(20px, 6vw, 96px); }
+  section { max-width: 980px; margin: 0 auto var(--sp-20); }
+  h2.sec { font-size: var(--text-sm); letter-spacing: var(--tracking-label); color: var(--ink-muted);
+           border-bottom: 1px solid var(--line); padding-bottom: var(--sp-3); margin: 0 0 var(--sp-8);
+           font-weight: 600; }
+  .hero-zh { font-size: var(--text-hero); line-height: var(--lh-hero); margin: 0 0 var(--sp-4); color: var(--ink); }
+  .hero-zh em { font-style: normal; color: var(--gold); }
+  .hero-en { font-size: var(--text-xl); color: var(--ink-muted); font-family: var(--font-serif-en); margin: 0; }
+  .lede { font-size: var(--text-lg); line-height: var(--lh-lg); max-width: 42em; }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: var(--sp-4); }
+  .sw { border: 1px solid var(--line); padding: var(--sp-4); border-radius: var(--radius); background: var(--surface-1); }
+  .sw .chip { height: 56px; border-radius: 2px; margin-bottom: var(--sp-3); box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.06); }
+  .sw b { display: block; font-size: var(--text-sm); font-weight: 600; }
+  .sw code { font-size: var(--text-xs); color: var(--ink-faint); font-family: ui-monospace, monospace; }
+
+  .scale > * { margin: 0 0 var(--sp-2); }
+  .t-hero { font-size: var(--text-hero); line-height: var(--lh-hero); }
+  .t-xl { font-size: var(--text-xl); }
+  .t-lg { font-size: var(--text-lg); color: var(--ink); }
+  .t-base { font-size: var(--text-base); line-height: var(--lh-base); color: var(--ink); max-width: 40em; }
+  .t-sm { font-size: var(--text-sm); color: var(--ink-muted); }
+  .t-xs { font-size: var(--text-xs); color: var(--ink-faint); letter-spacing: var(--tracking-label); }
+
+  .controls { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
+  .btn { font: inherit; font-size: var(--text-base); padding: var(--sp-3) var(--sp-8);
+         background: transparent; color: var(--gold); border: 1px solid var(--gold-dim);
+         border-radius: var(--radius); letter-spacing: 0.2em; cursor: pointer;
+         transition: all var(--dur-fast) var(--ease-out-qi); }
+  .btn:hover { background: var(--gold); color: var(--primary-foreground); border-color: var(--gold); }
+  .btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  .btn-solid { background: var(--gold); color: var(--primary-foreground); border-color: var(--gold); }
+  .btn-solid:hover { background: var(--gold-bright); }
+  .field { display: flex; flex-direction: column; gap: var(--sp-2); }
+  .field label { font-size: var(--text-xs); letter-spacing: var(--tracking-label); color: var(--ink-muted); }
+  .field input { font: inherit; background: var(--input); border: 1px solid var(--line);
+                 color: var(--ink); padding: var(--sp-3) var(--sp-4); border-radius: var(--radius); min-width: 260px; }
+  .field input:focus { outline: none; border-color: var(--gold-dim); box-shadow: 0 0 0 3px oklch(0.78 0.115 85 / 0.15); }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+          padding: var(--sp-8); box-shadow: var(--shadow-plate); max-width: 560px; }
+  .card h3 { margin: 0 0 var(--sp-2); font-size: var(--text-lg); color: var(--gold); }
+  .card p { margin: 0; font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-muted); }
+
+  .sihua-row { display: flex; gap: var(--sp-3); flex-wrap: wrap; }
+  .sihua { font-size: var(--text-sm); color: var(--cinnabar-bright); border: 1px solid oklch(0.55 0.19 30 / 0.45);
+           padding: var(--sp-1) var(--sp-4); border-radius: 999px; letter-spacing: 0.25em; }
+  .divider { display: flex; align-items: center; gap: var(--sp-4); color: var(--ink-faint);
+             font-size: var(--text-xs); letter-spacing: var(--tracking-label); }
+  .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  footer.note { font-size: var(--text-xs); color: var(--ink-faint); line-height: var(--lh-xs); }
+</style>
+</head>
+<body>
+
+<section>
+  <p class="t-xs">XUANJI · ARMILLA · DESIGN TILE 01</p>
+  <h1 class="hero-zh">璇玑<em> · </em>紫微斗数排盘</h1>
+  <p class="hero-en">Every star placed. Every word sourced.</p>
+</section>
+
+<section>
+  <h2 class="sec">01 · 色板(程序化材质同源)</h2>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:var(--bg)"></div><b>暖炭 · 底</b><code>oklch(0.17 0.008 75)</code></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-1)"></div><b>炭面 · 层一</b><code>oklch(0.21 0.010 75)</code></div>
+    <div class="sw"><div class="chip" style="background:var(--bronze)"></div><b>青铜锈绿</b><code>oklch(0.62 0.048 155)</code></div>
+    <div class="sw"><div class="chip" style="background:var(--bronze-deep)"></div><b>青铜深</b><code>oklch(0.44 0.055 150)</code></div>
+    <div class="sw"><div class="chip" style="background:var(--gold)"></div><b>鎏金 · 主强调</b><code>oklch(0.78 0.115 85)</code></div>
+    <div class="sw"><div class="chip" style="background:var(--cinnabar)"></div><b>朱砂 · 四化专属</b><code>oklch(0.55 0.190 30)</code></div>
+    <div class="sw"><div class="chip" style="background:var(--ink)"></div><b>暖纸白 · 主文</b><code>oklch(0.90 0.020 85)</code></div>
+    <div class="sw"><div class="chip" style="background:var(--line)"></div><b>刻线</b><code>oklch(0.46 0.030 90)</code></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">02 · 排版(衬线为本 · 中文长行高)</h2>
+  <div class="scale">
+    <p class="t-hero">观星如仪 · 星有轨迹,盘有出处</p>
+    <p class="t-xl">Armilla · Zi Wei Dou Shu Chart Casting</p>
+    <p class="t-lg">输入生辰,排出你的十二宫命盘。</p>
+    <p class="t-base">每颗星的位置由算法推演,每句解读都有古籍与格局出处。庙旺时财库稳固、善守善用;落陷或煞会,则名大于利,排场开销随行。</p>
+    <p class="t-sm">解读依据传统星情与开源格局库,不作祸福断言。</p>
+    <p class="t-xs">PALACE · WEALTH · ZI WEI</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">03 · 控件(仪刻字距 · 缓出动态)</h2>
+  <div class="controls">
+    <button class="btn btn-solid">排 盘</button>
+    <button class="btn">切 换 农 历</button>
+    <div class="field">
+      <label>出生城市 · TRUE SOLAR TIME</label>
+      <input placeholder="北京 / Shanghai / 北京 bj" />
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">04 · 卡片与朱砂语义</h2>
+  <div class="card">
+    <h3>紫微 · 财帛宫</h3>
+    <p>紫微入财帛,财随位至:进财多与职务、名望、事业规模相连,取财有道而格局大。</p>
+    <div class="sihua-row" style="margin-top:20px">
+      <span class="sihua">化禄</span><span class="sihua">化权</span><span class="sihua">化科</span><span class="sihua">化忌</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="divider">器 有 刻 度 · 文 有 出 处</div>
+</section>
+
+<footer class="note">
+  字体候选(均开源可自托管):中文 Noto Serif SC / 霞鹜文楷(思源宋体系,OFL);Latin Spectral / EB Garamond(OFL)。
+  亮色主题:经决议不做(dark 单主题,理由见 T09 票)。
+  动效仅 transform/opacity,缓出曲线 cubic-bezier(0.16,1,0.3,1);无弹跳、无视差滥用。
+</footer>
+
+</body>
+</html>
