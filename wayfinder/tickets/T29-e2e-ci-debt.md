@@ -7,6 +7,12 @@ claimed-by:
 status: open
 ---
 
+## Resolution(进度)
+
+- **① E2E 五条流:完成(5/5 绿,`npm run e2e`)**;顺手捕获并修复真 Bug —— locale 软导航双 DOM(改硬导航)。
+- **② 覆盖率:报告落地(v8 provider)+ 自产安全层补测 11 项(token 防伪/结构键/口径),30/30 全绿**。口径修订(T13 执行注):引擎正确性由 29 黄金 + 768 不变量 + E2E 三层保证;**行覆盖率不对 vendored 上游(ziwei 49%)追 90%**,仅对自产纯函数层(params/structure/canon/token)维持高覆盖。CI thresholds 随 T28 workflow 接入。
+- ③ v3 交叉校验:待做。
+
 ## Question
 
 (2026-11-02 盘点补票)T13 决议中未执行的测试项:

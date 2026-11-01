@@ -1,0 +1,583 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for xuanxue/src/lib/ziwei/true-solar-time.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">xuanxue/src/lib/ziwei</a> true-solar-time.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/101</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/101</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * 真太阳时统一计算。
+ *
+ * 口径：地方真太阳时 = 钟表时间 + 经度修正 + 均时差；经度修正 =（出生地经度 − 钟表时区中央经线）× 4 分钟。
+ * 国内一律按东八区（中央经线 120°）。★ 2026-10-27 同步：海外出生地传 utcOffsetMinutes（出生地时区的固定标准偏移），
+ * 与主流排盘口径一致——不处理夏令时与历史时区；用户填的若是当年钟表读数，先用 clock-adjust.ts 换成标准时间再传进来。
+ * 均时差采用 NOAA 的 fractional-year 近似式，1900-2026 年范围内足以稳定
+ * 判断紫微斗数的两小时时辰边界。
+ *
+ * 参考：https://gml.noaa.gov/grad/solcalc/solareqns.PDF
+ */
+&nbsp;
+export interface GregorianDate {
+  year: number;
+  month: number;
+  day: number;
+}
+&nbsp;
+export type LateZishiRule = 'next-day' | 'current-day' | 'all-current' | 'day-cur-time-next';
+&nbsp;
+export interface TrueSolarTimeInput extends GregorianDate {
+  clockHour: number;
+  clockMinute: number;
+  /** 未提供经度时保持原钟表时间，不做真太阳时校正。 */
+  longitude?: number;
+  /** 钟表时间所在时区的标准偏移（分钟，东正西负）；不传 = 北京时间 480（国内、老数据） */
+  utcOffsetMinutes?: number;
+}
+&nbsp;
+export interface TrueSolarTimeResult {
+  dateValid: boolean;
+  corrected: boolean;
+  longitudeCorrectionMinutes: number;
+  equationOfTimeMinutes: number;
+  totalCorrectionMinutes: number;
+  rawMinutes: number;
+  normalizedMinutes: number;
+  dayOffset: number;
+  hour: number;
+  minute: number;
+  second: number;
+  branch: number;
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >const MINUTES_PER_DAY = 1440;</span>
+<span class="cstat-no" title="statement not covered" >const SECONDS_PER_DAY = 86400;</span>
+<span class="cstat-no" title="statement not covered" >const mod = (value: number, base: number) =&gt; ((value % base) + base) % base;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export function isValidGregorianDate(year: number, month: number, day: number): boolean {</span>
+<span class="cstat-no" title="statement not covered" >  if (!Number.isInteger(year) || !Number.isInteger(month) || !Number.isInteger(day)) return false;</span>
+<span class="cstat-no" title="statement not covered" >  const date = new Date(Date.UTC(year, month - 1, day));</span>
+<span class="cstat-no" title="statement not covered" >  return date.getUTCFullYear() === year &amp;&amp; date.getUTCMonth() === month - 1 &amp;&amp; date.getUTCDate() === day;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export function shiftGregorianDate(date: GregorianDate, dayOffset: number): GregorianDate {</span>
+<span class="cstat-no" title="statement not covered" >  const shifted = new Date(Date.UTC(date.year, date.month - 1, date.day + dayOffset));</span>
+<span class="cstat-no" title="statement not covered" >  return {</span>
+<span class="cstat-no" title="statement not covered" >    year: shifted.getUTCFullYear(),</span>
+<span class="cstat-no" title="statement not covered" >    month: shifted.getUTCMonth() + 1,</span>
+<span class="cstat-no" title="statement not covered" >    day: shifted.getUTCDate(),</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export function sameGregorianDate(a: GregorianDate, b: GregorianDate): boolean {</span>
+<span class="cstat-no" title="statement not covered" >  return a.year === b.year &amp;&amp; a.month === b.month &amp;&amp; a.day === b.day;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >function isLeapYear(year: number): boolean {</span>
+<span class="cstat-no" title="statement not covered" >  return year % 4 === 0 &amp;&amp; (year % 100 !== 0 || year % 400 === 0);</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >function dayOfYear(year: number, month: number, day: number): number {</span>
+<span class="cstat-no" title="statement not covered" >  return Math.floor((Date.UTC(year, month - 1, day) - Date.UTC(year, 0, 0)) / 86_400_000);</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+/** NOAA 均时差近似值，返回分钟；正值表示真太阳时快于平太阳时。 */
+<span class="cstat-no" title="statement not covered" >export function equationOfTimeMinutes(</span>
+<span class="cstat-no" title="statement not covered" >  year: number,</span>
+<span class="cstat-no" title="statement not covered" >  month: number,</span>
+<span class="cstat-no" title="statement not covered" >  day: number,</span>
+<span class="cstat-no" title="statement not covered" >  clockHour = 12,</span>
+<span class="cstat-no" title="statement not covered" >  clockMinute = 0,</span>
+<span class="cstat-no" title="statement not covered" >): number {</span>
+<span class="cstat-no" title="statement not covered" >  if (!isValidGregorianDate(year, month, day)) return 0;</span>
+<span class="cstat-no" title="statement not covered" >  const daysInYear = isLeapYear(year) ? 366 : 365;</span>
+<span class="cstat-no" title="statement not covered" >  const fractionalHour = clockHour + clockMinute / 60;</span>
+<span class="cstat-no" title="statement not covered" >  const gamma = (2 * Math.PI / daysInYear)</span>
+<span class="cstat-no" title="statement not covered" >    * (dayOfYear(year, month, day) - 1 + (fractionalHour - 12) / 24);</span>
+<span class="cstat-no" title="statement not covered" >  return 229.18 * (</span>
+<span class="cstat-no" title="statement not covered" >    0.000075</span>
+<span class="cstat-no" title="statement not covered" >    + 0.001868 * Math.cos(gamma)</span>
+<span class="cstat-no" title="statement not covered" >    - 0.032077 * Math.sin(gamma)</span>
+<span class="cstat-no" title="statement not covered" >    - 0.014615 * Math.cos(2 * gamma)</span>
+<span class="cstat-no" title="statement not covered" >    - 0.040849 * Math.sin(2 * gamma)</span>
+  );
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export function branchFromSolarMinutes(normalizedMinutes: number): number {</span>
+<span class="cstat-no" title="statement not covered" >  if (normalizedMinutes &gt;= 1380 || normalizedMinutes &lt; 60) return 0;</span>
+<span class="cstat-no" title="statement not covered" >  return Math.floor((normalizedMinutes - 60) / 120) + 1;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export function calculateTrueSolarTime(input: TrueSolarTimeInput): TrueSolarTimeResult {</span>
+<span class="cstat-no" title="statement not covered" >  const dateValid = isValidGregorianDate(input.year, input.month, input.day);</span>
+<span class="cstat-no" title="statement not covered" >  const corrected = input.longitude !== undefined &amp;&amp; Number.isFinite(input.longitude);</span>
+  // 中央经线 = 时区偏移 / 4（480 分钟 → 120°）；国内仍是原式 (经度 − 120) × 4，结果逐位不变
+<span class="cstat-no" title="statement not covered" >  const meridian = input.utcOffsetMinutes !== undefined &amp;&amp; Number.isFinite(input.utcOffsetMinutes) ? input.utcOffsetMinutes / 4 : 120;</span>
+<span class="cstat-no" title="statement not covered" >  const longitudeCorrectionMinutes = corrected ? (input.longitude! - meridian) * 4 : 0;</span>
+<span class="cstat-no" title="statement not covered" >  const eot = corrected &amp;&amp; dateValid</span>
+<span class="cstat-no" title="statement not covered" >    ? equationOfTimeMinutes(input.year, input.month, input.day, input.clockHour, input.clockMinute)</span>
+<span class="cstat-no" title="statement not covered" >    : 0;</span>
+<span class="cstat-no" title="statement not covered" >  const totalCorrectionMinutes = longitudeCorrectionMinutes + eot;</span>
+<span class="cstat-no" title="statement not covered" >  const rawMinutes = input.clockHour * 60 + input.clockMinute + totalCorrectionMinutes;</span>
+&nbsp;
+  // 页面输入精度为分钟；显示和时辰边界统一按最近一秒，避免浮点毛刺。
+<span class="cstat-no" title="statement not covered" >  const roundedTotalSeconds = Math.round(rawMinutes * 60);</span>
+<span class="cstat-no" title="statement not covered" >  const dayOffset = Math.floor(roundedTotalSeconds / SECONDS_PER_DAY);</span>
+<span class="cstat-no" title="statement not covered" >  const secondOfDay = mod(roundedTotalSeconds, SECONDS_PER_DAY);</span>
+<span class="cstat-no" title="statement not covered" >  const hour = Math.floor(secondOfDay / 3600);</span>
+<span class="cstat-no" title="statement not covered" >  const minute = Math.floor((secondOfDay % 3600) / 60);</span>
+<span class="cstat-no" title="statement not covered" >  const second = secondOfDay % 60;</span>
+<span class="cstat-no" title="statement not covered" >  const normalizedMinutes = secondOfDay / 60;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return {</span>
+<span class="cstat-no" title="statement not covered" >    dateValid,</span>
+<span class="cstat-no" title="statement not covered" >    corrected,</span>
+<span class="cstat-no" title="statement not covered" >    longitudeCorrectionMinutes,</span>
+<span class="cstat-no" title="statement not covered" >    equationOfTimeMinutes: eot,</span>
+<span class="cstat-no" title="statement not covered" >    totalCorrectionMinutes,</span>
+<span class="cstat-no" title="statement not covered" >    rawMinutes,</span>
+<span class="cstat-no" title="statement not covered" >    normalizedMinutes,</span>
+<span class="cstat-no" title="statement not covered" >    dayOffset,</span>
+<span class="cstat-no" title="statement not covered" >    hour,</span>
+<span class="cstat-no" title="statement not covered" >    minute,</span>
+<span class="cstat-no" title="statement not covered" >    second,</span>
+<span class="cstat-no" title="statement not covered" >    branch: branchFromSolarMinutes(normalizedMinutes),</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+/** 把真太阳日与晚子时流派规则合并成最终排盘日相对输入日的偏移。 */
+<span class="cstat-no" title="statement not covered" >export function resolveZiweiDayOffset(</span>
+<span class="cstat-no" title="statement not covered" >  solar: Pick&lt;TrueSolarTimeResult, 'dayOffset' | 'normalizedMinutes' | 'branch'&gt;,</span>
+<span class="cstat-no" title="statement not covered" >  lateZishi: LateZishiRule = 'next-day',</span>
+<span class="cstat-no" title="statement not covered" >): number {</span>
+  // day-cur-time-next changes the hour-pillar convention, not the Ziwei
+  // main-chart date. Only the explicit next-day rule advances this date.
+<span class="cstat-no" title="statement not covered" >  const nextDayRule = lateZishi === 'next-day';</span>
+<span class="cstat-no" title="statement not covered" >  const isLateZishi = solar.branch === 0 &amp;&amp; solar.normalizedMinutes &gt;= 1380;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (solar.dayOffset &lt; 0 &amp;&amp; isLateZishi) {</span>
+<span class="cstat-no" title="statement not covered" >    return nextDayRule ? solar.dayOffset + 1 : solar.dayOffset;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  if (solar.dayOffset !== 0) return solar.dayOffset;</span>
+<span class="cstat-no" title="statement not covered" >  if (isLateZishi) return nextDayRule ? 1 : 0;</span>
+<span class="cstat-no" title="statement not covered" >  return 0;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export function formatTrueSolarClock(solar: Pick&lt;TrueSolarTimeResult, 'hour' | 'minute' | 'second'&gt;, withSeconds = false): string {</span>
+<span class="cstat-no" title="statement not covered" >  const base = `${String(solar.hour).padStart(2, '0')}:${String(solar.minute).padStart(2, '0')}`;</span>
+<span class="cstat-no" title="statement not covered" >  return withSeconds ? `${base}:${String(solar.second).padStart(2, '0')}` : base;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export function formatSignedMinutes(value: number): string {</span>
+<span class="cstat-no" title="statement not covered" >  const rounded = Math.round(value);</span>
+<span class="cstat-no" title="statement not covered" >  return `${rounded &gt; 0 ? '+' : ''}${rounded}`;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-11-01T18:02:17.458Z
+            </div>
+        <script src="../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
+    </body>
+</html>
+    

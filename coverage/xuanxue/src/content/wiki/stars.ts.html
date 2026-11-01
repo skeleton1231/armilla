@@ -1,0 +1,469 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for xuanxue/src/content/wiki/stars.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">xuanxue/src/content/wiki</a> stars.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/116</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/116</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/** 十四主星双语词条(T08/T05:26 核心词条之一部;语气循钦天监基准,禁祸福断言) */
+export interface StarEntry {
+  slug: string;
+  name: string;
+  en: string;
+  /** 星性一句(定位) */
+  essence: { zh: string; en: string };
+  /** 展开 60–110 字 */
+  body: { zh: string; en: string };
+}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export const MAIN_STARS: StarEntry[] = [</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'ziwei', name: '紫微', en: 'Zi Wei',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '帝座,北斗主星,主尊贵与主导', en: 'The Emperor star: sovereignty and command' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '紫微为十四主星之首,象帝王坐朝:主见强、格局意识重,天然倾向做决定而非跟随。庙旺则气度沉稳、能任事;落陷或无辅曜,则易孤高自许。看紫微,先看它的左右——有百官朝拱是明君,无辅是独夫,同一颗星境遇两判。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Zi Wei heads the fourteen major stars, the sovereign on the throne: strong opinions, a taste for structure, a natural inclination to decide rather than follow. Well-placed, it grants composure and capacity; poorly placed or unattended by minister stars, it turns self-important. Read Zi Wei by its company — with ministers in attendance an enlightened ruler, without them a solitary one.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'tianji', name: '天机', en: 'Tian Ji',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '智多星,主谋略与机变', en: 'The Strategist: counsel and adaptability' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '天机主智慧与企划,反应快、善分析,是天生的幕僚与军师。其才在动脑不在动手,宜参谋、研究、教学、策划一路。庙旺则谋定后动、点子成金;落陷则心思过转、多虑善变。天机之要,在给思考找一个落地的出口。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Tian Ji governs intellect and planning: quick, analytical, a born advisor. Its gift is for thinking rather than doing — suited to counsel, research, teaching, and design. Well-placed, plans mature into gold; poorly placed, the mind over-rotates into worry. The task for Tian Ji is giving thought a place to land.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'taiyang', name: '太阳', en: 'Tai Yang',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '日主,主光明、付出与父辈贵人', en: 'The Sun: illumination, giving, patronage' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '太阳主博爱与施予,像日光普照——热情、公开、照顾他人先于自己。庙旺(尤其昼生)则声名外显、劳而有功;落陷或夜生,则付出多回报少,宜收敛战线、光照一处。太阳之课,是学会为自己留一盏灯。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Tai Yang stands for benevolence and giving, sunlight that shines on all — warm, public, others before self. Well-placed (especially by day), repute shines and toil bears fruit; poorly placed or night-born, giving outruns return, and the light is best narrowed to one field. Its lesson: keep one lamp for yourself.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'wuqu', name: '武曲', en: 'Wu Qu',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '财星,主决断与执行', en: 'The Treasurer: decisiveness and execution' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '武曲为财帛主星,性刚直、重实效,说到做到,是天生的执行者与理财手。庙旺则开拓有成、财权在握;落陷或逢煞,则过刚易折、只认数字不认人。武曲之利在快,之戒也在快——决断之前,留半步给人情。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Wu Qu rules wealth: upright, practical, true to its word — a born executor and money manager. Well-placed, it opens ground and holds the purse; poorly placed or met with harsh stars, steel turns brittle and people become numbers. Its edge is speed; its caution is also speed — leave half a step for the human account.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'tiantong', name: '天同', en: 'Tian Tong',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '福星,主安逸与情绪', en: 'The Blessing: ease and feeling' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '天同为福德主星,性温和、重享受,懂得生活,也容易被生活软化。庙旺则福厚缘广、逢凶化吉;落陷则安于现状、缺乏狠劲。天同不是不能吃苦,而是苦要吃得心甘情愿——把舒适变成奖赏而非习惯,福才算数。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Tian Tong rules contentment: gentle, pleasure-aware, fluent in the art of living — and easily softened by it. Well-placed, blessings run deep and troubles dissolve; poorly placed, comfort blunts drive. Tian Tong can endure hardship, but only willingly — make ease a reward rather than a habit, and the blessing counts.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'lianzhen', name: '廉贞', en: 'Lian Zhen',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '次桃花,主交际与规矩之辩', en: 'The Diplomat: charm versus principle' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '廉贞为政治之星,善交际、懂分寸,在人情场中如鱼得水;又带桃花之气,情感线复杂。庙旺则干练得体、处事有节;落陷或逢煞,则易在人情与原则间失守。廉贞的功课,是让圆滑服务于底线,而不是替代底线。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Lian Zhen is the politician star: socially fluent, deft with propriety, at home in webs of favor — and touched by romance, its emotional life intricate. Well-placed, it is able and measured; poorly placed, principle bends to popularity. Its homework: let polish serve the bottom line, never replace it.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'tianfu', name: '天府', en: 'Tian Fu',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '库星,主保守与积累', en: 'The Treasury: conservation and accrual' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '天府为南斗令星、财库之主,性稳厚、重秩序,擅守成与积累。庙旺则库藏丰盈、稳步向上;落陷则保守过头,机会来了也不敢接。天府与武曲是一对:武曲冲锋赚钱,天府看管守成——有库无攻是守财,有攻有库才是格局。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Tian Fu, the southern command star and keeper of the treasury, is steady, orderly, adept at holding and compounding. Well-placed, the storehouse fills and the path rises by steps; poorly placed, caution overreaches and open doors go unanswered. Tian Fu pairs with Wu Qu: one earns on campaign, one keeps the vault — a vault without campaign is hoarding; both together make a structure.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'taiyin', name: '太阴', en: 'Tai Yin',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '月主,主细腻与静财', en: 'The Moon: subtlety and quiet earnings' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '太阴主温柔与细腻,象月光——内敛、顾家、以柔蓄财。田宅财帛见太阴,多主不动产与细水长流之入。庙旺(尤其夜生)则心思澄澈、理财有道;落陷则多愁善感、暗地劳神。太阴之财在静,不在喧。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Tai Yin governs gentleness and fine grain, moonlight by nature — reserved, home-loving, gathering wealth softly. In the estate or wealth palaces it often marks property and income that accrues quietly. Well-placed (especially by night), the mind is clear and money well kept; poorly placed, sentiment runs deep and worry works unseen. Tai Yin wealth is made in stillness, not noise.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'tanlang', name: '贪狼', en: 'Tan Lang',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '正桃花,主欲望与多才', en: 'The Desire: appetite and versatility' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '贪狼为欲望与才艺之星,好奇心重、社交力强,人生面向宽。庙旺则多才多艺、应酬得利;落陷或逢煞,则欲望脱缰、多学少成。贪狼是引擎不是方向——给它一个值得追的目标,桃花与才艺皆是燃料。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Tan Lang is the star of appetite and talent: curious, socially magnetic, wide in its reach. Well-placed, versatility pays and company brings gain; poorly placed, appetite takes the wheel and much is studied, little finished. Tan Lang is an engine, not a heading — give it a goal worth chasing, and romance and talent both become fuel.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'jumen', name: '巨门', en: 'Ju Men',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '暗星,主口才与疑心之辩', en: 'The Gate: eloquence versus doubt' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '巨门主口舌与思辨,善于言辞、长于钻研,是以口得财之星——教学、传媒、法律、销售皆其领域。庙旺则言而有物、专业立身;落陷或逢煞,则口舌招尤、多疑暗生。巨门之口,既能开山,也能树敌:说是非与说是道的分寸,即其吉凶。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Ju Men rules speech and inquiry: articulate, investigative, a star that earns by the mouth — teaching, media, law, selling are its fields. Well-placed, words carry substance and expertise builds standing; poorly placed, talk invites trouble and doubt breeds in the dark. The Ju Men mouth can open mountains or make enemies: the line between gossip and discourse is precisely its fortune.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'tianxiang', name: '天相', en: 'Tian Xiang',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '印星,主辅佐与公正', en: 'The Seal: service and fairness' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '天相为掌印之星,性端正、重公平,是天生的辅弼之才——宰相之位,佐上而抚下。庙旺则处事有度、众望所归;落陷则印重权轻,劳于协调。天相一生的命题:做别人的印章,还是刻自己的名字。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Tian Xiang holds the seal: upright, fairness-minded, a born deputy — the minister\'s seat, serving above while steadying below. Well-placed, it acts with measure and wins consensus; poorly placed, the seal is heavy but the authority light, worn out mediating. Its lifelong question: be another\'s stamp, or carve your own name.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'tianliang', name: '天梁', en: 'Tian Liang',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '荫星,主清望与照拂', en: 'The Shelter: seniority and care' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '天梁为荫庇之星,象长辈与师者——清高、有原则、逢难有解。庙旺则清望服众、越老越吃香;落陷则说教气重、荫人反受其累。天梁之贵在“老”:资历、见识、人脉皆随岁月增值,急不得。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Tian Liang is the sheltering star, the elder and the teacher — principled, reserved, rescued in a pinch. Well-placed, its standing persuades and it grows more valued with age; poorly placed, it lectures and sheltering becomes burden. Tian Liang\'s treasure is seniority itself: experience, judgment, and connections all compound with the years — it cannot be rushed.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'qisha', name: '七杀', en: 'Qi Sha',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '将星,主开创与肃杀', en: 'The General: initiative and severity' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '七杀为冲锋之将,性刚烈、行动力极强,人生宜攻不宜守。庙旺则开疆拓土、杀伐决断;落陷或逢煞,则冲动树敌、刚极必折。七杀的命是“先破后立”——它的顺境,几乎都从一场硬仗里打出来。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Qi Sha is the charging general: fierce, massively kinetic, built for offense rather than defense. Well-placed, it opens fronts and decides; poorly placed or harshly aspected, impulse makes enemies and steel snaps. The Qi Sha fate is break-then-build — its good stretches are nearly all fought out of a hard battle first.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >  {</span>
+<span class="cstat-no" title="statement not covered" >    slug: 'pojun', name: '破军', en: 'Po Jun',</span>
+<span class="cstat-no" title="statement not covered" >    essence: { zh: '破立之星,主变革与颠覆', en: 'The Breaker: change and upheaval' },</span>
+<span class="cstat-no" title="statement not covered" >    body: {</span>
+<span class="cstat-no" title="statement not covered" >      zh: '破军主破与立,一生多转折,旧局不破、新局不生。庙旺则敢为人先、破而后立大成;落陷则折腾反复、破而不立。破军之命不怕变,怕的是为变而变——每次掀桌之前,先想清楚要摆上什么新局。',</span>
+<span class="cstat-no" title="statement not covered" >      en: 'Po Jun rules breaking and rebuilding: a life of turns, where no new order rises till the old one falls. Well-placed, it dares first and builds big after the break; poorly placed, it churns without settling. The Po Jun fate does not fear change — it fears change for its own sake: before flipping the table, know what layout comes next.',</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+<span class="cstat-no" title="statement not covered" >  },</span>
+<span class="cstat-no" title="statement not covered" >];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export const STAR_BY_NAME = new Map(MAIN_STARS.map((s) =&gt; [s.name, s]));</span>
+<span class="cstat-no" title="statement not covered" >export const STAR_BY_SLUG = new Map(MAIN_STARS.map((s) =&gt; [s.slug, s]));</span>
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-11-01T18:02:17.458Z
+            </div>
+        <script src="../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
+    </body>
+</html>
+    

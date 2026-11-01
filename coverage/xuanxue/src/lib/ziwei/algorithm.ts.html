@@ -1,0 +1,2071 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for xuanxue/src/lib/ziwei/algorithm.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">xuanxue/src/lib/ziwei</a> algorithm.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">94.28% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>396/420</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">74.87% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>146/195</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">94.44% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>17/18</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">94.28% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>396/420</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a>
+<a name='L208'></a><a href='#L208'>208</a>
+<a name='L209'></a><a href='#L209'>209</a>
+<a name='L210'></a><a href='#L210'>210</a>
+<a name='L211'></a><a href='#L211'>211</a>
+<a name='L212'></a><a href='#L212'>212</a>
+<a name='L213'></a><a href='#L213'>213</a>
+<a name='L214'></a><a href='#L214'>214</a>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a>
+<a name='L224'></a><a href='#L224'>224</a>
+<a name='L225'></a><a href='#L225'>225</a>
+<a name='L226'></a><a href='#L226'>226</a>
+<a name='L227'></a><a href='#L227'>227</a>
+<a name='L228'></a><a href='#L228'>228</a>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a>
+<a name='L233'></a><a href='#L233'>233</a>
+<a name='L234'></a><a href='#L234'>234</a>
+<a name='L235'></a><a href='#L235'>235</a>
+<a name='L236'></a><a href='#L236'>236</a>
+<a name='L237'></a><a href='#L237'>237</a>
+<a name='L238'></a><a href='#L238'>238</a>
+<a name='L239'></a><a href='#L239'>239</a>
+<a name='L240'></a><a href='#L240'>240</a>
+<a name='L241'></a><a href='#L241'>241</a>
+<a name='L242'></a><a href='#L242'>242</a>
+<a name='L243'></a><a href='#L243'>243</a>
+<a name='L244'></a><a href='#L244'>244</a>
+<a name='L245'></a><a href='#L245'>245</a>
+<a name='L246'></a><a href='#L246'>246</a>
+<a name='L247'></a><a href='#L247'>247</a>
+<a name='L248'></a><a href='#L248'>248</a>
+<a name='L249'></a><a href='#L249'>249</a>
+<a name='L250'></a><a href='#L250'>250</a>
+<a name='L251'></a><a href='#L251'>251</a>
+<a name='L252'></a><a href='#L252'>252</a>
+<a name='L253'></a><a href='#L253'>253</a>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a>
+<a name='L260'></a><a href='#L260'>260</a>
+<a name='L261'></a><a href='#L261'>261</a>
+<a name='L262'></a><a href='#L262'>262</a>
+<a name='L263'></a><a href='#L263'>263</a>
+<a name='L264'></a><a href='#L264'>264</a>
+<a name='L265'></a><a href='#L265'>265</a>
+<a name='L266'></a><a href='#L266'>266</a>
+<a name='L267'></a><a href='#L267'>267</a>
+<a name='L268'></a><a href='#L268'>268</a>
+<a name='L269'></a><a href='#L269'>269</a>
+<a name='L270'></a><a href='#L270'>270</a>
+<a name='L271'></a><a href='#L271'>271</a>
+<a name='L272'></a><a href='#L272'>272</a>
+<a name='L273'></a><a href='#L273'>273</a>
+<a name='L274'></a><a href='#L274'>274</a>
+<a name='L275'></a><a href='#L275'>275</a>
+<a name='L276'></a><a href='#L276'>276</a>
+<a name='L277'></a><a href='#L277'>277</a>
+<a name='L278'></a><a href='#L278'>278</a>
+<a name='L279'></a><a href='#L279'>279</a>
+<a name='L280'></a><a href='#L280'>280</a>
+<a name='L281'></a><a href='#L281'>281</a>
+<a name='L282'></a><a href='#L282'>282</a>
+<a name='L283'></a><a href='#L283'>283</a>
+<a name='L284'></a><a href='#L284'>284</a>
+<a name='L285'></a><a href='#L285'>285</a>
+<a name='L286'></a><a href='#L286'>286</a>
+<a name='L287'></a><a href='#L287'>287</a>
+<a name='L288'></a><a href='#L288'>288</a>
+<a name='L289'></a><a href='#L289'>289</a>
+<a name='L290'></a><a href='#L290'>290</a>
+<a name='L291'></a><a href='#L291'>291</a>
+<a name='L292'></a><a href='#L292'>292</a>
+<a name='L293'></a><a href='#L293'>293</a>
+<a name='L294'></a><a href='#L294'>294</a>
+<a name='L295'></a><a href='#L295'>295</a>
+<a name='L296'></a><a href='#L296'>296</a>
+<a name='L297'></a><a href='#L297'>297</a>
+<a name='L298'></a><a href='#L298'>298</a>
+<a name='L299'></a><a href='#L299'>299</a>
+<a name='L300'></a><a href='#L300'>300</a>
+<a name='L301'></a><a href='#L301'>301</a>
+<a name='L302'></a><a href='#L302'>302</a>
+<a name='L303'></a><a href='#L303'>303</a>
+<a name='L304'></a><a href='#L304'>304</a>
+<a name='L305'></a><a href='#L305'>305</a>
+<a name='L306'></a><a href='#L306'>306</a>
+<a name='L307'></a><a href='#L307'>307</a>
+<a name='L308'></a><a href='#L308'>308</a>
+<a name='L309'></a><a href='#L309'>309</a>
+<a name='L310'></a><a href='#L310'>310</a>
+<a name='L311'></a><a href='#L311'>311</a>
+<a name='L312'></a><a href='#L312'>312</a>
+<a name='L313'></a><a href='#L313'>313</a>
+<a name='L314'></a><a href='#L314'>314</a>
+<a name='L315'></a><a href='#L315'>315</a>
+<a name='L316'></a><a href='#L316'>316</a>
+<a name='L317'></a><a href='#L317'>317</a>
+<a name='L318'></a><a href='#L318'>318</a>
+<a name='L319'></a><a href='#L319'>319</a>
+<a name='L320'></a><a href='#L320'>320</a>
+<a name='L321'></a><a href='#L321'>321</a>
+<a name='L322'></a><a href='#L322'>322</a>
+<a name='L323'></a><a href='#L323'>323</a>
+<a name='L324'></a><a href='#L324'>324</a>
+<a name='L325'></a><a href='#L325'>325</a>
+<a name='L326'></a><a href='#L326'>326</a>
+<a name='L327'></a><a href='#L327'>327</a>
+<a name='L328'></a><a href='#L328'>328</a>
+<a name='L329'></a><a href='#L329'>329</a>
+<a name='L330'></a><a href='#L330'>330</a>
+<a name='L331'></a><a href='#L331'>331</a>
+<a name='L332'></a><a href='#L332'>332</a>
+<a name='L333'></a><a href='#L333'>333</a>
+<a name='L334'></a><a href='#L334'>334</a>
+<a name='L335'></a><a href='#L335'>335</a>
+<a name='L336'></a><a href='#L336'>336</a>
+<a name='L337'></a><a href='#L337'>337</a>
+<a name='L338'></a><a href='#L338'>338</a>
+<a name='L339'></a><a href='#L339'>339</a>
+<a name='L340'></a><a href='#L340'>340</a>
+<a name='L341'></a><a href='#L341'>341</a>
+<a name='L342'></a><a href='#L342'>342</a>
+<a name='L343'></a><a href='#L343'>343</a>
+<a name='L344'></a><a href='#L344'>344</a>
+<a name='L345'></a><a href='#L345'>345</a>
+<a name='L346'></a><a href='#L346'>346</a>
+<a name='L347'></a><a href='#L347'>347</a>
+<a name='L348'></a><a href='#L348'>348</a>
+<a name='L349'></a><a href='#L349'>349</a>
+<a name='L350'></a><a href='#L350'>350</a>
+<a name='L351'></a><a href='#L351'>351</a>
+<a name='L352'></a><a href='#L352'>352</a>
+<a name='L353'></a><a href='#L353'>353</a>
+<a name='L354'></a><a href='#L354'>354</a>
+<a name='L355'></a><a href='#L355'>355</a>
+<a name='L356'></a><a href='#L356'>356</a>
+<a name='L357'></a><a href='#L357'>357</a>
+<a name='L358'></a><a href='#L358'>358</a>
+<a name='L359'></a><a href='#L359'>359</a>
+<a name='L360'></a><a href='#L360'>360</a>
+<a name='L361'></a><a href='#L361'>361</a>
+<a name='L362'></a><a href='#L362'>362</a>
+<a name='L363'></a><a href='#L363'>363</a>
+<a name='L364'></a><a href='#L364'>364</a>
+<a name='L365'></a><a href='#L365'>365</a>
+<a name='L366'></a><a href='#L366'>366</a>
+<a name='L367'></a><a href='#L367'>367</a>
+<a name='L368'></a><a href='#L368'>368</a>
+<a name='L369'></a><a href='#L369'>369</a>
+<a name='L370'></a><a href='#L370'>370</a>
+<a name='L371'></a><a href='#L371'>371</a>
+<a name='L372'></a><a href='#L372'>372</a>
+<a name='L373'></a><a href='#L373'>373</a>
+<a name='L374'></a><a href='#L374'>374</a>
+<a name='L375'></a><a href='#L375'>375</a>
+<a name='L376'></a><a href='#L376'>376</a>
+<a name='L377'></a><a href='#L377'>377</a>
+<a name='L378'></a><a href='#L378'>378</a>
+<a name='L379'></a><a href='#L379'>379</a>
+<a name='L380'></a><a href='#L380'>380</a>
+<a name='L381'></a><a href='#L381'>381</a>
+<a name='L382'></a><a href='#L382'>382</a>
+<a name='L383'></a><a href='#L383'>383</a>
+<a name='L384'></a><a href='#L384'>384</a>
+<a name='L385'></a><a href='#L385'>385</a>
+<a name='L386'></a><a href='#L386'>386</a>
+<a name='L387'></a><a href='#L387'>387</a>
+<a name='L388'></a><a href='#L388'>388</a>
+<a name='L389'></a><a href='#L389'>389</a>
+<a name='L390'></a><a href='#L390'>390</a>
+<a name='L391'></a><a href='#L391'>391</a>
+<a name='L392'></a><a href='#L392'>392</a>
+<a name='L393'></a><a href='#L393'>393</a>
+<a name='L394'></a><a href='#L394'>394</a>
+<a name='L395'></a><a href='#L395'>395</a>
+<a name='L396'></a><a href='#L396'>396</a>
+<a name='L397'></a><a href='#L397'>397</a>
+<a name='L398'></a><a href='#L398'>398</a>
+<a name='L399'></a><a href='#L399'>399</a>
+<a name='L400'></a><a href='#L400'>400</a>
+<a name='L401'></a><a href='#L401'>401</a>
+<a name='L402'></a><a href='#L402'>402</a>
+<a name='L403'></a><a href='#L403'>403</a>
+<a name='L404'></a><a href='#L404'>404</a>
+<a name='L405'></a><a href='#L405'>405</a>
+<a name='L406'></a><a href='#L406'>406</a>
+<a name='L407'></a><a href='#L407'>407</a>
+<a name='L408'></a><a href='#L408'>408</a>
+<a name='L409'></a><a href='#L409'>409</a>
+<a name='L410'></a><a href='#L410'>410</a>
+<a name='L411'></a><a href='#L411'>411</a>
+<a name='L412'></a><a href='#L412'>412</a>
+<a name='L413'></a><a href='#L413'>413</a>
+<a name='L414'></a><a href='#L414'>414</a>
+<a name='L415'></a><a href='#L415'>415</a>
+<a name='L416'></a><a href='#L416'>416</a>
+<a name='L417'></a><a href='#L417'>417</a>
+<a name='L418'></a><a href='#L418'>418</a>
+<a name='L419'></a><a href='#L419'>419</a>
+<a name='L420'></a><a href='#L420'>420</a>
+<a name='L421'></a><a href='#L421'>421</a>
+<a name='L422'></a><a href='#L422'>422</a>
+<a name='L423'></a><a href='#L423'>423</a>
+<a name='L424'></a><a href='#L424'>424</a>
+<a name='L425'></a><a href='#L425'>425</a>
+<a name='L426'></a><a href='#L426'>426</a>
+<a name='L427'></a><a href='#L427'>427</a>
+<a name='L428'></a><a href='#L428'>428</a>
+<a name='L429'></a><a href='#L429'>429</a>
+<a name='L430'></a><a href='#L430'>430</a>
+<a name='L431'></a><a href='#L431'>431</a>
+<a name='L432'></a><a href='#L432'>432</a>
+<a name='L433'></a><a href='#L433'>433</a>
+<a name='L434'></a><a href='#L434'>434</a>
+<a name='L435'></a><a href='#L435'>435</a>
+<a name='L436'></a><a href='#L436'>436</a>
+<a name='L437'></a><a href='#L437'>437</a>
+<a name='L438'></a><a href='#L438'>438</a>
+<a name='L439'></a><a href='#L439'>439</a>
+<a name='L440'></a><a href='#L440'>440</a>
+<a name='L441'></a><a href='#L441'>441</a>
+<a name='L442'></a><a href='#L442'>442</a>
+<a name='L443'></a><a href='#L443'>443</a>
+<a name='L444'></a><a href='#L444'>444</a>
+<a name='L445'></a><a href='#L445'>445</a>
+<a name='L446'></a><a href='#L446'>446</a>
+<a name='L447'></a><a href='#L447'>447</a>
+<a name='L448'></a><a href='#L448'>448</a>
+<a name='L449'></a><a href='#L449'>449</a>
+<a name='L450'></a><a href='#L450'>450</a>
+<a name='L451'></a><a href='#L451'>451</a>
+<a name='L452'></a><a href='#L452'>452</a>
+<a name='L453'></a><a href='#L453'>453</a>
+<a name='L454'></a><a href='#L454'>454</a>
+<a name='L455'></a><a href='#L455'>455</a>
+<a name='L456'></a><a href='#L456'>456</a>
+<a name='L457'></a><a href='#L457'>457</a>
+<a name='L458'></a><a href='#L458'>458</a>
+<a name='L459'></a><a href='#L459'>459</a>
+<a name='L460'></a><a href='#L460'>460</a>
+<a name='L461'></a><a href='#L461'>461</a>
+<a name='L462'></a><a href='#L462'>462</a>
+<a name='L463'></a><a href='#L463'>463</a>
+<a name='L464'></a><a href='#L464'>464</a>
+<a name='L465'></a><a href='#L465'>465</a>
+<a name='L466'></a><a href='#L466'>466</a>
+<a name='L467'></a><a href='#L467'>467</a>
+<a name='L468'></a><a href='#L468'>468</a>
+<a name='L469'></a><a href='#L469'>469</a>
+<a name='L470'></a><a href='#L470'>470</a>
+<a name='L471'></a><a href='#L471'>471</a>
+<a name='L472'></a><a href='#L472'>472</a>
+<a name='L473'></a><a href='#L473'>473</a>
+<a name='L474'></a><a href='#L474'>474</a>
+<a name='L475'></a><a href='#L475'>475</a>
+<a name='L476'></a><a href='#L476'>476</a>
+<a name='L477'></a><a href='#L477'>477</a>
+<a name='L478'></a><a href='#L478'>478</a>
+<a name='L479'></a><a href='#L479'>479</a>
+<a name='L480'></a><a href='#L480'>480</a>
+<a name='L481'></a><a href='#L481'>481</a>
+<a name='L482'></a><a href='#L482'>482</a>
+<a name='L483'></a><a href='#L483'>483</a>
+<a name='L484'></a><a href='#L484'>484</a>
+<a name='L485'></a><a href='#L485'>485</a>
+<a name='L486'></a><a href='#L486'>486</a>
+<a name='L487'></a><a href='#L487'>487</a>
+<a name='L488'></a><a href='#L488'>488</a>
+<a name='L489'></a><a href='#L489'>489</a>
+<a name='L490'></a><a href='#L490'>490</a>
+<a name='L491'></a><a href='#L491'>491</a>
+<a name='L492'></a><a href='#L492'>492</a>
+<a name='L493'></a><a href='#L493'>493</a>
+<a name='L494'></a><a href='#L494'>494</a>
+<a name='L495'></a><a href='#L495'>495</a>
+<a name='L496'></a><a href='#L496'>496</a>
+<a name='L497'></a><a href='#L497'>497</a>
+<a name='L498'></a><a href='#L498'>498</a>
+<a name='L499'></a><a href='#L499'>499</a>
+<a name='L500'></a><a href='#L500'>500</a>
+<a name='L501'></a><a href='#L501'>501</a>
+<a name='L502'></a><a href='#L502'>502</a>
+<a name='L503'></a><a href='#L503'>503</a>
+<a name='L504'></a><a href='#L504'>504</a>
+<a name='L505'></a><a href='#L505'>505</a>
+<a name='L506'></a><a href='#L506'>506</a>
+<a name='L507'></a><a href='#L507'>507</a>
+<a name='L508'></a><a href='#L508'>508</a>
+<a name='L509'></a><a href='#L509'>509</a>
+<a name='L510'></a><a href='#L510'>510</a>
+<a name='L511'></a><a href='#L511'>511</a>
+<a name='L512'></a><a href='#L512'>512</a>
+<a name='L513'></a><a href='#L513'>513</a>
+<a name='L514'></a><a href='#L514'>514</a>
+<a name='L515'></a><a href='#L515'>515</a>
+<a name='L516'></a><a href='#L516'>516</a>
+<a name='L517'></a><a href='#L517'>517</a>
+<a name='L518'></a><a href='#L518'>518</a>
+<a name='L519'></a><a href='#L519'>519</a>
+<a name='L520'></a><a href='#L520'>520</a>
+<a name='L521'></a><a href='#L521'>521</a>
+<a name='L522'></a><a href='#L522'>522</a>
+<a name='L523'></a><a href='#L523'>523</a>
+<a name='L524'></a><a href='#L524'>524</a>
+<a name='L525'></a><a href='#L525'>525</a>
+<a name='L526'></a><a href='#L526'>526</a>
+<a name='L527'></a><a href='#L527'>527</a>
+<a name='L528'></a><a href='#L528'>528</a>
+<a name='L529'></a><a href='#L529'>529</a>
+<a name='L530'></a><a href='#L530'>530</a>
+<a name='L531'></a><a href='#L531'>531</a>
+<a name='L532'></a><a href='#L532'>532</a>
+<a name='L533'></a><a href='#L533'>533</a>
+<a name='L534'></a><a href='#L534'>534</a>
+<a name='L535'></a><a href='#L535'>535</a>
+<a name='L536'></a><a href='#L536'>536</a>
+<a name='L537'></a><a href='#L537'>537</a>
+<a name='L538'></a><a href='#L538'>538</a>
+<a name='L539'></a><a href='#L539'>539</a>
+<a name='L540'></a><a href='#L540'>540</a>
+<a name='L541'></a><a href='#L541'>541</a>
+<a name='L542'></a><a href='#L542'>542</a>
+<a name='L543'></a><a href='#L543'>543</a>
+<a name='L544'></a><a href='#L544'>544</a>
+<a name='L545'></a><a href='#L545'>545</a>
+<a name='L546'></a><a href='#L546'>546</a>
+<a name='L547'></a><a href='#L547'>547</a>
+<a name='L548'></a><a href='#L548'>548</a>
+<a name='L549'></a><a href='#L549'>549</a>
+<a name='L550'></a><a href='#L550'>550</a>
+<a name='L551'></a><a href='#L551'>551</a>
+<a name='L552'></a><a href='#L552'>552</a>
+<a name='L553'></a><a href='#L553'>553</a>
+<a name='L554'></a><a href='#L554'>554</a>
+<a name='L555'></a><a href='#L555'>555</a>
+<a name='L556'></a><a href='#L556'>556</a>
+<a name='L557'></a><a href='#L557'>557</a>
+<a name='L558'></a><a href='#L558'>558</a>
+<a name='L559'></a><a href='#L559'>559</a>
+<a name='L560'></a><a href='#L560'>560</a>
+<a name='L561'></a><a href='#L561'>561</a>
+<a name='L562'></a><a href='#L562'>562</a>
+<a name='L563'></a><a href='#L563'>563</a>
+<a name='L564'></a><a href='#L564'>564</a>
+<a name='L565'></a><a href='#L565'>565</a>
+<a name='L566'></a><a href='#L566'>566</a>
+<a name='L567'></a><a href='#L567'>567</a>
+<a name='L568'></a><a href='#L568'>568</a>
+<a name='L569'></a><a href='#L569'>569</a>
+<a name='L570'></a><a href='#L570'>570</a>
+<a name='L571'></a><a href='#L571'>571</a>
+<a name='L572'></a><a href='#L572'>572</a>
+<a name='L573'></a><a href='#L573'>573</a>
+<a name='L574'></a><a href='#L574'>574</a>
+<a name='L575'></a><a href='#L575'>575</a>
+<a name='L576'></a><a href='#L576'>576</a>
+<a name='L577'></a><a href='#L577'>577</a>
+<a name='L578'></a><a href='#L578'>578</a>
+<a name='L579'></a><a href='#L579'>579</a>
+<a name='L580'></a><a href='#L580'>580</a>
+<a name='L581'></a><a href='#L581'>581</a>
+<a name='L582'></a><a href='#L582'>582</a>
+<a name='L583'></a><a href='#L583'>583</a>
+<a name='L584'></a><a href='#L584'>584</a>
+<a name='L585'></a><a href='#L585'>585</a>
+<a name='L586'></a><a href='#L586'>586</a>
+<a name='L587'></a><a href='#L587'>587</a>
+<a name='L588'></a><a href='#L588'>588</a>
+<a name='L589'></a><a href='#L589'>589</a>
+<a name='L590'></a><a href='#L590'>590</a>
+<a name='L591'></a><a href='#L591'>591</a>
+<a name='L592'></a><a href='#L592'>592</a>
+<a name='L593'></a><a href='#L593'>593</a>
+<a name='L594'></a><a href='#L594'>594</a>
+<a name='L595'></a><a href='#L595'>595</a>
+<a name='L596'></a><a href='#L596'>596</a>
+<a name='L597'></a><a href='#L597'>597</a>
+<a name='L598'></a><a href='#L598'>598</a>
+<a name='L599'></a><a href='#L599'>599</a>
+<a name='L600'></a><a href='#L600'>600</a>
+<a name='L601'></a><a href='#L601'>601</a>
+<a name='L602'></a><a href='#L602'>602</a>
+<a name='L603'></a><a href='#L603'>603</a>
+<a name='L604'></a><a href='#L604'>604</a>
+<a name='L605'></a><a href='#L605'>605</a>
+<a name='L606'></a><a href='#L606'>606</a>
+<a name='L607'></a><a href='#L607'>607</a>
+<a name='L608'></a><a href='#L608'>608</a>
+<a name='L609'></a><a href='#L609'>609</a>
+<a name='L610'></a><a href='#L610'>610</a>
+<a name='L611'></a><a href='#L611'>611</a>
+<a name='L612'></a><a href='#L612'>612</a>
+<a name='L613'></a><a href='#L613'>613</a>
+<a name='L614'></a><a href='#L614'>614</a>
+<a name='L615'></a><a href='#L615'>615</a>
+<a name='L616'></a><a href='#L616'>616</a>
+<a name='L617'></a><a href='#L617'>617</a>
+<a name='L618'></a><a href='#L618'>618</a>
+<a name='L619'></a><a href='#L619'>619</a>
+<a name='L620'></a><a href='#L620'>620</a>
+<a name='L621'></a><a href='#L621'>621</a>
+<a name='L622'></a><a href='#L622'>622</a>
+<a name='L623'></a><a href='#L623'>623</a>
+<a name='L624'></a><a href='#L624'>624</a>
+<a name='L625'></a><a href='#L625'>625</a>
+<a name='L626'></a><a href='#L626'>626</a>
+<a name='L627'></a><a href='#L627'>627</a>
+<a name='L628'></a><a href='#L628'>628</a>
+<a name='L629'></a><a href='#L629'>629</a>
+<a name='L630'></a><a href='#L630'>630</a>
+<a name='L631'></a><a href='#L631'>631</a>
+<a name='L632'></a><a href='#L632'>632</a>
+<a name='L633'></a><a href='#L633'>633</a>
+<a name='L634'></a><a href='#L634'>634</a>
+<a name='L635'></a><a href='#L635'>635</a>
+<a name='L636'></a><a href='#L636'>636</a>
+<a name='L637'></a><a href='#L637'>637</a>
+<a name='L638'></a><a href='#L638'>638</a>
+<a name='L639'></a><a href='#L639'>639</a>
+<a name='L640'></a><a href='#L640'>640</a>
+<a name='L641'></a><a href='#L641'>641</a>
+<a name='L642'></a><a href='#L642'>642</a>
+<a name='L643'></a><a href='#L643'>643</a>
+<a name='L644'></a><a href='#L644'>644</a>
+<a name='L645'></a><a href='#L645'>645</a>
+<a name='L646'></a><a href='#L646'>646</a>
+<a name='L647'></a><a href='#L647'>647</a>
+<a name='L648'></a><a href='#L648'>648</a>
+<a name='L649'></a><a href='#L649'>649</a>
+<a name='L650'></a><a href='#L650'>650</a>
+<a name='L651'></a><a href='#L651'>651</a>
+<a name='L652'></a><a href='#L652'>652</a>
+<a name='L653'></a><a href='#L653'>653</a>
+<a name='L654'></a><a href='#L654'>654</a>
+<a name='L655'></a><a href='#L655'>655</a>
+<a name='L656'></a><a href='#L656'>656</a>
+<a name='L657'></a><a href='#L657'>657</a>
+<a name='L658'></a><a href='#L658'>658</a>
+<a name='L659'></a><a href='#L659'>659</a>
+<a name='L660'></a><a href='#L660'>660</a>
+<a name='L661'></a><a href='#L661'>661</a>
+<a name='L662'></a><a href='#L662'>662</a>
+<a name='L663'></a><a href='#L663'>663</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-yes">1150x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">1178x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1178x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35986x</span>
+<span class="cline-any cline-yes">35986x</span>
+<span class="cline-any cline-yes">35986x</span>
+<span class="cline-any cline-yes">35986x</span>
+<span class="cline-any cline-yes">10485x</span>
+<span class="cline-any cline-yes">10485x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42126x</span>
+<span class="cline-any cline-yes">42126x</span>
+<span class="cline-any cline-yes">35986x</span>
+<span class="cline-any cline-yes">42126x</span>
+<span class="cline-any cline-yes">137148x</span>
+<span class="cline-any cline-yes">137148x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33208x</span>
+<span class="cline-any cline-yes">33208x</span>
+<span class="cline-any cline-yes">33208x</span>
+<span class="cline-any cline-yes">33208x</span>
+<span class="cline-any cline-yes">33208x</span>
+<span class="cline-any cline-yes">33208x</span>
+<span class="cline-any cline-yes">33208x</span>
+<span class="cline-any cline-yes">3558x</span>
+<span class="cline-any cline-yes">3558x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">113x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">8262x</span>
+<span class="cline-any cline-yes">8262x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">8262x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">210x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">40324x</span>
+<span class="cline-any cline-yes">39731x</span>
+<span class="cline-any cline-yes">39138x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">40324x</span>
+<span class="cline-any cline-yes">40324x</span>
+<span class="cline-any cline-yes">40324x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">203x</span>
+<span class="cline-any cline-yes">203x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">203x</span>
+<span class="cline-any cline-yes">203x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">203x</span>
+<span class="cline-any cline-yes">203x</span>
+<span class="cline-any cline-yes">203x</span>
+<span class="cline-any cline-yes">203x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">597x</span>
+<span class="cline-any cline-yes">597x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">8302x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22534x</span>
+<span class="cline-any cline-yes">22534x</span>
+<span class="cline-any cline-yes">22534x</span>
+<span class="cline-any cline-yes">22534x</span>
+<span class="cline-any cline-yes">22534x</span>
+<span class="cline-any cline-yes">22534x</span>
+<span class="cline-any cline-yes">22534x</span>
+<span class="cline-any cline-yes">22534x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">14232x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">1186x</span>
+<span class="cline-any cline-yes">14232x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">1170x</span>
+<span class="cline-any cline-yes">1170x</span>
+<span class="cline-any cline-yes">1170x</span>
+<span class="cline-any cline-yes">1170x</span>
+<span class="cline-any cline-yes">1170x</span>
+<span class="cline-any cline-yes">1170x</span>
+<span class="cline-any cline-yes">1170x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">593x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">7116x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-yes">600x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * 紫微斗数排盘算法 — 基于 iztro 开源库
+ * https://github.com/SylarLong/iztro
+ */
+&nbsp;
+import { astro } from 'iztro';
+import { Solar, LunarMonth } from 'lunar-javascript';
+import type { BirthInfo, LunarInfo, Star, Palace, DaXian, DaXianSiHua, ZiweiChart } from './types';
+import { BRANCHES, STEMS } from './constants';
+import { schoolStarBrightness, type BrightnessSchool } from './school-data';
+import { SCHOOL_AX } from './school-tables.generated';
+import { DEFAULT_LEAP_MONTH } from './school-config';
+// 飞星派工具仅供导出，不再在排盘时调用（倪师《天纪 03》：四化星永远固定不动）
+// import { detectSelfSihua, getSiHuaByStem } from './sihua';
+&nbsp;
+// 紫微斗数主流派（中州派/全书派/主流排盘软件）采用"正月初一换年"规则（农历年口径）。
+// 例：1999/2/11 立春已过（立春=2/4），但春节(2/16)未到 → 仍属戊寅年腊月，非己卯年。
+// 影响 iztro 内部排盘的五行局/命主/身主/四化/紫微定位 — 这是与主流排盘软件对齐的关键。
+//
+// ★ 修正历史（2026-05-12）：
+// 原配置 yearDivide:'exact'（立春换年）→ 改为 'normal'（正月初一换年）
+// 原因：用户反馈与主流排盘软件的盘"宫位一样、其他完全不一样"，
+// 经诊断（scripts/diff-chart-vs-other.ts）确认根因是换年规则，主流派一律用农历年。
+//
+// ★ 星曜亮度修正（2026-05-08）
+// iztro 默认亮度表与《紫微斗数全书》存在 24 处差异（14 主星 + 6 辅星），
+// 已通过 config.brightness 全量覆写修正。
+// 数组索引从寅起：0=寅 1=卯 2=辰 3=巳 4=午 5=未 6=申 7=酉 8=戌 9=亥 10=子 11=丑
+// 交叉验证来源：紫微取象派全书解读、令东来庙旺表、iztro 官方文档、金标准盘
+// ★ 抽成具名常量（2026-06-11）：供 setBrightnessSchool('default') 显式还原，根治「切流派后全局亮度泄漏」。
+//   必须完整覆盖全部 14 主星——流派表（schoolBrightnessTableToIztroFormat）覆写 14 主星，
+//   若此处缺某主星键，切流派后该星被污染却无键可盖回（实测：武曲/廉贞/巨门/破军 曾缺失）。
+const DEFAULT_BRIGHTNESS: Record&lt;string, string[]&gt; = {
+    //            寅     卯     辰     巳     午     未     申     酉     戌     亥     子     丑
+    // ── 紫微系六星 ──────────────────────────────────────────
+    // 紫微：寅宫 旺→庙（全书：庙于寅午丑未）
+    '紫微': ['庙','旺','得','旺','庙','庙','旺','旺','得','旺','平','庙'],
+    // 天机：辰宫 利→庙、戌宫 利→庙（依「天机庙于子午辰戌」通行庙旺总诀；善本《全书》天机条无逐宫原文，此句系后世总诀转述，非善本直证）
+    '天机': ['得','旺','庙','平','庙','陷','得','旺','庙','平','庙','陷'],
+    // 太阳：午宫 旺→庙（全书：庙于卯午）
+    '太阳': ['旺','庙','旺','旺','庙','得','得','陷','不','陷','陷','不'],
+    // 武曲：iztro 默认与全书一致 ✓
+    // 天同：寅宫 利→旺（全书：旺于子寅申）、午宫 陷→不（全书：不得地于午丑未）
+    '天同': ['旺','平','平','庙','不','不','旺','平','平','庙','旺','不'],
+    // 廉贞：iztro 默认与全书一致 ✓
+&nbsp;
+    // ── 天府系八星 ──────────────────────────────────────────
+    // 天府：辰宫 庙→旺、戌宫 庙→旺（全书：旺于辰戌午酉）
+    '天府': ['庙','得','旺','得','旺','庙','得','旺','旺','得','庙','庙'],
+    // 太阴：寅宫 旺→陷、酉宫 不→旺（全书：庙于亥子丑，旺于酉戌，陷于寅卯辰巳午）★ 重大修正
+    // ★ 2026-06-10 doctrine 复核（用户留言「太阳太阴庙旺有误」触发，详见 docs/audits/taiyin-brightness-review.md）：
+    //   善本《全书·诸星问答论·太阴》逐字（quanshu-juan1-source.ts）：「以卯辰巳午未为陷地，以酉戌亥子丑为得垣」
+    //   → 午宫原值'不'与上行自引出处及善本两源皆抵触，系 05 月校订漏网，校订为'陷'。
+    //   存疑保留：未宫善本作陷地、此表沿用'不'（通行庙旺表多不入陷，流派分歧）；寅宫善本未提，沿用 05 月校订'陷'。
+    '太阴': ['陷','陷','陷','陷','陷','不','利','旺','旺','庙','庙','庙'],
+    // 贪狼：iztro 原始表为 6 位对称构造（平利庙陷旺庙重复），与古籍差异显著，按通行 XD1 表修正
+    // ★ 2026-06-11 复核（二次）：XD1 巳宫=地（表内数值 3），iztro Brightness 无'地'，映射为'平'（同属 normal 区，与金标准盘显示一致）
+    '贪狼': ['不','平','得','平','平','庙','不','平','得','利','平','庙'],
+    // 巨门：iztro 默认与全书一致 ✓（全书各源分歧已复核，iztro 取值合理）
+    // 天相：卯宫 陷→平、酉宫 陷→平（依「天相平于卯酉」通行庙旺总诀；善本《全书》天相条无逐宫原文，且通行四派亮度表此处亦全作「平」，故「平」站得住）
+    '天相': ['庙','平','得','得','庙','得','庙','平','得','得','庙','庙'],
+    // 天梁：卯宫 庙→得、戌宫 庙→得（全书：得地于卯戌）
+    '天梁': ['庙','得','庙','陷','庙','旺','陷','得','得','陷','庙','旺'],
+    // 七杀：酉宫 庙→旺（全书：旺于子午卯酉）
+    '七杀': ['庙','旺','庙','平','旺','庙','庙','旺','庙','平','旺','庙'],
+    // 破军：iztro 默认与全书一致 ✓
+&nbsp;
+    // ── 辅星（六吉六煞）────────────────────────────────────
+    // 文昌：iztro 默认与全书一致 ✓
+    // 文曲：辰宫 得→庙、子宫 得→庙（全书：庙于巳酉丑子辰，共五庙位）
+    '文曲': ['平','旺','庙','庙','陷','旺','得','庙','陷','旺','庙','庙'],
+    // 火星：iztro 默认与全书一致 ✓
+    // 铃星：iztro 错误地复制了火星亮度！全书铃星与火星不同 ★ 重大修正
+    //   辰申 陷→得、未 利→得、丑 得→陷、亥 利→陷（全书：庙寅午戌，地辰巳未申，陷丑亥子）
+    //   酉宫：iztro/主流排盘软件/元亨利贞 均为"得"，从众修正
+    '铃星': ['庙','利','得','得','庙','得','得','得','庙','陷','陷','陷'],
+    // 擎羊：酉宫 陷→旺、子宫 陷→旺（全书：庙辰戌丑未，旺酉子，陷卯午）
+    '擎羊': ['','陷','庙','','陷','庙','','旺','庙','','旺','庙'],
+    // 陀罗：iztro 默认与全书一致 ✓
+&nbsp;
+    // ── 武曲 / 廉贞 / 巨门 / 破军 ───────────────────────────────
+    // 这 4 颗主星 iztro 原生值与《全书》一致，原先未显式覆写（靠 iztro 内置 fallback）。
+    // ★ 2026-06-11 补入原生值（探针 scripts 实测，寅起）：使 DEFAULT 表完整含 14 主星，
+    //   流派切换后 setBrightnessSchool('default') 才能全量盖回、还原默认。
+    '武曲': ['得','利','庙','平','旺','庙','得','利','庙','平','旺','庙'],
+    '廉贞': ['庙','平','利','陷','平','利','庙','平','利','陷','平','利'],
+    '巨门': ['庙','庙','陷','旺','旺','不','庙','庙','陷','旺','旺','不'],
+    '破军': ['得','陷','旺','平','庙','旺','得','陷','旺','平','庙','旺'],
+};
+&nbsp;
+// 模块加载即写入默认亮度表 + 农历正月初一换年规则（astro.config 为全局副作用）
+astro.config({
+  yearDivide: 'normal',
+  brightness: DEFAULT_BRIGHTNESS,
+});
+&nbsp;
+// ─── 亮度流派切换（2026-05-12，金标准盘核对后引入）─────────────────────────
+// 默认 = 我们当前的自定义表（基于全书 + 金标准盘交叉验证）
+// 切换 = 调 setBrightnessSchool('qs' | 'xd1' | 'zz' | 'xd2') 覆写为通行四派任一套
+//
+// 注意：astro.config 是全局副作用，每次调用影响所有后续 generateChart
+//       服务端多用户场景下要小心 race condition（chart 生成是同步的，影响小）
+&nbsp;
+export type SchoolBrightnessKind = 'default' | BrightnessSchool;
+&nbsp;
+// ★ 2026-06-20 星曜亮度全套对齐主流排盘口径：全盘亮度改由装配层直接查 SB_[school] 表
+//   （schoolStarBrightness：主星+辅星+煞星+空劫统一一套表/一套映射/子起一索引），
+//   不再走 iztro 的 astro.config 覆写（旧的 DEFAULT_BRIGHTNESS 善本手敲表 + schoolBrightnessTableToIztroFormat
+//   方向读反的映射，都已弃用）。
+// ★ 2026-10-20 default = 《斗数全书》QS（站长定：主流排盘默认口径是什么，我们默认就是什么）。
+//   证据：主流排盘软件设置页「重置设置 → 重置为系统默认值」后，星曜亮度停在
+//   「依据斗数全书 (默认)」（截图已存档）；会员发来的金标准盘
+//   53 颗星亮度与 QS 表 53/53 一致、与 XD2 只 44/53。6-20 那次改成 XD2 的「用户实证 27/27」是一台手选了
+//   现代修订亮度表（第二版）的机器，不是默认口径。流派切换只改此值（同步主辅煞，避免不一致）。
+let currentBrightSchool: BrightnessSchool = 'QS';
+&nbsp;
+export <span class="fstat-no" title="function not covered" >function setBrightnessSchool(school: SchoolBrightnessKind): void {</span>
+<span class="cstat-no" title="statement not covered" >  currentBrightSchool = school === 'default' ? 'QS' : school;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+export type LunarMonthPolicy = 'split' | 'next-month' | 'prev-month' | 'origin-month';
+&nbsp;
+export interface EffectiveLunarDate {
+  lunarYear: number;
+  lunarMonth: number;
+  lunarDay: number;
+  isLeapMonth: boolean;
+  rawLunarMonth: number;
+  rawLunarDay: number;
+}
+&nbsp;
+/**
+ * Resolve the lunar month used by the chart and all month-based patches.
+ * The raw lunar date remains available so callers can keep split behavior on
+ * the real leap month while non-split policies use the same effective date.
+ */
+export function resolveEffectiveLunarDate(
+  year: number,
+  month: number,
+  day: number,
+  policy: LunarMonthPolicy = 'prev-month',
+): EffectiveLunarDate {
+  const lunar = Solar.fromYmd(year, month, day).getLunar();
+  const rawLunarMonth = Number(lunar.getMonth());
+  const rawLunarDay = Number(lunar.getDay());
+  const isRawLeapMonth = rawLunarMonth &lt; 0;
+  const absoluteMonth = Math.abs(rawLunarMonth);
+&nbsp;
+  if (!isRawLeapMonth) {
+    return {
+      lunarYear: Number(lunar.getYear()),
+      lunarMonth: absoluteMonth,
+      lunarDay: rawLunarDay,
+      isLeapMonth: false,
+      rawLunarMonth,
+      rawLunarDay,
+    };
+  }
+&nbsp;
+  let lunarYear = Number(lunar.getYear());
+  let lunarMonth = absoluteMonth;
+  let isLeapMonth = false;
+&nbsp;
+  if (policy === 'split') {
+    // Keep iztro's established split rule: days 1-15 use the prior month,
+    // and the second half uses the following month.
+    if (rawLunarDay &gt; 15) lunarMonth = absoluteMonth + 1;
+<span class="branch-0 cbranch-no" title="branch not covered" >  } else if (policy === 'next-month') {</span>
+<span class="cstat-no" title="statement not covered" >    lunarMonth = absoluteMonth + 1;</span>
+<span class="cstat-no" title="statement not covered" >  } else if (policy === 'origin-month') {</span>
+<span class="cstat-no" title="statement not covered" >    isLeapMonth = true;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+&nbsp;
+  if (lunarMonth &gt; 12) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    lunarMonth = 1;</span>
+<span class="cstat-no" title="statement not covered" >    lunarYear += 1;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+&nbsp;
+  let lunarDay = rawLunarDay;
+  try {
+    const monthKey = <span class="branch-0 cbranch-no" title="branch not covered" >isLeapMonth ? -lunarMonth : l</span>unarMonth;
+    const dayCount = LunarMonth.fromYm(lunarYear, monthKey)?.getDayCount?.();
+    if (typeof dayCount === 'number' &amp;&amp; dayCount &gt; 0 &amp;&amp; lunarDay &gt; dayCount) <span class="branch-0 cbranch-no" title="branch not covered" >lunarDay = dayCount;</span>
+<span class="branch-0 cbranch-no" title="branch not covered" >  } catch { /* 查不到月信息则保留原日，维持下游既有容错 */ }</span>
+&nbsp;
+  return {
+    lunarYear,
+    lunarMonth,
+    lunarDay,
+    isLeapMonth,
+    rawLunarMonth,
+    rawLunarDay,
+  };
+}
+&nbsp;
+// ─── 农历信息（兼容保留）────────────────────────────────────────
+export function getLunarInfo(
+  year: number,
+  month: number,
+  day: number,
+  hour?: number,
+  policy: LunarMonthPolicy = 'prev-month',
+): LunarInfo {
+  const solar = Solar.fromYmd(year, month, day);
+  const lunar = solar.getLunar();
+  const effective = resolveEffectiveLunarDate(year, month, day, policy);
+  // lunar-javascript 没有 .d.ts，立春换年方法只在 runtime 上有，用 any 绕过
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const lu = lunar as any;
+  // 紫微斗数排盘年（正月初一换年，与上方 astro.config:yearDivide='normal' 同口径）
+  // 注意：节气四柱(下方)用 getEightChar() 精确到立春/节的时刻，八字四柱永远立春换年，跟紫微的"农历年"是两套
+  const yearStem = STEMS.indexOf(lu.getYearGan());
+  const yearBranch = BRANCHES.indexOf(lu.getYearZhi());
+  // ★ 节气四柱（年柱/月柱/日柱/时柱）+ 非节气四柱（农历口径月柱）
+  let fourPillars: [string, string, string, string] | undefined;
+  let fourPillarsLunar: [string, string, string, string] | undefined;
+  try {
+    // ★ 2026-09-01 立春/节气边界修正：节气四柱的年柱、月柱改用 getEightChar()（精确到立春/节的时刻）。
+    //   原用 getYearGanByLiChun()/getMonthGan() 是「按立春当天整天」切换、不看时刻 —— 立春当天凌晨出生
+    //   的会被算进新的一年，年/月柱各差一位（会员实测：2004-02-04 丑时应为癸未/乙丑，却排成甲申/丙寅）。
+    //   立春=2004-02-04 19:56，此人凌晨 2:40 生，本该上一年癸未。lunar-javascript 的 getYearGanByLiChun
+    //   即使传入时间也按日切换（实测无效），getEightChar 才精确到分。
+    //   时刻用「时辰中点」(index*2 点)近似，与排盘既有的真太阳时时辰同口径；日柱/时柱不受立春影响、保持原算法。
+    //   非节气日新旧完全一致（只有落在立春/十二节当天、交节时刻前后的人才会变），已抽样 12 例逐一比对验证。
+    const effHour = (hour !== undefined &amp;&amp; hour &gt;= 0 &amp;&amp; hour &lt;= 11) ? hour * <span class="branch-0 cbranch-no" title="branch not covered" >2 : 0;</span>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const ec = (Solar as any).fromYmdHms(year, month, day, effHour, 0, 0).getLunar().getEightChar();
+    const yearGZ = ec.getYear() as string;    // 节气四柱年柱：立春精确换年
+    const monthGZ = ec.getMonth() as string;  // 节气四柱月柱：节气精确换月 + 五虎遁用立春校正后的年干
+    const dayGZ = `${lu.getDayGan()}${lu.getDayZhi()}`;
+    // 时柱：日干 + 时支共同决定；时干由 day stem + hour 推
+    // 规则：甲己日子时 → 甲子；乙庚日子时 → 丙子；丙辛 → 戊；丁壬 → 庚；戊癸 → 壬
+    const dayStem = STEMS.indexOf(lu.getDayGan());
+    const branchIdx = hour !== undefined &amp;&amp; hour &gt;= 0 &amp;&amp; hour &lt;= 11 ? <span class="branch-0 cbranch-no" title="branch not covered" >hour : 0;</span>
+    const timeStemBase = (dayStem % 5) * 2; // 子时起的天干
+    const timeStemIdx = (timeStemBase + branchIdx) % 10;
+    const timeGZ = `${STEMS[timeStemIdx]}${BRANCHES[branchIdx]}`;
+    fourPillars = [yearGZ, monthGZ, dayGZ, timeGZ];
+&nbsp;
+    // ★ 非节气四柱（对齐主流排盘软件「非节气四柱」）：年柱用农历年(正月初一换年，与紫微同口径)、
+    //   月柱按农历月(初一换月)重算 —— 节气交界日(如生在小暑后数十分钟)节气版会进下一月、农历版仍在本月，月柱差一位。
+    //   日/时柱不受年月口径影响，复用上方。lunar-javascript 无农历口径月柱方法，用五虎遁手算。
+    const absM = effective.lunarMonth;
+    const yearGZLunar = `${STEMS[yearStem]}${BRANCHES[yearBranch]}`;        // 农历年干支(正月初一换年)
+    const monthBranchIdx = (absM + 1) % 12;                                 // 农历月→月支(正月=寅)
+    const monthStemBase = ((yearStem % 5) * 2 + 2) % 10;                    // 五虎遁：农历年干定正月(寅)天干
+    const monthStemIdx = (monthStemBase + (absM - 1)) % 10;
+    const monthGZLunar = `${STEMS[monthStemIdx]}${BRANCHES[monthBranchIdx]}`;
+    fourPillarsLunar = [yearGZLunar, monthGZLunar, dayGZ, timeGZ];
+<span class="branch-0 cbranch-no" title="branch not covered" >  } catch { /* lunar-javascript 接口异常时跳过 */ }</span>
+&nbsp;
+  return {
+    lunarYear: effective.lunarYear,
+    lunarMonth: effective.lunarMonth,
+    lunarDay: effective.lunarDay,
+    yearStem: yearStem &gt;= 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >yearStem : 0,</span>
+    yearBranch: yearBranch &gt;= 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >yearBranch : 0,</span>
+    isLeapMonth: effective.isLeapMonth,
+    fourPillars,
+    fourPillarsLunar,
+  };
+}
+&nbsp;
+// ─── 命主星 / 身主星（按地支查表）─────────────────────────
+const MING_ZHU_TABLE: Record&lt;number, string&gt; = {
+  0: '贪狼', 1: '巨门', 2: '禄存', 3: '文曲', 4: '廉贞', 5: '武曲',
+  6: '破军', 7: '武曲', 8: '廉贞', 9: '文曲', 10: '禄存', 11: '巨门',
+};
+const SHEN_ZHU_TABLE: Record&lt;number, string&gt; = {
+  0: '火星', 6: '火星', 1: '天相', 7: '天相',
+  2: '天梁', 8: '天梁', 3: '天同', 9: '天同',
+  4: '文昌', 10: '文昌', 5: '天机', 11: '天机',
+};
+export function calcMingZhu(branch: number): string { return MING_ZHU_TABLE[branch<span class="branch-0 cbranch-no" title="branch not covered" >] ?? ''; }</span>
+export function calcShenZhu(branch: number): string { return SHEN_ZHU_TABLE[branch<span class="branch-0 cbranch-no" title="branch not covered" >] ?? ''; }</span>
+export function calcYinYangGender(yearStem: number, gender: 'male' | 'female'): string {
+  return `${yearStem % 2 === 0 ? '阳' : '阴'}${gender === 'male' ? '男' : '女'}`;
+}
+&nbsp;
+// ─── 亮度映射 ────────────────────────────────────────────────────
+function mapBrightness(b?: string): 'bright' | 'normal' | 'dim' {
+  if (!b) <span class="branch-0 cbranch-no" title="branch not covered" >return 'normal';</span>
+  if (b === '庙' || b === '旺') return 'bright';
+  if (b === '陷' || b === '不' || b === '闲') return 'dim';
+  return 'normal';
+}
+&nbsp;
+/** 从 iztro 原始亮度文本中提取标准 7 档之一 */
+function extractRawBrightness(b?: string): import('./types').StarBrightness | undefined {
+  if (!b) return undefined;
+  const valid: import('./types').StarBrightness[] = ['庙', '旺', '得', '利', '平', '不', '闲', '陷', '地'];
+  for (const x of valid) {
+    if (b.includes(x)) return x;
+<span class="branch-0 cbranch-no" title="branch not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >  return undefined;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+// ─── 星曜类型映射 ────────────────────────────────────────────────
+const SHA_STARS = new Set(['擎羊', '陀罗', '火星', '铃星', '地空', '地劫',
+  '天空', '旬空', '副旬', '截路', '截空', '副截', '大耗', '天使', '天伤',
+  // ★ 扩充（之前只判主煞，半凶杂耀漏判）
+  '天刑', '天哭', '天虚', '天月', '阴煞', '蜚廉', '空亡',
+  '孤辰', '寡宿']);
+const LUCKY_STARS = new Set(['文昌', '文曲', '左辅', '右弼', '天魁', '天钺',
+  '禄存', '天马', '天官', '天福', '天才', '天寿', '三台', '八座', '恩光',
+  '天贵', '台辅', '龙池', '凤阁', '红鸾', '天喜',
+  // ★ 扩充：吉杂耀
+  '解神', '天德', '月德', '年解', '天巫', '华盖', '封诰']);
+&nbsp;
+function mapStarType(starName: string, iztroType: string): Star['type'] {
+  if (SHA_STARS.has(starName)) return 'sha';
+  if (LUCKY_STARS.has(starName)) return 'lucky';
+  const t = (<span class="branch-0 cbranch-no" title="branch not covered" >iztroType ?? '').t</span>oLowerCase();
+  if (t === '主星' || t === 'major') <span class="branch-0 cbranch-no" title="branch not covered" >return 'major';</span>
+  if (t === '煞星' || t === 'tough') <span class="branch-0 cbranch-no" title="branch not covered" >return 'sha';</span>
+  if (t === '吉星' || t === 'soft' || t === '禄存' || t === '天马') <span class="branch-0 cbranch-no" title="branch not covered" >return 'lucky';</span>
+  return 'minor';
+}
+&nbsp;
+// ─── 五行局名称 → 数字 ──────────────────────────────────────────
+function parseWuxingJu(name: string): number {
+  if (name.includes('二')) return 2;
+  if (name.includes('三')) return 3;
+  if (name.includes('四')) return 4;
+  if (name.includes('五')) return 5;
+  if (name.includes('六')) return <span class="branch-0 cbranch-no" title="branch not covered" >6;</span>
+<span class="cstat-no" title="statement not covered" >  return 3;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+// ─── 主函数：生成命盘 ────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────
+// 天魁天钺 · 默认派(KY1)修正
+//
+// 用户决策(2026-05-30):排盘对齐主流排盘默认口径(金标准盘对照实证,见 docs/school-parity-report.md)。
+// 实测 10 天干年仅【辛年】与 iztro 现状不同:
+//   辛年  默认口径 = 天魁在寅 / 天钺在午;iztro(主流) = 天魁在午 / 天钺在寅。
+// ⚠️ 默认派在辛年与主流「辛马虎 = 魁午钺寅」口诀相反(魁钺对调)。这是主流排盘软件的
+//    既定排法,此处遵用户「对齐默认口径」决定。其余 9 个天干年默认口径与 iztro 本就一致。
+// 回退:删除 generateChart 内 applySchoolKuiyue(...) 调用即恢复 iztro 主流派。
+// ─────────────────────────────────────────────────────────────────────────
+function relocateStar(palaces: Palace[], name: string, targetBranch: number): void {
+  let moved: Star | undefined;
+  for (const p of palaces) {
+    const i = p.stars.findIndex((s) =&gt; s.name === name);
+    if (i &gt;= 0) {
+      if (p.branch === targetBranch) return; // 已在目标宫,无需移动
+      moved = p.stars[i];
+      p.stars.splice(i, 1);
+      break;
+    }
+  }
+  if (!moved) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  const target = palaces.find((p) =&gt; p.branch === targetBranch);
+  if (target) {
+    target.stars.push(moved);
+    // ★ 2026-06-20 天魁天钺换位（默认派 KY1）后,亮度仍是 iztro 旧宫位算的（错位）。按新宫地支重算亮度。
+    const rb = schoolStarBrightness(moved.name, targetBranch, currentBrightSchool);
+    moved.brightnessRaw = extractRawBrightness(rb);
+    moved.brightness = <span class="branch-0 cbranch-no" title="branch not covered" >rb ? mapBrightness(rb) : u</span>ndefined;
+  }
+}
+&nbsp;
+function applySchoolKuiyue(palaces: Palace[], yearStemCn: string): void {
+  const gan = STEMS.indexOf(yearStemCn); // 甲=0 … 癸=9
+  if (gan &lt; 0) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  const row = SCHOOL_AX.KY_ARR1[gan + 1]; // KY 表「甲=1」起;子起一编码
+  if (!row) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  relocateStar(palaces, '天魁', row[0] - 1); // 子起一(子=1) → BRANCHES 索引(子=0)
+  relocateStar(palaces, '天钺', row[1] - 1);
+}
+&nbsp;
+/**
+ * 本命顶栏「大耗」（年支星，不是宫底博士十二神那颗）。
+ * 2026-08-14 按金标准盘核对十二年支：阳支岁破+1，阴支岁破−1。
+ * 子=0 起偶数为阳支（子寅辰午申戌）。
+ */
+export function schoolDahaoBranch(yearBranch: number): number {
+  const suiPo = (yearBranch + 6) % 12;
+  return yearBranch % 2 === 0 ? (suiPo + 1) % 12 : (suiPo + 11) % 12;
+}
+&nbsp;
+function pushNatalStar(palaces: Palace[], branch: number, name: string): void {
+  const target = palaces.find((p) =&gt; p.branch === branch);
+  if (!target || target.stars.some((s) =&gt; s.name === name)) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  const rb = schoolStarBrightness(name, branch, currentBrightSchool);
+  target.stars.push({
+    name,
+    type: mapStarType(name, ''),
+    brightness: rb ? mapBrightness(rb<span class="branch-0 cbranch-no" title="branch not covered" >) : undefined,</span>
+    brightnessRaw: extractRawBrightness(rb),
+  });
+}
+&nbsp;
+function applySchoolDahao(palaces: Palace[], yearBranch: number): void {
+  pushNatalStar(palaces, schoolDahaoBranch(yearBranch), '大耗');
+}
+&nbsp;
+/**
+ * 本命顶栏截空/副截。
+ * 对子仍是甲己申酉、乙庚午未、丙辛辰巳、丁壬寅卯、戊癸子丑（iztro 已排对）。
+ * 阳干截空落阳宫、副截落阴宫；阴干对调。iztro 一律截路=阳宫、空亡=阴宫，阴干要换宫。
+ * 2026-08-14 金标准盘：辛丑巳截空/辰副截，己亥酉截空/申副截，乙巳未截空/午副截。
+ */
+function applySchoolJiekong(palaces: Palace[], yearStem: number): void {
+  for (const p of palaces) {
+    for (const s of p.stars) {
+      if (s.name === '截路') s.name = '截空';
+      else if (s.name === '空亡') s.name = '副截';
+      else continue;
+      // ★ 2026-10-20 改名后按新名字补亮度：iztro 原名查不到亮度，阳干年（不换宫、下面直接 return）
+      //   截空 / 副截一直留白，主流排盘默认口径是有亮度的（真盘：丙寅 辰截空=陷、巳副截=庙）。阴干换宫后下面再按新宫重算。
+      const rb = schoolStarBrightness(s.name, p.branch, currentBrightSchool);
+      s.brightness = rb ? mapBrightness(rb<span class="branch-0 cbranch-no" title="branch not covered" >) : undefined;</span>
+      s.brightnessRaw = extractRawBrightness(rb);
+    }
+  }
+  if (yearStem % 2 === 0) return;
+  const jie = palaces.find((p) =&gt; p.stars.some((s) =&gt; s.name === '截空'));
+  const fu = palaces.find((p) =&gt; p.stars.some((s) =&gt; s.name === '副截'));
+  if (!jie || !fu || jie === fu) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  const jieStar = jie.stars.find((s) =&gt; s.name === '截空');
+  const fuStar = fu.stars.find((s) =&gt; s.name === '副截');
+  if (!jieStar || !fuStar) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  jie.stars = jie.stars.filter((s) =&gt; s !== jieStar);
+  fu.stars = fu.stars.filter((s) =&gt; s !== fuStar);
+  const rbJ = schoolStarBrightness('截空', fu.branch, currentBrightSchool);
+  const rbF = schoolStarBrightness('副截', jie.branch, currentBrightSchool);
+  jieStar.brightness = rbJ ? mapBrightness(rbJ<span class="branch-0 cbranch-no" title="branch not covered" >) : undefined;</span>
+  jieStar.brightnessRaw = extractRawBrightness(rbJ);
+  fuStar.brightness = rbF ? mapBrightness(rbF<span class="branch-0 cbranch-no" title="branch not covered" >) : undefined;</span>
+  fuStar.brightnessRaw = extractRawBrightness(rbF);
+  fu.stars.push(jieStar);
+  jie.stars.push(fuStar);
+}
+&nbsp;
+/** 旬空成对（子丑/寅卯/辰巳/午未/申酉/戌亥）。副旬落在另一支：旬空阳支+1、阴支−1。 */
+function applySchoolFuxun(palaces: Palace[]): void {
+  const xun = palaces.find((p) =&gt; p.stars.some((s) =&gt; s.name === '旬空'));
+  if (!xun) <span class="branch-0 cbranch-no" title="branch not covered" >return;</span>
+  const fu = xun.branch % 2 === 0 ? (xun.branch + 1) % 12 : (xun.branch + 11) % 12;
+  pushNatalStar(palaces, fu, '副旬');
+}
+&nbsp;
+export function generateChart(
+  birthInfo: BirthInfo,
+  opts?: { leapMonth?: LunarMonthPolicy },
+): ZiweiChart {
+  const { year, month, day, hour, gender } = birthInfo;
+  if (!Number.isInteger(hour) || hour &lt; 0 || hour &gt; 11) {
+    throw new RangeError(`hour must be an integer branch index from 0 to 11; received ${hour}`);
+  }
+  // 公历日期必须真实存在：2 月 30 日、非闰年 2 月 29 日、4 月 31 日这类日期，
+  // iztro 不报错而是顺延成下个月的头几天排盘，结果会和真实日期的盘重复。
+  const probe = new Date(Date.UTC(year, month - 1, day));
+  if (
+    !Number.isInteger(year) || !Number.isInteger(month) || !Number.isInteger(day) ||
+    probe.getUTCFullYear() !== year || probe.getUTCMonth() !== month - 1 || probe.getUTCDate() !== day
+  ) {
+    throw new RangeError(`solar date does not exist: ${year}-${month}-${day}`);
+  }
+  const iztroGender = gender === 'male' ? '男' : '女';
+&nbsp;
+  // 闰月处理（流派分歧：归本月 / 归下月 / 前后半分）
+  // 默认 = DEFAULT_LEAP_MONTH（2026-09-05 起 split：主流排盘默认口径「月中分界」，150 组金标准盘对照验证；倪师派归下月可经流派抽屉切 next-month）
+  // 非 split 时先算农历，闰月才切 byLunar；非闰月仍走 bySolar，与 split 行为完全一致
+  const leapMode = <span class="branch-0 cbranch-no" title="branch not covered" >opts?.leapMonth ?? D</span>EFAULT_LEAP_MONTH;
+  const effectiveLunar = resolveEffectiveLunarDate(year, month, day, leapMode);
+&nbsp;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let astrolabe: any;
+&nbsp;
+  if (leapMode !== <span class="branch-0 cbranch-no" title="branch not covered" >'split' &amp;&amp; effectiveLunar.rawLunarMonth &lt; 0) <span class="branch-0 cbranch-no" title="branch not covered" >{</span></span>
+      // 闰月生人 → 按用户选项切换月份归属
+<span class="cstat-no" title="statement not covered" >      const lunarDateStr = `${effectiveLunar.lunarYear}-${effectiveLunar.lunarMonth}-${effectiveLunar.lunarDay}`;</span>
+<span class="cstat-no" title="statement not covered" >      astrolabe = astro.byLunar(</span>
+<span class="cstat-no" title="statement not covered" >        lunarDateStr,</span>
+<span class="cstat-no" title="statement not covered" >        hour,</span>
+<span class="cstat-no" title="statement not covered" >        iztroGender,</span>
+<span class="cstat-no" title="statement not covered" >        effectiveLunar.isLeapMonth,</span>
+<span class="cstat-no" title="statement not covered" >        false,</span>
+<span class="cstat-no" title="statement not covered" >        'zh-CN',</span>
+<span class="cstat-no" title="statement not covered" >      );</span>
+  } else {
+    // 非闰月或 split 模式：直接 bySolar，保持 iztro 的既有行为
+    astrolabe = astro.bySolar(`${year}-${month}-${day}`, hour, iztroGender, true, 'zh-CN');
+  }
+&nbsp;
+  // 让序列化后的 chart.birthInfo 继续携带同一闰月策略，供客户端运限 helper 重建本命盘。
+  const chartBirthInfo = {
+    ...birthInfo,
+    leapMonthPolicy: leapMode,
+  } as BirthInfo &amp; { leapMonthPolicy: LunarMonthPolicy };
+&nbsp;
+  // ── 组装十二宫 ──
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const palaces: Palace[] = astrolabe.palaces.map((p: any) =&gt; {
+    const branch = BRANCHES.indexOf(p.earthlyBranch as string);
+    const stem   = STEMS.indexOf(p.heavenlyStem as string);
+&nbsp;
+    // 合并所有星：主星 + 次星 + 杂耀
+    const allStars: Star[] = [
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...(p.<span class="branch-0 cbranch-no" title="branch not covered" >majorStars ?? []).m</span>ap((s: any) =&gt; {
+        // ★ 2026-06-20 全套对齐主流排盘口径:亮度统一查 SB_[currentBrightSchool] 表(全书派默认),不再用 iztro/善本表
+        const rb = schoolStarBrightness(s.name as string, branch, currentBrightSchool);
+        return {
+          name:          s.name as string,
+          type:          'major' as const,
+          brightness:    rb ? mapBrightness(rb<span class="branch-0 cbranch-no" title="branch not covered" >) : undefined,</span>
+          brightnessRaw: extractRawBrightness(rb),
+          siHua:         s.mutagen as Star['siHua'],
+        };
+      }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...(p.<span class="branch-0 cbranch-no" title="branch not covered" >minorStars ?? []).m</span>ap((s: any) =&gt; {
+        // ★ 2026-06-20 辅星(左辅右弼天魁天钺禄存天马) + 煞星(火铃羊陀空劫) 同走 SB 表(同一套映射/索引)
+        const rb = schoolStarBrightness(s.name as string, branch, currentBrightSchool);
+        return {
+          name:          s.name as string,
+          type:          mapStarType(s.name as string, s.type as string),
+          brightness:    rb ? mapBrightness(rb<span class="branch-0 cbranch-no" title="branch not covered" >) : undefined,</span>
+          brightnessRaw: extractRawBrightness(rb),
+          siHua:         s.mutagen as Star['siHua'],
+        };
+      }),
+      // ★ 之前 adjectiveStars 全部强制 type='minor'，绕过了 mapStarType，
+      //   导致红鸾/天喜（lucky）、天刑/天哭（sha）等被错分类。改成走映射函数，
+      //   让所有星正确按性质分到 lucky / sha / minor 三类，UI 也能正常分区显示
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ...(p.<span class="branch-0 cbranch-no" title="branch not covered" >adjectiveStars ?? []).m</span>ap((s: any) =&gt; {
+        // ★ 2026-06-20 杂耀亮度对齐主流排盘口径：行号 = SB 亮度表 ID（SCHOOL_STAR_ID_TO_NAME 反查），
+        //   落宫沿用 iztro（与金标准盘一致），金标准盘 24/24 验证。名字不在表里的杂耀 → undefined（留白，同现状）。
+        const rb = schoolStarBrightness(s.name as string, branch, currentBrightSchool);
+        return {
+          name:          s.name as string,
+          type:          mapStarType(s.name as string, (s.<span class="branch-0 cbranch-no" title="branch not covered" >type as string) ?? '')</span>,
+          brightness:    rb ? mapBrightness(rb) : undefined,
+          brightnessRaw: extractRawBrightness(rb),
+          siHua:         s.mutagen as Star['siHua'],
+        };
+      }),
+    ];
+&nbsp;
+    // ★ 2026-06-20 对齐主流排盘口径：默认口径把「岁前12神/将前12神」里的特定神煞当本命星显示
+    //   （劫煞@将前、龙德@岁前），iztro 把这两套放在 jiangqian12/suiqian12 单独字段，
+    //   原装配只取 major/minor/adjective 三类 → 整套漏了。在此补回（这两颗金标准盘亦不标亮度，留白）。
+    //   年支大耗不走岁前12神（iztro 岁前大耗=岁破，默认口径不是），见 applySchoolDahao。
+    for (const sname of [p.suiqian12, p.jiangqian12] as (string | undefined)[]) {
+      if (sname === '劫煞' || sname === '龙德') {
+        allStars.push({ name: sname, type: mapStarType(sname, '') });
+      }
+    }
+&nbsp;
+    const range = p.decadal?.range;
+    return {
+      branch:        branch &gt;= 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >branch : 0,</span>
+      stem:          stem &gt;= 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >stem : 0,</span>
+      name:          p.name as string,
+      stars:         allStars,
+      daXianAge:     range ? [range[0], range[1]<span class="branch-0 cbranch-no" title="branch not covered" >] as [number, number] : undefined,</span>
+      isMingGong:    p.name === '命宫',
+      isShenGong:    p.<span class="branch-0 cbranch-no" title="branch not covered" >isBodyPalace ?? false,</span>
+      isCurrentDaXian: false,
+    };
+  });
+&nbsp;
+  // ★ 天魁天钺对齐默认派(KY1)——用户决策 2026-05-30,实测仅辛年与现状不同(见上方函数注释)
+  const yearStemCn = (astrolabe.rawDates?.chineseDate?.yearly?.[0]) as string | undefined;
+  if (yearStemCn) applySchoolKuiyue(palaces, yearStemCn);
+&nbsp;
+  // ── 当前年龄 &amp; 大限 ──
+  // ★ 用 iztro horoscope.age.nominalAge（中国虚岁口径，与 daXianAge 范围一致）
+  // 旧实现 `currentYear - year` 是年份差（少 1），导致大限边界年份错位 → 用户感觉
+  // "大限没走对，似乎还在走上一个大限"。统一用 iztro 自身口径修复。
+  let currentAge: number;
+  try {
+    const horo = (astrolabe as unknown as { horoscope: () =&gt; { age: { nominalAge: number } } }).horoscope();
+    currentAge = horo.age.nominalAge;
+<span class="branch-0 cbranch-no" title="branch not covered" >  } catch {</span>
+    // fallback：iztro 接口异常时回退到虚岁推导
+<span class="cstat-no" title="statement not covered" >    currentAge = new Date().getFullYear() - year + 1;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+&nbsp;
+  palaces.forEach(p =&gt; {
+    if (p.daXianAge &amp;&amp; currentAge &gt;= p.daXianAge[0] &amp;&amp; currentAge &lt;= p.daXianAge[1]) {
+      p.isCurrentDaXian = true;
+    }
+  });
+&nbsp;
+  // ── 借对宫结构化字段（codex P0：避免文案层从自然语言反查借宫信息）──
+  palaces.forEach(p =&gt; {
+    p.oppositeBranch = (p.branch + 6) % 12;
+    const mainStars = p.stars.filter(s =&gt; s.type === 'major');
+    p.isEmpty = mainStars.length === 0;
+    if (p.isEmpty) {
+      const oppPalace = palaces.find(q =&gt; q.branch === p.oppositeBranch);
+      if (oppPalace) {
+        p.borrowedFromBranch = oppPalace.branch;
+        p.borrowedFromName = oppPalace.name;
+        p.borrowedStars = oppPalace.stars.filter(s =&gt; s.type === 'major').map(s =&gt; s.name);
+      }
+    }
+  });
+&nbsp;
+  // ── 关键宫支 ──
+  const mingGongBranch = BRANCHES.indexOf(astrolabe.earthlyBranchOfSoulPalace as string);
+  const shenGongBranch = BRANCHES.indexOf(astrolabe.earthlyBranchOfBodyPalace as string);
+  const wuxingJuName   = astrolabe.fiveElementsClass as string;
+  const wuxingJu       = parseWuxingJu(wuxingJuName);
+&nbsp;
+  // ── 紫微星位置 ──
+  const ziweiPalace = palaces.find(p =&gt; p.stars.some(s =&gt; s.name === '紫微' &amp;&amp; s.type === 'major'));
+  const ziweiPos    = ziweiPalace?.<span class="branch-0 cbranch-no" title="branch not covered" >branch ?? 0;</span>
+&nbsp;
+  // ── 大限数组（倪师《天纪》正统：四化永远固定，大限只看宫位移动）──
+  // 不再生成 daXians[].siHua / stemIndex / stemName（飞星派字段已下线）
+  const daXians: DaXian[] = palaces
+    .filter(p =&gt; p.daXianAge)
+    .sort((a, b) =&gt; a.daXianAge![0] - b.daXianAge![0])
+    .map(p =&gt; ({
+      startAge:    p.daXianAge![0],
+      endAge:      p.daXianAge![1],
+      palaceBranch: p.branch,
+      palaceName:   p.name,
+    }));
+&nbsp;
+  // 宫干自化已下线（倪师不主张飞星派宫干自化论）
+&nbsp;
+  const currentDaXianIndex = daXians.findIndex(
+    dx =&gt; currentAge &gt;= dx.startAge &amp;&amp; currentAge &lt;= dx.endAge,
+  );
+&nbsp;
+  // ── 农历信息（含节气四柱）──
+  const lunarInfo = getLunarInfo(year, month, day, hour, leapMode);
+&nbsp;
+  // ★ 2026-08-14 金标准盘核对：截空/副截阴干对调 + 年支大耗 + 旬空成对副旬
+  applySchoolJiekong(palaces, lunarInfo.yearStem);
+  applySchoolDahao(palaces, lunarInfo.yearBranch);
+  applySchoolFuxun(palaces);
+&nbsp;
+  // ── 命主 / 身主 / 阴阳性别 ──
+  const mingZhu = calcMingZhu(mingGongBranch &gt;= 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >mingGongBranch : 0)</span>;
+  const shenZhu = calcShenZhu(lunarInfo.yearBranch);
+  const yinYangGender = calcYinYangGender(lunarInfo.yearStem, gender);
+&nbsp;
+  return {
+    birthInfo: chartBirthInfo,
+    lunarInfo,
+    mingGongBranch: mingGongBranch &gt;= 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >mingGongBranch : 0,</span>
+    shenGongBranch: shenGongBranch &gt;= 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >shenGongBranch : 0,</span>
+    wuxingJu,
+    wuxingJuName,
+    ziweiPos,
+    palaces,
+    daXians,
+    currentAge,
+    currentDaXianIndex,
+    mingZhu,
+    shenZhu,
+    yinYangGender,
+  };
+}
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-11-01T18:02:17.458Z
+            </div>
+        <script src="../../../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
+    </body>
+</html>
+    
