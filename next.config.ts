@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/[locale]/chart': ['./data/same-structure.json'],
   },
+  // 数据集 22GB 分片绝不让 build/tracing 扫读;部署时单独上传/拷贝(R2 或 standalone 后手工放置)
+  outputFileTracingExcludes: {
+    '/[locale]/chart': ['./data/dataset/**'],
+    '/api/**': ['./data/dataset/**'],
+  },
 };
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');

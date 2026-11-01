@@ -104,10 +104,36 @@
     "boundaryTitle": "Boundaries",
     "boundaryBody": "This site declares no fortunes, predicts no events, and offers no medical or investment advice. Zi Wei Dou Shu is a traditional symbolic system; we present it as it is. Whether to use it, and what to believe, is yours to decide.",
     "privacyTitle": "Privacy",
-    "privacyBody": "No accounts, no database, no behavioral tracking. Your birth data lives only in the URL you choose to share and in your own browser (localStorage for recent charts)."
+    "privacyBody": "No accounts, no database, no behavioral tracking. Your birth data lives only in the URL you choose to share and in your own browser (localStorage for recent charts). Payments are processed by Stripe; card data never touches our servers. Purchase records live only with Stripe and your own browser."
+  },
+  "pay": {
+    "title": "Unlock the full report",
+    "body": "You are viewing the free tier. Unlock the complete deep readings for the remaining 11 dimensions of this chart (love, career, wealth, health, children, relocation, friends, home, spirit, parents, siblings) — one-time purchase, valid forever.",
+    "buy": "Unlock full report {price}",
+    "buying": "Redirecting to checkout…",
+    "restore": "Have a purchase code? Restore access",
+    "restorePrompt": "Paste your purchase code:",
+    "notReady": "Payments coming soon",
+    "finePrint": "One-time purchase bound to this birth data, valid forever, restorable on any device. Secure checkout by Stripe. Divination content is for cultural reference only; unlocked digital content is non-refundable (see Terms).",
+    "unlocked": "Payment received — the full report is unlocked! Your purchase code has also been saved in this browser:",
+    "keepCode": "Keep a copy of the code above (screenshot or note it down) — it restores this report on any device."
   },
   "footer": {
     "slogan": "Every star placed. Every word sourced.",
-    "license": "Engine & data sources on the method page · No fortune verdicts"
+    "license": "Engine & data sources on the method page · No fortune verdicts",
+    "terms": "Terms & Refunds"
+  },
+  "terms": {
+    "title": "Terms & Refund Policy",
+    "serviceTitle": "Nature of the service",
+    "serviceBody": "This site provides Zi Wei Dou Shu chart casting and digitized traditional interpretive texts. All readings derive from an open dataset and classical star lore, and are offered for cultural and entertainment reference — not as medical, legal, financial, or relationship advice.",
+    "paymentTitle": "Purchases & payment",
+    "paymentBody": "The full report is a one-time purchase (currently $5.99 USD) processed securely by Stripe with international card support. Your purchase code is bound to the purchased birth data, valid forever, and restorable on any device — no account required.",
+    "refundTitle": "Refund policy",
+    "refundBody": "Products are instantly delivered digital content; once a purchase code is redeemed, delivery is complete and refunds are generally not offered. If payment succeeded but unlocking fails, or you were charged twice, contact us with your payment receipt for a full refund after verification. Statutory withdrawal rights of EU/UK consumers remain unaffected.",
+    "disclaimerTitle": "Disclaimer",
+    "disclaimerBody": "Divination content is for cultural reference only; no event prediction, no fortune verdicts. Consult qualified professionals for real-life decisions. Using this service means you understand and accept these boundaries.",
+    "licenseTitle": "Content licenses",
+    "licenseBody": "Thirteen-dimension readings come from the Zi Wei Dou Shu Open Interpretation Dataset v4.0 (CC BY 4.0; source: github.com/Renhuai123/ziwei-doushu, author: WangDuoyu-AI). The casting engine iztro and calibration layer are MIT-licensed. Remaining site copy and design belong to this site."
   }
 }

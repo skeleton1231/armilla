@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import type { Paragraph, ReadingSection } from '@/lib/interpret/assemble';
 import { canonPalaceName, BRANCH_ZH, BRANCH_PINYIN } from '@/lib/interpret/canon';
@@ -38,9 +38,22 @@ export interface FamousMatchInfo {
   notable: string;
 }
 
+export interface LockedSectionMeta {
+  key: string;
+  label: string;
+  palaceName: string;
+}
+
 export interface ChartBoardProps {
   chart: ZiweiChart;
   sections: ReadingSection[];
+  /** T26:付费墙后的维度元数据(服务端已剪裁正文) */
+  lockedSections: LockedSectionMeta[];
+  paid: boolean;
+  /** sid 兑换成功时的一次性 token(前端存 localStorage 供回访) */
+  redeemedToken: string | null;
+  stripeReady: boolean;
+  chartQuery: string;
   locale: string;
   anchorKeys: string[];
   /** 维度键 → 宫名(点击宫位锚滚到对应维度) */
@@ -61,10 +74,51 @@ const SOURCE_TAG: Record<Paragraph['source'], string> = {
 };
 
 export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
-  const { chart, sections, locale, anchorKeys, palaceToDim, sameDays, famousMatch, unknownHour, shareUrl } = props;
+  const { chart, sections, lockedSections, paid, redeemedToken, stripeReady, chartQuery, locale, anchorKeys, palaceToDim, sameDays, famousMatch, unknownHour, shareUrl } = props;
   const t = useTranslations('chart');
-  const [selected, setSelected] = useState<number>(-1); // 宫位 branch 索引(按命宫顺时针序为显示序)
+  const tp = useTranslations('pay');
+  const [selected, setSelected] = useState<number>(-1);
   const [copied, setCopied] = useState(false);
+  const [buying, setBuying] = useState(false);
+  const [codeSaved, setCodeSaved] = useState(false);
+
+  // 兑换成功:把购买码持久化到本机(localStorage key 绑定盘参数)
+  useEffect(() => {
+    if (redeemedToken) {
+      try {
+        localStorage.setItem(`xuanji_unlock_${chartQuery}`, redeemedToken);
+        setCodeSaved(true);
+      } catch {
+        /* localStorage 不可用则仅展示 */
+      }
+    }
+  }, [redeemedToken, chartQuery]);
+
+  const buy = async (): Promise<void> => {
+    if (!stripeReady) return;
+    setBuying(true);
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ q: chartQuery, locale }),
+      });
+      const data = (await res.json()) as { url?: string };
+      if (data.url) {
+        window.location.href = data.url;
+        return;
+      }
+    } catch {
+      /* 网络异常回落到按钮态 */
+    }
+    setBuying(false);
+  };
+
+  const restore = (): void => {
+    const code = window.prompt(tp('restorePrompt'), '');
+    if (!code) return;
+    window.location.href = `/${locale}/chart?${chartQuery}&t=${encodeURIComponent(code.trim())}`;
+  };
 
   /** 显示序:命宫在正下方,按传统宫序(命→兄弟→…)顺时针;宫名用归一形式 */
   const orderedPalaces = useMemo<Palace[]>(() => {
@@ -357,6 +411,45 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
         </div>
         <p className="mt-3 text-xs text-[var(--muted-foreground)]">{t('attribution')}</p>
       </section>
+
+      {/* ———— T26 付费墙(未购买时渲染;正文已在服务端剪裁)———— */}
+      {!paid && lockedSections.length > 0 && (
+        <section className="mt-8 rounded-[3px] border border-[color-mix(in_oklab,var(--gold)_40%,var(--border))] bg-[var(--card)] p-8 lg:col-span-2">
+          <h2 className="text-sm tracking-label text-[var(--gold)]">{tp('title')}</h2>
+          <p className="mt-2 max-w-xl text-sm leading-8 text-[var(--muted-foreground)]">{tp('body')}</p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {lockedSections.map((s) => (
+              <li key={s.key} className="rounded-full border border-[var(--border)] px-3 py-1 text-xs text-[var(--muted-foreground)]">
+                {s.label}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 flex flex-wrap items-center gap-4">
+            <button
+              type="button"
+              onClick={buy}
+              disabled={!stripeReady || buying}
+              className="inline-flex h-12 cursor-pointer items-center rounded-md bg-[var(--gold)] px-8 text-base tracking-[0.2em] text-[var(--primary-foreground)] transition-colors duration-150 hover:bg-[var(--gold-bright)] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {buying ? tp('buying') : tp('buy', { price: '$5.99' })}
+            </button>
+            <button type="button" onClick={restore} className="text-sm text-[var(--muted-foreground)] underline-offset-4 hover:text-[var(--gold)] hover:underline cursor-pointer">
+              {tp('restore')}
+            </button>
+            {!stripeReady && <span className="text-xs text-[var(--muted-foreground)]">{tp('notReady')}</span>}
+          </div>
+          <p className="mt-4 text-xs text-[var(--muted-foreground)]/80">{tp('finePrint')}</p>
+        </section>
+      )}
+
+      {/* 兑换成功提示(购买码已存本机) */}
+      {codeSaved && (
+        <section className="mt-4 rounded-[3px] border border-[var(--bronze)] bg-[var(--muted)] p-5 lg:col-span-2">
+          <p className="text-sm text-[var(--foreground)]">{tp('unlocked')}</p>
+          <p className="mt-2 break-all rounded border border-[var(--border)] bg-[var(--background)] p-3 font-mono text-xs text-[var(--gold)]">{redeemedToken}</p>
+          <p className="mt-2 text-xs text-[var(--muted-foreground)]">{tp('keepCode')}</p>
+        </section>
+      )}
     </div>
   );
 }

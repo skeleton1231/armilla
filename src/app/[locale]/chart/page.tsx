@@ -10,6 +10,8 @@ import { structureKey } from '@/lib/engine/structure';
 import { loadSameStructure } from '@/lib/engine/sameStructureData';
 import { assembleReading, buildEngineOnlySections, datasetParagraphs, DIMENSIONS, type AssembledReading, type ReadingSection } from '@/lib/interpret/assemble';
 import { fetchDatasetReading } from '@/lib/dataset';
+import { tokenMatches } from '@/lib/payments/token';
+import { isStripeConfigured, redeemSession } from '@/lib/payments/stripe';
 import { FAMOUS_PERSONS } from '@/content/famous';
 import { ChartBoard, type FamousMatchInfo } from '@/components/chart/ChartBoard';
 
@@ -125,6 +127,13 @@ async function getChartBundle(params: ChartParams, locale: Locale): Promise<Char
 /** T17:本页按参数动态 SSR(数据层走 'use cache' 参数级缓存);Cache Components 模型下显式允许阻塞渲染 */
 export const instant = false;
 
+/** T26:免费层可见的维度;其余 11 维为付费内容 */
+const FREE_DIM_KEYS = new Set(['overview', 'personality']);
+
+function firstParam(v: string | string[] | undefined): string | undefined {
+  return Array.isArray(v) ? v[0] : v;
+}
+
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -160,6 +169,23 @@ export default async function ChartPage(props: {
   }
   setRequestLocale(locale as Locale);
 
+  // T26 闸门:已购 token(?t=)或 Stripe 兑换(?sid= 付清)→ 解锁全文;
+  // 付费正文在服务端剪裁,绝不进入免费响应(模糊预览也是假墙,不做)。
+  let paid = tokenMatches(firstParam(search.t), params);
+  let redeemedToken: string | null = null;
+  const sid = firstParam(search.sid);
+  if (!paid && sid && isStripeConfigured()) {
+    try {
+      const redeem = await redeemSession(sid);
+      if (redeem.paid && redeem.token && tokenMatches(redeem.token, params)) {
+        paid = true;
+        redeemedToken = redeem.token;
+      }
+    } catch {
+      /* Stripe 查询失败按未购买处理 */
+    }
+  }
+
   const t = await getTranslations('chart');
   const bundle = await getChartBundle(params, locale as Locale);
   const zh = locale === 'zh';
@@ -193,7 +219,22 @@ export default async function ChartPage(props: {
 
       <ChartBoard
         chart={bundle.chart}
-        sections={bundle.reading.sections}
+        sections={
+          paid
+            ? bundle.reading.sections
+            : bundle.reading.sections.filter((s) => FREE_DIM_KEYS.has(s.key))
+        }
+        lockedSections={
+          paid
+            ? []
+            : bundle.reading.sections
+                .filter((s) => !FREE_DIM_KEYS.has(s.key))
+                .map((s) => ({ key: s.key, label: s.label, palaceName: s.palaceName }))
+        }
+        paid={paid}
+        redeemedToken={redeemedToken}
+        stripeReady={isStripeConfigured()}
+        chartQuery={encodeChartParams(params)}
         locale={locale}
         anchorKeys={bundle.anchorKeys}
         palaceToDim={bundle.palaceToDim}

@@ -51,6 +51,9 @@ status: complete
 - [T21 数据驱动的产品功能](tickets/T21-data-driven-features.md):13 维 = **导语+手风琴+盘面宫位联动**(重点 4 维默认展开);**「同盘之日」**(引擎自枚举 1950–2026 结构相同日期,v3 交叉校验,口径="结构相同"禁人口暗示);**「名人命盘馆」**(11 人,删倪师提法,同盘高亮卡片);统计聚合不进 v1;**v1 全量一次成型**(排盘+盘面+13 维+同盘+名人馆+百科+landing)。
 - [T23 v4.0 数据集下载与入库执行](tickets/T23-dataset-ingest-execution.md)(2026-11-02 用户指令"100% 使用数据源"):**674,976 盘全量入库**,77 年卷 SHA256 全过,924 月度 gzip 分片(22GB 本地),键 `YYYY-MM-DD-{h}-{male|female}` 实核修正;adapter 双模式(本地/R2 同格式);`ms` 与本地引擎交叉验证一致。
 - [T24 解读层 100% 数据源驱动](tickets/T24-reading-layer-100pct-dataset.md):**zh 十三维正文 100% 数据集**(每维 1200–4200 字全文,标签「数据集 v4.0」);自产段落退出 zh 主链路;窗外 = 引擎-only + 明示;en 保留双语知识库;实测冷读 1.25s/缓存 135ms。T08 知识库就此**仅服务 en 站**。
+- [T25 海外优先定位](tickets/T25-overseas-first-positioning.md)(2026-11-02 用户指令:推广海外+Stripe):**defaultLocale 改 en**;zh 全保留;部署等级须 Vercel Pro(商用)。
+- [T26 Stripe 商业化](tickets/T26-stripe-monetization.md)(**open,按用户指示暂缓**):单次买断 $5.99、免数据库(HMAC token+实时 session 验证)、免费层=总览+性格+同盘、付费正文服务端剪裁零泄漏、/terms 双语 —— **代码已实现并在防御模式验证**(未配 key 时入口禁用);剩余:Stripe 测试密钥端到端 → live → 随部署启用。
+- [T27 en 付费内容扩产](tickets/T27-en-content-production.md)(**open,未启动**):AI 按 T16 金样起草 168 条星×宫英文解读,红线 lint+人审,分批入库;优先序 命宫→财帛→夫妻→官禄。
 
 ## 🏁 地图完成 · 第二次(2026-11-01,转向后)
 
@@ -60,7 +63,9 @@ status: complete
 
 ## Not yet specified
 
-(空 —— 第二次清空)
+- 海外获客基建(GSC 提交/sitemap 收录/en SEO 文案打磨)—— 等 T28 部署有真域名后
+- AI 问盘(讲解员模式,选项 A)—— 等商业信号,暂不开票
+- en 辅曜/杂曜词条与 aria 英文名补全 —— 随 T27 内容批次推进
 
 ## Out of scope
 

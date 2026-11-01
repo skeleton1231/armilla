@@ -94,6 +94,9 @@ export default async function LocaleLayout(props: {
             <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-6 py-10 text-xs text-[var(--muted-foreground)]">
               <p className="tracking-label">{tFooter('slogan')}</p>
               <p>{tFooter('license')}</p>
+              <Link href="/terms" className="underline-offset-4 hover:text-[var(--gold)] hover:underline">
+                {tFooter('terms')}
+              </Link>
             </div>
           </footer>
         </NextIntlClientProvider>
