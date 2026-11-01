@@ -9,3 +9,5 @@ smoke-*.png
 tsconfig.tsbuildinfo
 .claude/
 data/dataset/
+coverage/
+test-results/
