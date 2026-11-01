@@ -29,6 +29,7 @@ status: open
 - [T02 上游紫微引擎提取与许可审计](tickets/T02-engine-extraction-and-license-audit.md):**路线 C = npm 基座(iztro 2.6.1 + lunar-javascript 1.7.7,均 MIT)+ vendored 校准层**(lib/ziwei 整目录移植,清理 5 处坑:astro.config 副作用、双真太阳时、晚子时换日等)。许可:patterns.ts 删 6 句、famous.ts 删 2 句倪师引语;heming-knowledge.ts / lib/nihai/ / docs/tianji-ziwei/ 三处 NC 内容禁入站(建议 CI 黑名单)。19 个黄金用例就绪;闰月后半月 10 例待补(T15)。
 - [T03 技术栈版本事实](tickets/T03-stack-facts-versions.md):**Next.js 16.4.3 / shadcn CLI 4.23.0 / three 0.187.0 + fiber 9.8.2 + drei 10.7.9 / next-intl 4.14.9**,peers 无冲突;3D 走 `'use client'` + `dynamic ssr:false` + `transpilePackages:['three']`;缓存按 `'use cache'`/Cache Components;表单 `<Field />` + TanStack Form;next-intl 用 proxy.ts + `[locale]` + next/root-params(详见 wayfinder/research/stack-facts.md)。
 - [T04 站点命名与品牌语气](tickets/T04-naming-and-brand-voice.md):**站名「璇玑 / Armilla」**(浑仪古名,中英同源);语气**钦天监式庄重**(克制、准确、有出处,禁祸福断言);logo **浑仪环线稿**。
+- [T05 信息架构与命盘 URL 编码](tickets/T05-information-architecture-and-url-scheme.md):**五区极简路由**(/[locale]、/chart、/stars/[slug]、/palaces/[slug]、/method;根路径按语言重定向);命盘 URL = **可读 query**(公历 canonical + 时辰 + 性别 + 城市 id,跨语言共用);百科 v1 = 26 词条静态,168 组合页挂 T08;首页 localStorage 记最近 ≤5 张盘。
 
 ## Not yet specified
 
