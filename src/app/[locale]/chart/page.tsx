@@ -8,7 +8,7 @@ import { lookupCity } from '@/lib/engine/cities';
 import { encodeChartParams, parseChartParams, type ChartParams } from '@/lib/engine/params';
 import { structureKey } from '@/lib/engine/structure';
 import { loadSameStructure } from '@/lib/engine/sameStructureData';
-import { assembleReading, DIMENSIONS, type AssembledReading } from '@/lib/interpret/assemble';
+import { assembleReading, buildEngineOnlySections, datasetParagraphs, DIMENSIONS, type AssembledReading, type ReadingSection } from '@/lib/interpret/assemble';
 import { fetchDatasetReading } from '@/lib/dataset';
 import { FAMOUS_PERSONS } from '@/content/famous';
 import { ChartBoard, type FamousMatchInfo } from '@/components/chart/ChartBoard';
@@ -40,7 +40,32 @@ async function getChartBundle(params: ChartParams, locale: Locale): Promise<Char
     city: city?.name,
   });
 
-  const reading = assembleReading(chart, locale);
+  // T24:zh 十三维正文 100% 来自数据集;en 走双语知识库(数据集无英文,T20)
+  const dataset = await fetchDatasetReading({ y: params.y, m: params.m, d: params.d, h: params.h, g: params.g });
+  let reading: AssembledReading;
+  if (locale === 'zh') {
+    if (dataset.status === 'dataset' && dataset.reading) {
+      const sections: ReadingSection[] = [];
+      const dims = dataset.reading.dims;
+      for (const dim of DIMENSIONS) {
+        const text = dims[dim.key as keyof typeof dims];
+        if (!text) continue;
+        const paragraphs = datasetParagraphs(text);
+        if (dim.key === 'overview') {
+          const patterns = assembleReading(chart, 'zh').patterns;
+          for (const p of patterns.slice(0, 3)) {
+            paragraphs.push({ text: `【${p.name}】${p.description}`, source: 'pattern' });
+          }
+        }
+        sections.push({ key: dim.key, label: dim.label.zh, palaceName: dim.palace, paragraphs });
+      }
+      reading = { sections, patterns: assembleReading(chart, 'zh').patterns, coverage: { combos: 0, generic: 0 } };
+    } else {
+      reading = buildEngineOnlySections(chart);
+    }
+  } else {
+    reading = assembleReading(chart, locale);
+  }
 
   const palaceToDim: Record<string, string> = {};
   for (const dim of DIMENSIONS) {
@@ -82,18 +107,6 @@ async function getChartBundle(params: ChartParams, locale: Locale): Promise<Char
       }
     } catch {
       // 名人数据个别日期无效则跳过
-    }
-  }
-
-  // 数据集(T20:未配置/窗外/未命中均走知识库兜底,页面明示)
-  const dataset = await fetchDatasetReading({ y: params.y, m: params.m, d: params.d, h: params.h, g: params.g });
-  if (dataset.status === 'dataset' && dataset.reading) {
-    const dims = dataset.reading.dims;
-    for (const sec of reading.sections) {
-      const text = dims[sec.key as keyof typeof dims];
-      if (text && text.trim().length > 0) {
-        sec.paragraphs = [{ text, source: 'combo' }, ...sec.paragraphs];
-      }
     }
   }
 

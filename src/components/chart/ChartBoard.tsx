@@ -57,6 +57,7 @@ const SOURCE_TAG: Record<Paragraph['source'], string> = {
   pattern: 'patternTag',
   sihua: 'sihuaTag',
   summary: 'summaryTag',
+  dataset: 'datasetTag',
 };
 
 export function ChartBoard(props: ChartBoardProps): React.JSX.Element {

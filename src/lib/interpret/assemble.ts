@@ -34,7 +34,7 @@ export const DIMENSIONS: DimMeta[] = [
   { key: 'parents', palace: '父母宫', anchor: false, label: { zh: '父母长辈', en: 'Parents' } },
 ];
 
-export type ParagraphSource = 'combo' | 'sihua' | 'generic' | 'pattern' | 'summary';
+export type ParagraphSource = 'combo' | 'sihua' | 'generic' | 'pattern' | 'summary' | 'dataset';
 
 export interface Paragraph {
   text: string;
@@ -188,4 +188,38 @@ export function assembleReading(chart: ZiweiChart, locale: Locale): AssembledRea
   }
 
   return { sections, patterns, coverage: { combos, generic } };
+}
+
+/**
+ * T24:zh 站「引擎-only」解读(数据集窗口外/未命中时)。
+ * 只含上游引擎产物(命宫摘要 + 格局识别),不用自产星性段落填充;
+ * 12 个宫位维度整体缺省,由页面提示"不在数据集覆盖范围"。
+ */
+export function buildEngineOnlySections(chart: ZiweiChart): AssembledReading {
+  const patterns = detectPatterns(chart).map((p) => ({ name: p.name, description: p.description ?? '' }));
+  const s = getMingGongSummary(chart);
+  const overview: Paragraph[] = [
+    {
+      text: `${s.nature}。命宫主星:${s.stars.join('、') || '无(借对宫)'}。格局关键词:${s.keywords.slice(0, 6).join('、') || '—'}。`,
+      source: 'summary',
+    },
+    ...patterns.slice(0, 5).map((p) => ({ text: `【${p.name}】${p.description}`, source: 'pattern' as const })),
+  ];
+  return {
+    sections: [{ key: 'overview', label: DIMENSIONS[0].label.zh, palaceName: '命宫', paragraphs: overview }],
+    patterns,
+    coverage: { combos: 0, generic: 0 },
+  };
+}
+
+/** 数据集 Markdown 行 → 段落(**粗体** 行去标记,空行剔除) */
+export function datasetParagraphs(text: string): Paragraph[] {
+  return text
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0)
+    .map((l) => ({
+      text: l.replace(/^\*\*(.+?)\*\*$/, '$1').replace(/\*\*(.+?)\*\*/g, '$1'),
+      source: 'dataset' as const,
+    }));
 }
