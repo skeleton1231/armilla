@@ -1,18 +1,21 @@
 'use client';
 
-import { usePathname, useRouter } from '@/i18n/navigation';
+import { usePathname } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 
-/** 语言切换:保留当前路径与 query(命盘不丢);官方姿势 = router.replace(pathname, {locale}) */
+/**
+ * 语言切换:保留当前路径与 query(命盘不丢)。
+ * 硬导航(整页跳转)—— next-intl 软导航在 [locale] 切换时会把新旧盘面
+ * 同时留在 DOM(dev-loop T29 E2E ④ 捕获),硬导航彻底规避。
+ */
 export function LocaleSwitcher({ locale }: { locale: string }): React.JSX.Element {
   const t = useTranslations('nav');
   const pathname = usePathname() ?? '/';
-  const router = useRouter();
   const other = locale === 'zh' ? 'en' : 'zh';
 
   const switchLocale = (): void => {
     const search = typeof window === 'undefined' ? '' : window.location.search;
-    router.replace(`${pathname}${search}`, { locale: other });
+    window.location.href = `/${other}${pathname.startsWith('/') ? pathname : `/${pathname}`}${search}`;
   };
 
   return (
