@@ -2,7 +2,7 @@
 id: MAP
 title: 紫微斗数 3D 网站 · 实现规格地图
 labels: [wayfinder:map]
-status: open
+status: complete
 ---
 
 ## Destination
@@ -41,10 +41,15 @@ status: open
 - [T17 缓存/ISR 与运行时策略](tickets/T17-caching-and-runtime-matrix.md):路由×缓存矩阵锁定(landing/词条/method 静态;/chart SSR + `'use cache'` 全参数路由缓存,部署即失效;168 组合页随内容分批静态);**全站 node runtime**(edge YAGNI);构建 ≤10min。
 - [T07 命盘 3D 构图原型](tickets/T07-3d-chart-composition-prototype.md):**环形十二宫(浑仪刻度环)定案**;鎏金星球两级+朱砂八面体四化;hover 高亮+点击出解读面板;自转 ≤0.05rad/s 交互即停;C 变体骨架留作沉浸模式可选层;原型三变体+冒烟截图在 wayfinder/prototypes/。
 - [T09 设计系统 tokens 与字体选型](tickets/T09-design-tokens-and-typography.md):tokens.css 定为执行基底(oklch 全套+shadcn 映射);**dark 单主题,亮色不做**;鎏金唯一高亮源、朱砂四化专属;Noto Serif SC(OFL)+ Spectral(OFL)主候选;3px 圆角、缓出动效禁弹跳;3D 材质与 UI tokens 同源。
+- [T12 2D 降级、无障碍与分享卡片](tickets/T12-2d-fallback-a11y-og.md):**SVG 环形同构**(LCP 骨架/SEO/无障碍/OG 素材一体四用);OG = @vercel/og 按参数动态生成 1200×630 环形盘+标语;2D 为主路径、3D aria-hidden,键盘沿宫环遍历、鎏金焦点环;hreflang+JSON-LD+sitemap 全套。
+
+## 🏁 地图完成(2026-11-01)
+
+17/17 票关闭,雾区清空,**终点达成:规格 build-ready**。执行阶段从本文件 Decisions so far + wayfinder/research/ + wayfinder/prototypes/ 出发;第一刀建议:脚手架(Next 16 + shadcn + next-intl)→ 引擎移植(T02 路线 C + 29 黄金用例先行)→ tokens 并入 → 2D SVG 盘面 → 3D 接管。
 
 ## Not yet specified
 
-- 命盘分享卡片视觉规格 —— 等 T12 的 OG 方案(T12 为最后一张开放票)
+(空 —— 雾区已全部毕业或随 T12 定案)
 
 ## Out of scope
 
