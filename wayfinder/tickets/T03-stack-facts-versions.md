@@ -4,7 +4,7 @@ title: Next.js / shadcn / three.js / next-intl 版本与集成事实
 labels: [wayfinder:research]
 blocked-by: []
 claimed-by:
-status: open
+status: closed
 ---
 
 ## Question
@@ -20,4 +20,8 @@ status: open
 
 ## Context pointers
 
-(研究完成后登记 `wayfinder/research/stack-facts.md`)
+- 研究产出: wayfinder/research/stack-facts.md —— 四栈版本与集成事实已钉死(2026-11-01 官方文档 + npm registry 实核):Next.js 16.4.3 / shadcn CLI 4.23.0 / three 0.187.0 + fiber 9.8.2 + drei 10.7.9 / next-intl 4.14.9;含 next/dynamic ssr:false 限制、Turbopack 默认、Cache Components 双模型缓存 API、shadcn Tailwind v4 oklch theming、fiber v9 React 19 坑与体积实测、proxy.ts + [locale] 官方配置;并附 T06/T11 事实提示段。
+
+## Resolution
+
+四个栈全部以官方文档 + npm registry 当日实核并写入 `wayfinder/research/stack-facts.md`:**next 16.4.3**(Turbopack dev+build 默认;缓存走 `'use cache'`/Cache Components 模型,`ssr:false` 仅限 client 组件)、**shadcn CLI 4.23.0**(create-next-app→init→add;Tailwind v4 oklch CSS 变量 theming;表单 = `<Field />` + RHF/TanStack Form 双官方指南)、**three 0.187.0 + fiber 9.8.2 + drei 10.7.9**(fiber 9 = React 19 线,peers 无冲突;three 全量 ≈186KB gz;3D 必须 `'use client'` + dynamic ssr:false + transpilePackages)、**next-intl 4.14.9**(支持 Next 16;proxy.ts + [locale] + next/root-params 静态渲染)。T06(选型)与 T11(预算)所需事实已各设提示段,两张票的 blocked-by 已解除依据。

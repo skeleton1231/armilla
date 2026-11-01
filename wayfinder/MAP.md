@@ -25,13 +25,15 @@ status: open
 
 ## Decisions so far
 
-(尚无已关闭票)
+- [T01 impeccable 去 AI 味准则摘要](tickets/T01-impeccable-anti-slop-checklist.md):四节可勾选去味清单(wayfinder/research/impeccable.md);朱砂=四化专属与"色彩即语义"同构;浑仪刻度须对齐真实宫位数据;Landing 首屏应即排盘入口;禁"智能解读"类虚假主张。
+- [T02 上游紫微引擎提取与许可审计](tickets/T02-engine-extraction-and-license-audit.md):**路线 C = npm 基座(iztro 2.6.1 + lunar-javascript 1.7.7,均 MIT)+ vendored 校准层**(lib/ziwei 整目录移植,清理 5 处坑:astro.config 副作用、双真太阳时、晚子时换日等)。许可:patterns.ts 删 6 句、famous.ts 删 2 句倪师引语;heming-knowledge.ts / lib/nihai/ / docs/tianji-ziwei/ 三处 NC 内容禁入站(建议 CI 黑名单)。19 个黄金用例就绪;闰月后半月 10 例待补(T15)。
+- [T03 技术栈版本事实](tickets/T03-stack-facts-versions.md):**Next.js 16.4.3 / shadcn CLI 4.23.0 / three 0.187.0 + fiber 9.8.2 + drei 10.7.9 / next-intl 4.14.9**,peers 无冲突;3D 走 `'use client'` + `dynamic ssr:false` + `transpilePackages:['three']`;缓存按 `'use cache'`/Cache Components;表单 `<Field />` + TanStack Form;next-intl 用 proxy.ts + `[locale]` + next/root-params(详见 wayfinder/research/stack-facts.md)。
+- [T04 站点命名与品牌语气](tickets/T04-naming-and-brand-voice.md):**站名「璇玑 / Armilla」**(浑仪古名,中英同源);语气**钦天监式庄重**(克制、准确、有出处,禁祸福断言);logo **浑仪环线稿**。
 
 ## Not yet specified
 
 - 解读内容验收标准与覆盖排期 —— 等 T08 知识架构定案后细化
 - 3D 交互细节规格(动画时序、首屏引导、性能档位)—— 等 T07 原型反馈
-- Landing 页文案与信息结构 —— 等 T01(impeccable 清单)+ T04(命名)到位
 - 缓存/ISR 与运行时策略(node vs edge)—— 等 T05 路由 + T11 预算之后
 - 双语内容生产管线(en 侧产能与审校)—— 等 T08
 - 命盘分享卡片视觉规格 —— 等 T12 的 OG 方案
