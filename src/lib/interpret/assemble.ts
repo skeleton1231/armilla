@@ -4,7 +4,7 @@ import type { Palace, ZiweiChart } from '@/lib/engine';
 import { detectPatterns, getMingGongSummary } from '@/lib/ziwei/patterns';
 import { STAR_BY_NAME } from '@/content/wiki/stars';
 import { palaceEntryByName } from '@/content/wiki/palaces';
-import { COMBO_MAP } from '@/content/interpretations/combos';
+import { COMBO_MAP, EN_COMBO_MAP } from '@/content/interpretations/combos';
 import { SIHUA_HOOKS } from '@/content/interpretations/sihua';
 import { canonPalaceName } from './canon';
 
@@ -78,6 +78,9 @@ function comboParagraph(
   bright: boolean,
   locale: Locale,
 ): Paragraph | null {
+  // T27:en 优先查 batch 条目(56+);zh 查金样(zh 站正文实际走数据集,组合仅百科页用)
+  const enCombo = locale === 'en' ? EN_COMBO_MAP.get(`${starName}@${palaceName}`) : undefined;
+  if (enCombo) return { text: bright ? enCombo.bright : enCombo.dim, source: 'combo' };
   const combo = COMBO_MAP.get(`${starName}@${palaceName}`);
   if (!combo) return null;
   return { text: pick(locale, bright ? combo.bright : combo.dim), source: 'combo' };
