@@ -30,13 +30,13 @@ status: open
 - [T03 技术栈版本事实](tickets/T03-stack-facts-versions.md):**Next.js 16.4.3 / shadcn CLI 4.23.0 / three 0.187.0 + fiber 9.8.2 + drei 10.7.9 / next-intl 4.14.9**,peers 无冲突;3D 走 `'use client'` + `dynamic ssr:false` + `transpilePackages:['three']`;缓存按 `'use cache'`/Cache Components;表单 `<Field />` + TanStack Form;next-intl 用 proxy.ts + `[locale]` + next/root-params(详见 wayfinder/research/stack-facts.md)。
 - [T04 站点命名与品牌语气](tickets/T04-naming-and-brand-voice.md):**站名「璇玑 / Armilla」**(浑仪古名,中英同源);语气**钦天监式庄重**(克制、准确、有出处,禁祸福断言);logo **浑仪环线稿**。
 - [T05 信息架构与命盘 URL 编码](tickets/T05-information-architecture-and-url-scheme.md):**五区极简路由**(/[locale]、/chart、/stars/[slug]、/palaces/[slug]、/method;根路径按语言重定向);命盘 URL = **可读 query**(公历 canonical + 时辰 + 性别 + 城市 id,跨语言共用);百科 v1 = 26 词条静态,168 组合页挂 T08;首页 localStorage 记最近 ≤5 张盘。
+- [T06 3D 渲染栈选型](tickets/T06-3d-rendering-stack-decision.md):**R3F(fiber 9.8.2)+ drei(10.7.9)按需引入**,three 0.187.0;client island 动态加载(ssr:false)+ transpilePackages;原生自封装与混合模式落选(开发量/心智模型不划算,预算不够时重议)。
+- [T08 解读知识架构与双语内容策略](tickets/T08-interpretation-knowledge-architecture.md):**分层查表+段落模板**(格局>主星宫位>四化>辅曜,3–6 段);**P0=168 条主星×宫 + 四化**,168 组合百科页**做**;en 管线 zh 定稿→机翻+审校,术语表先行;文件 `src/content/interpretations/` 条目内嵌 zh/en,编译期校验,不进 i18n messages。
 
 ## Not yet specified
 
-- 解读内容验收标准与覆盖排期 —— 等 T08 知识架构定案后细化
 - 3D 交互细节规格(动画时序、首屏引导、性能档位)—— 等 T07 原型反馈
-- 缓存/ISR 与运行时策略(node vs edge)—— 等 T05 路由 + T11 预算之后
-- 双语内容生产管线(en 侧产能与审校)—— 等 T08
+- 缓存/ISR 与运行时策略(node vs edge)—— 等 T11 预算之后(T05 已定)
 - 命盘分享卡片视觉规格 —— 等 T12 的 OG 方案
 
 ## Out of scope

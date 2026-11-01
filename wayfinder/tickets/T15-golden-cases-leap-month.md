@@ -3,7 +3,7 @@ id: T15
 title: 补录闰月黄金用例(10 条)
 labels: [wayfinder:task]
 blocked-by: []
-claimed-by:
+claimed-by: research-agent
 status: open
 ---
 

@@ -3,7 +3,7 @@ id: T10
 title: 输入表单与历法换算 UX
 labels: [wayfinder:grilling]
 blocked-by: [T02]
-claimed-by:
+claimed-by: claude-main
 status: open
 ---
 
