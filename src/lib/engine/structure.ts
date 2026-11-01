@@ -2,25 +2,25 @@ import type { ZiweiChart } from './index';
 
 /**
  * 盘面结构键(T21「同盘之日」口径):
- * 十二宫的宫名排布 + 每宫星曜集合(含生年四化) + 五行局 + 命主身主。
- * 不含大限顺逆(随性别)与时运信息 —— “结构相同”即两张盘的静态骨架完全一致。
+ * 十二宫的**主星布局 + 主星生年四化** + 命宫/身宫地支 —— 即传统“基本盘”语义。
+ * 不含辅曜杂曜(随日辰近连续变化,会让结构近乎独一无二)、
+ * 不含五行局/大限(时运信息)、不含性别相关项。
+ * 该口径下 1950–2026 窗口约数千至万级结构,平均每种 ~20 个时刻。
  */
 export function structureKey(chart: ZiweiChart): string {
   const parts: string[] = [
-    `ju${chart.wuxingJu}`,
     `ming${chart.mingGongBranch}`,
-    `ziwei${chart.ziweiPos}`,
-    chart.mingZhu ?? '-',
-    chart.shenZhu ?? '-',
+    `shen${chart.shenGongBranch}`,
     ...chart.palaces
       .slice()
       .sort((a, b) => a.branch - b.branch)
       .map((p) => {
-        const stars = p.stars
+        const majors = p.stars
+          .filter((s) => s.type === 'major')
           .map((s) => (s.siHua ? `${s.name}${s.siHua}` : s.name))
           .sort()
           .join('.');
-        return `${p.branch}:${stars}`;
+        return `${p.branch}:${majors}`;
       }),
   ];
   return parts.join('|');
