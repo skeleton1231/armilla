@@ -11,6 +11,10 @@ status: closed
 
 依据 T03 的版本/兼容/体积事实,定案 3D 实现栈:@react-three/fiber + drei vs 原生 three.js 自封装 vs 混合。硬约束:3D 必须 client island 动态加载、不阻塞 LCP、可控的包体积预算(T11 会定具体数字)。写明取舍理由与落选方案的问题,形成一段可进规格的决策记录。
 
+## ⛔ Superseded(2026-11-01)
+
+用户转向决议:**全站移除 3D,零 three.js 依赖**。本票结论作废;3D 相关工作移入地图 Out of scope。
+
 ## Resolution
 
 2026-11-01 与用户拍板:**R3F(fiber 9.8.2)+ drei(10.7.9)按需引入**。
