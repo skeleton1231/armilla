@@ -32,11 +32,13 @@ status: open
 - [T05 信息架构与命盘 URL 编码](tickets/T05-information-architecture-and-url-scheme.md):**五区极简路由**(/[locale]、/chart、/stars/[slug]、/palaces/[slug]、/method;根路径按语言重定向);命盘 URL = **可读 query**(公历 canonical + 时辰 + 性别 + 城市 id,跨语言共用);百科 v1 = 26 词条静态,168 组合页挂 T08;首页 localStorage 记最近 ≤5 张盘。
 - [T06 3D 渲染栈选型](tickets/T06-3d-rendering-stack-decision.md):**R3F(fiber 9.8.2)+ drei(10.7.9)按需引入**,three 0.187.0;client island 动态加载(ssr:false)+ transpilePackages;原生自封装与混合模式落选(开发量/心智模型不划算,预算不够时重议)。
 - [T08 解读知识架构与双语内容策略](tickets/T08-interpretation-knowledge-architecture.md):**分层查表+段落模板**(格局>主星宫位>四化>辅曜,3–6 段);**P0=168 条主星×宫 + 四化**,168 组合百科页**做**;en 管线 zh 定稿→机翻+审校,术语表先行;文件 `src/content/interpretations/` 条目内嵌 zh/en,编译期校验,不进 i18n messages。
+- [T10 输入表单与历法换算 UX](tickets/T10-birth-input-form-ux.md):公历/农历双模式(闰月条件显示、即时校验);12 时辰选择 + 可选"精确时间→真太阳时"高级模式;城市 autocomplete(拼音/英文可搜,降级北京时区要明示);时辰未知 = 午时试排 + 显著标注;shadcn `<Field />` + TanStack Form。
+- [T15 补录闰月黄金用例](tickets/T15-golden-cases-leap-month.md):10 条闰月后半月用例(#20–29,闰二/四/五/六/七/九月,1974–2020)已补进研究文档 §6.3,split 等价校验 10/10 通过;探针脚本在 D:\tmp\ziwei-doushu-research\scripts\leap-month-probe.ts。黄金用例共 29 条,T13 可用。
+- [T11 性能预算与验收清单](tickets/T11-performance-budget.md):landing 零 three(JS≤150kb gz);/chart three chunk ≤250kb gz 懒加载;**2D 先渲、3D 异步接管**(SVG 骨架=LCP);验收三层 next dev loop + Lighthouse CI 硬门禁 + Speed Insights;中文衬线 fontTools 子集化+swap;材质程序化生成为主。
 
 ## Not yet specified
 
 - 3D 交互细节规格(动画时序、首屏引导、性能档位)—— 等 T07 原型反馈
-- 缓存/ISR 与运行时策略(node vs edge)—— 等 T11 预算之后(T05 已定)
 - 命盘分享卡片视觉规格 —— 等 T12 的 OG 方案
 
 ## Out of scope

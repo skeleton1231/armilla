@@ -3,7 +3,7 @@ id: T13
 title: 测试与引擎正确性策略
 labels: [wayfinder:grilling]
 blocked-by: [T02]
-claimed-by:
+claimed-by: claude-main
 status: open
 ---
 
