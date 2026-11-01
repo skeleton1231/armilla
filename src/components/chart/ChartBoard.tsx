@@ -4,8 +4,9 @@ import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import type { Paragraph, ReadingSection } from '@/lib/interpret/assemble';
 import { canonPalaceName, BRANCH_ZH, BRANCH_PINYIN } from '@/lib/interpret/canon';
-import type { Palace, Star, ZiweiChart } from '@/lib/engine';
 import { STAR_BY_NAME } from '@/content/wiki/stars';
+import { PALACE_BY_NAME } from '@/content/wiki/palaces';
+import type { Palace, Star, ZiweiChart } from '@/lib/engine';
 import { palaceEntryByName } from '@/content/wiki/palaces';
 
 const CX = 420;
@@ -78,6 +79,12 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
   }, [chart]);
 
   const alias = canonPalaceName;
+
+  /** en 站星曜名:主星用英文名,辅曜暂回退中文名(渐进本地化) */
+  const starLabel = (name: string): string =>
+    locale === 'zh' ? name : (STAR_BY_NAME.get(name)?.en ?? name);
+  const palaceLabel = (name: string): string =>
+    locale === 'zh' ? alias(name) : (PALACE_BY_NAME.get(alias(name))?.en ?? alias(name));
 
   const selectedPalace = selected >= 0 ? orderedPalaces[selected] : null;
   const selEntry = selectedPalace ? palaceEntryByName(alias(selectedPalace.name)) : undefined;
@@ -157,7 +164,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
                 role="button"
                 tabIndex={0}
                 aria-selected={isSelected}
-                aria-label={`${p.name} ${branchName} ${stars.map((s) => s.name).join(' ')}`}
+                aria-label={`${palaceLabel(p.name)} ${branchName} ${stars.map((s) => starLabel(s.name)).join(' ')}`}
                 className="cursor-pointer transition-opacity"
                 onClick={() => setSelected(isSelected ? -1 : i)}
                 onKeyDown={(e) => {
@@ -195,7 +202,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
                         }}
                       />
                       <text x={f(sx)} y={f(sy + 22)} textAnchor="middle" className="fill-[var(--foreground)] text-[12.5px]">
-                        {s.name}
+                        {starLabel(s.name)}
                       </text>
                       {s.siHua && (
                         <>
@@ -251,7 +258,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
               <ul className="mb-4 border-t border-[var(--border)]">
                 {selectedPalace.stars.map((s: Star) => (
                   <li key={s.name} className="flex items-baseline justify-between border-b border-[var(--border)] py-2 text-[15px]">
-                    <span>{s.name}</span>
+                    <span>{starLabel(s.name)}</span>
                     {s.siHua ? (
                       <span className="text-[13px] text-[var(--cinnabar)]">化{s.siHua}</span>
                     ) : (
