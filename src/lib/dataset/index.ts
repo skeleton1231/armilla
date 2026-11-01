@@ -33,9 +33,10 @@ export function insideDatasetWindow(year: number): boolean {
 export async function fetchDatasetReading(
   p: { y: number; m: number; d: number; h: number; g: 'm' | 'f' },
 ): Promise<DatasetFetchResult> {
+  // 窗口判断独立于配置:出生在 1950–2026 外的事实不因数据源未接而消失
+  if (!insideDatasetWindow(p.y)) return { reading: null, status: 'outside' };
   const base = process.env.DATASET_BASE_URL;
   if (!base) return { reading: null, status: 'unconfigured' };
-  if (!insideDatasetWindow(p.y)) return { reading: null, status: 'outside' };
 
   const key = datasetKey(p);
   try {

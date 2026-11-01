@@ -155,7 +155,7 @@ export function BirthForm({ locale }: { locale: string }): React.JSX.Element {
     } catch {
       /* 同上:增强项 */
     }
-    router.push(`/${locale}/chart?${q}`);
+    router.push(`/chart?${q}`);
   }, [cal, converted, y, m, d, h, hourUnknown, g, city, recent, hourName, t, router, locale]);
 
   const labelCls = 'block text-xs tracking-label text-[var(--muted-foreground)] mb-1.5';
@@ -339,7 +339,7 @@ export function BirthForm({ locale }: { locale: string }): React.JSX.Element {
                 <button
                   type="button"
                   className="text-sm text-[var(--muted-foreground)] underline-offset-4 hover:text-[var(--gold)] hover:underline cursor-pointer"
-                  onClick={() => router.push(`/${locale}/chart?${r.q}`)}
+                  onClick={() => router.push(`/chart?${r.q}`)}
                 >
                   {r.label}
                 </button>
