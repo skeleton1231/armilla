@@ -3,7 +3,7 @@ id: T16
 title: 解读条目验收标准(DoD)与双语样张
 labels: [wayfinder:grilling]
 blocked-by: [T08]
-claimed-by:
+claimed-by: claude-main
 status: open
 ---
 
