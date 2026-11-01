@@ -6,3 +6,4 @@ data/.tmp-chunk-*.json
 smoke-*.png
 data/.tmp-chunk-*.json
 smoke-*.png
+tsconfig.tsbuildinfo
