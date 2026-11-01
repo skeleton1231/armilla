@@ -3,7 +3,7 @@ id: T22
 title: 2D 环形盘面视觉规格(原型)
 labels: [wayfinder:prototype]
 blocked-by: []
-claimed-by:
+claimed-by: claude-main
 status: open
 ---
 

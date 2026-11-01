@@ -3,7 +3,7 @@ id: T19
 title: 紫微数据集深度盘点(v3/v4/famous)
 labels: [wayfinder:research]
 blocked-by: []
-claimed-by:
+claimed-by: research-agent
 status: open
 ---
 

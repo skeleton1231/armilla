@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>璇玑 · 2D 环形命盘(T22 视觉规格原型)</title>
+<style>
+  :root {
+    --bg: #14110d; --surface: #1c1813; --line: #a89a7c; --line-dim: #5a5040;
+    --bronze: #5c6b52; --bronze-hi: #7d9370; --patina-edge: #6d8060;
+    --gold: #d8b45a; --gold-bright: #ecc87e; --gold-dim: #9c7f3e;
+    --cinnabar: #c03d2e; --cinnabar-bright: #e06a55;
+    --ink: #ece1c9; --muted: #a89a7c; --faint: #7a7059;
+    --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(216, 180, 90, 0.045), transparent 70%),
+      var(--bg);
+    color: var(--ink); font-family: var(--serif); min-height: 100vh;
+  }
+  .page { max-width: 1280px; margin: 0 auto; padding: 28px clamp(16px, 4vw, 48px) 64px; }
+  .topbar { display: flex; align-items: baseline; gap: 18px; margin-bottom: 6px; }
+  .topbar h1 { font-size: 15px; letter-spacing: 0.45em; font-weight: 600; color: var(--muted); }
+  .topbar .slogan { font-size: 12px; color: var(--faint); letter-spacing: 0.18em; }
+
+  .layout { display: grid; grid-template-columns: minmax(0, 7fr) minmax(300px, 5fr); gap: clamp(20px, 3vw, 44px); align-items: start; margin-top: 18px; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+
+  /* ———— 盘面 ———— */
+  .board { position: relative; }
+  .board svg { width: 100%; height: auto; display: block; }
+  .sector { cursor: pointer; transition: fill 0.25s var(--ease); }
+  .sector .body { fill: url(#patina); stroke: var(--line-dim); stroke-width: 1; }
+  .sector:nth-child(odd) .body { fill: url(#patinaAlt); }
+  .sector:hover .body, .sector.hot .body { fill: url(#patinaHi); }
+  .sector[aria-selected="true"] .body { stroke: var(--gold); stroke-width: 2; fill: url(#patinaHi); }
+  .sector:focus { outline: none; }
+  .sector:focus-visible .body { stroke: var(--gold-bright); stroke-width: 2.5; }
+  .palace-name { fill: var(--gold); font-size: 22px; font-weight: 600; letter-spacing: 0.12em; }
+  .palace-branch { fill: var(--muted); font-size: 13px; letter-spacing: 0.2em; }
+  .star-name { fill: var(--ink); font-size: 12.5px; letter-spacing: 0.06em; }
+  .sihua-tag { fill: var(--cinnabar-bright); font-size: 11px; font-weight: 600; }
+  .tick { stroke: var(--line-dim); }
+  .tick-major { stroke: var(--gold-dim); }
+  .ring-line { fill: none; stroke: var(--line-dim); stroke-width: 1; opacity: 0.8; }
+  .ring-line.gold { stroke: var(--gold-dim); opacity: 0.9; }
+  .core-text { fill: var(--muted); }
+  .core-title { fill: var(--gold); font-size: 30px; font-weight: 600; letter-spacing: 0.3em; }
+
+  .star-dot { fill: var(--gold); }
+  .star-dot.major { filter: drop-shadow(0 0 6px rgba(216, 180, 90, 0.55)); animation: breathe 4.5s ease-in-out infinite; }
+  .star-dot.minor { filter: drop-shadow(0 0 3px rgba(216, 180, 90, 0.35)); animation: breathe 5.5s ease-in-out infinite; }
+  .sihua-mark { fill: var(--cinnabar); filter: drop-shadow(0 0 4px rgba(192, 61, 46, 0.6)); }
+  @keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: 0.72; } }
+
+  /* 入场:宫区依次点亮 */
+  .sector { opacity: 0; animation: settle 0.6s var(--ease) forwards; }
+  @keyframes settle { from { opacity: 0; transform: scale(0.965); transform-origin: center; } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .sector { animation: none; opacity: 1; }
+    .star-dot { animation: none; }
+  }
+
+  /* ———— 解读面板 ———— */
+  .panel { position: sticky; top: 24px; background: linear-gradient(180deg, var(--surface), #181510);
+           border: 1px solid #2e2921; border-radius: 3px; padding: 30px 30px 26px;
+           box-shadow: 0 1px 0 rgba(216,180,90,0.06), 0 14px 40px rgba(0,0,0,0.5); }
+  .panel .tag { font-size: 10.5px; letter-spacing: 0.5em; color: var(--faint); }
+  .panel h2 { font-size: 30px; color: var(--gold); font-weight: 600; margin: 10px 0 2px; letter-spacing: 0.08em; }
+  .panel .branch { font-size: 12.5px; color: var(--muted); letter-spacing: 0.2em; margin-bottom: 20px; }
+  .panel ul.stars { list-style: none; border-top: 1px solid #2a251d; margin-bottom: 20px; }
+  .panel ul.stars li { display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 16px; padding: 9px 2px; border-bottom: 1px solid #2a251d; }
+  .panel ul.stars .grade { font-size: 11px; color: var(--faint); letter-spacing: 0.15em; }
+  .panel ul.stars .sihua { color: var(--cinnabar-bright); font-size: 13px; letter-spacing: 0.1em; }
+  .panel .note { font-size: 14px; line-height: 2.15; color: #cbbfa6; }
+  .panel .src { margin-top: 22px; padding-top: 14px; border-top: 1px solid #2a251d;
+    font-size: 10.5px; color: var(--faint); letter-spacing: 0.12em; line-height: 1.9; }
+  @media (max-width: 900px) { .panel { position: static; margin-top: 8px; } }
+
+  footer { margin-top: 44px; display: flex; align-items: center; gap: 16px;
+    color: var(--faint); font-size: 11px; letter-spacing: 0.3em; }
+  footer::before, footer::after { content: ""; flex: 1; height: 1px; background: #2a251d; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <h1>璇玑 · 紫微斗数排盘</h1>
+    <span class="slogan">星有轨迹,盘有出处</span>
+  </header>
+
+  <div class="layout">
+    <div class="board" id="board"></div>
+
+    <aside class="panel" id="panel" aria-live="polite">
+      <div class="tag">PALACE · 十二宫</div>
+      <h2 id="p-name">命盘已就</h2>
+      <div class="branch" id="p-branch">点击环上任意宫位</div>
+      <ul class="stars" id="p-stars"></ul>
+      <p class="note" id="p-note">环形盘面由排盘引擎服务端渲染(SVG 直出);解读取自确定性知识库与开源数据集,不作祸福断言。键盘用户可按 Tab 沿宫环遍历。</p>
+      <p class="src">解读依据传统星情与开源格局库 · 数据缺录时将明示 · 不作祸福断言</p>
+    </aside>
+  </div>
+
+  <footer>器 有 刻 度 · 文 有 出 处</footer>
+</div>
+
+<script>
+// —— 手造样例数据(视觉原型用,非引擎输出)——
+const PALACES = [
+  { name:'命宫', branch:'午', stars:[['紫微','major','科'],['左辅','minor']], note:'紫微坐命,帝座临身:格局开阔,主见与担当并存,庙旺则众星拱卫、进退有度。' },
+  { name:'兄弟', branch:'未', stars:[['天机','major'],['天马','minor']], note:'天机入兄弟,手足各异志:彼此机敏善谋,聚少离多而情理常在。' },
+  { name:'夫妻', branch:'申', stars:[['太阳','major','权']], note:'太阳入夫妻化权,配偶明朗主事:光照他宫,家中有主心骨,唯争执亦直。' },
+  { name:'子女', branch:'酉', stars:[['武曲','major','忌'],['七杀','major']], note:'武曲化忌会七杀,子女刚毅果决:管教宜疏不宜堵,财物之教胜于言语。' },
+  { name:'财帛', branch:'戌', stars:[['天府','major']], note:'天府入财帛,库星守财:进财稳厚、善守善积,取财有道而格局大。' },
+  { name:'疾厄', branch:'亥', stars:[['太阴','major','禄']], note:'太阴入疾厄化禄,阴柔滋养:劳心多于劳力,睡眠与情绪为养生之首。' },
+  { name:'迁移', branch:'子', stars:[['贪狼','major'],['擎羊','minor']], note:'贪狼入迁移,动中取趣:异地多机遇亦多诱惑,择善而往。' },
+  { name:'交友', branch:'丑', stars:[['巨门','major']], note:'巨门入交友,口碑两极:言路畅通而口舌亦多,重诺者可深交。' },
+  { name:'官禄', branch:'寅', stars:[['天相','major'],['天梁','major']], note:'天相会天梁于官禄,辅弼之才:宜体制与专业路径,清望与实权相济。' },
+  { name:'田宅', branch:'卯', stars:[['天同','major'],['天姚','minor']], note:'天同入田宅,安居之福:居所安逸讲究,家宅和暖,置产宜稳。' },
+  { name:'福德', branch:'辰', stars:[['破军','major']], note:'破军入福德,心境常新:兴味多变、破立交替,静坐功课可养神。' },
+  { name:'父母', branch:'巳', stars:[['文昌','minor'],['文曲','minor']], note:'昌曲入父母,书香一脉:亲长重教,幼承文墨,荫庇在笔墨之间。' },
+];
+const N = 12, CX = 420, CY = 420;
+const R_OUT = 322, R_IN = 205, R_TICK = 341, R_LABEL = 366, R_BRANCH = 348, R_STAR = 263;
+
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.createElementNS(NS, 'svg');
+svg.setAttribute('viewBox', '0 0 840 840');
+svg.setAttribute('role', 'group');
+svg.setAttribute('aria-label', '紫微斗数环形命盘,十二宫');
+
+// 极坐标:0° = 正下方(命宫),顺时针为正
+const pt = (r, deg) => {
+  const a = (deg + 90) * Math.PI / 180;
+  return [CX + r * Math.cos(a), CY + r * Math.sin(a)];
+};
+
+// —— 渐变与滤镜定义 ——
+const defs = `
+<defs>
+  <radialGradient id="patina" cx="50%" cy="50%" r="75%">
+    <stop offset="0%" stop-color="#4a5741"/><stop offset="100%" stop-color="#5c6b52"/>
+  </radialGradient>
+  <radialGradient id="patinaAlt" cx="50%" cy="50%" r="75%">
+    <stop offset="0%" stop-color="#516046"/><stop offset="100%" stop-color="#64755a"/>
+  </radialGradient>
+  <radialGradient id="patinaHi" cx="50%" cy="50%" r="75%">
+    <stop offset="0%" stop-color="#6a7d5e"/><stop offset="100%" stop-color="#7d9370"/>
+  </radialGradient>
+</defs>`;
+svg.innerHTML = defs;
+
+// —— 刻度环 ——
+const ticks = document.createElementNS(NS, 'g');
+for (let i = 0; i < 72; i++) {
+  const deg = i * 5, major = i % 6 === 0;
+  const [x1, y1] = pt(R_TICK, deg);
+  const [x2, y2] = pt(R_TICK + (major ? 14 : 7), deg);
+  const l = document.createElementNS(NS, 'line');
+  l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+  l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+  l.setAttribute('class', major ? 'tick tick-major' : 'tick');
+  l.setAttribute('stroke-width', major ? 1.6 : 1);
+  ticks.appendChild(l);
+}
+svg.appendChild(ticks);
+
+// —— 内外金边环 ——
+[[R_OUT + 3, 1.4, true], [R_IN - 3, 1.4, true], [R_IN - 26, 0.8, false], [R_IN - 78, 0.8, false]]
+  .forEach(([r, w, gold]) => {
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', CX); c.setAttribute('cy', CY); c.setAttribute('r', r);
+    c.setAttribute('class', 'ring-line' + (gold ? ' gold' : ''));
+    c.setAttribute('stroke-width', w);
+    svg.appendChild(c);
+  });
+
+// —— 十二宫扇区(含标签/星曜)——
+const fmt = n => n.toFixed(1);
+PALACES.forEach((p, i) => {
+  const c0 = i * 30 - 15, c1 = i * 30 + 15, mid = i * 30;
+  const [ox, oy] = pt(R_OUT, c0), [tx, ty] = pt(R_OUT, c1);
+  const [ix, iy] = pt(R_IN, c0), [jx, jy] = pt(R_IN, c1);
+  const d = `M ${fmt(ox)} ${fmt(oy)} A ${R_OUT} ${R_OUT} 0 0 1 ${fmt(tx)} ${fmt(ty)}
+             L ${fmt(jx)} ${fmt(jy)} A ${R_IN} ${R_IN} 0 0 0 ${fmt(ix)} ${fmt(iy)} Z`;
+
+  const g = document.createElementNS(NS, 'g');
+  g.setAttribute('class', 'sector');
+  g.setAttribute('role', 'button');
+  g.setAttribute('tabindex', '0');
+  g.setAttribute('aria-label', `${p.name}宫,地支${p.branch},${p.stars.map(s => s[0]).join('')}`);
+  g.style.animationDelay = (0.05 + i * 0.06) + 's';
+
+  const body = document.createElementNS(NS, 'path');
+  body.setAttribute('d', d); body.setAttribute('class', 'body');
+  g.appendChild(body);
+
+  // 宫名(环外径向,水平排布,永不倒立)
+  const [nx, ny] = pt(R_LABEL, mid);
+  const nm = document.createElementNS(NS, 'text');
+  nm.setAttribute('x', fmt(nx)); nm.setAttribute('y', fmt(ny + 7));
+  nm.setAttribute('text-anchor', 'middle'); nm.setAttribute('class', 'palace-name');
+  nm.textContent = p.name;
+  g.appendChild(nm);
+  const [bx, by] = pt(R_BRANCH, mid);
+  const br = document.createElementNS(NS, 'text');
+  br.setAttribute('x', fmt(bx)); br.setAttribute('y', fmt(by + 5));
+  br.setAttribute('text-anchor', 'middle'); br.setAttribute('class', 'palace-branch');
+  br.textContent = p.branch;
+  g.appendChild(br);
+
+  // 星曜:沿弧排布,鎏金点 + 名称;四化朱砂菱标
+  p.stars.forEach((s, j) => {
+    const off = (j - (p.stars.length - 1) / 2) * 8.4;
+    const [sx, sy] = pt(R_STAR, mid + off);
+    const major = s[1] === 'major';
+    const dot = document.createElementNS(NS, 'circle');
+    dot.setAttribute('cx', fmt(sx)); dot.setAttribute('cy', fmt(sy));
+    dot.setAttribute('r', major ? 7 : 4.2);
+    dot.setAttribute('class', 'star-dot ' + s[1]);
+    g.appendChild(dot);
+    const t = document.createElementNS(NS, 'text');
+    t.setAttribute('x', fmt(sx)); t.setAttribute('y', fmt(sy + 22));
+    t.setAttribute('text-anchor', 'middle'); t.setAttribute('class', 'star-name');
+    t.textContent = s[0];
+    g.appendChild(t);
+    if (s[2]) {
+      const [mx, my] = pt(R_STAR + 15, mid + off);
+      const m = document.createElementNS(NS, 'rect');
+      m.setAttribute('x', fmt(mx - 3.4)); m.setAttribute('y', fmt(my - 3.4));
+      m.setAttribute('width', 6.8); m.setAttribute('height', 6.8);
+      m.setAttribute('transform', `rotate(45 ${fmt(mx)} ${fmt(my)})`);
+      m.setAttribute('class', 'sihua-mark');
+      g.appendChild(m);
+      const mt = document.createElementNS(NS, 'text');
+      mt.setAttribute('x', fmt(mx)); mt.setAttribute('y', fmt(my - 8));
+      mt.setAttribute('text-anchor', 'middle'); mt.setAttribute('class', 'sihua-tag');
+      mt.textContent = s[2];
+      g.appendChild(mt);
+    }
+  });
+
+  const select = () => {
+    svg.querySelectorAll('.sector').forEach(el => el.setAttribute('aria-selected', 'false'));
+    g.setAttribute('aria-selected', 'true');
+    document.getElementById('p-name').textContent = p.name;
+    document.getElementById('p-branch').textContent = `地支 ${p.branch} · 十二宫之 ${i + 1}`;
+    document.getElementById('p-stars').innerHTML = p.stars.map(s =>
+      `<li><span>${s[0]}</span>${s[2] ? `<span class="sihua">化${s[2]}</span>` : `<span class="grade">${s[1] === 'major' ? '十四主星' : '辅曜'}</span>`}</li>`).join('');
+    document.getElementById('p-note').textContent = p.note;
+    if (matchMedia('(max-width: 900px)').matches)
+      document.getElementById('panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+  g.addEventListener('click', select);
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); } });
+  g.addEventListener('mouseenter', () => g.classList.add('hot'));
+  g.addEventListener('mouseleave', () => g.classList.remove('hot'));
+
+  svg.appendChild(g);
+});
+
+// —— 盘芯 ——
+const core = document.createElementNS(NS, 'g');
+core.innerHTML = `
+  <line x1="${CX - 100}" y1="${CY}" x2="${CX + 100}" y2="${CY}" stroke="#5a5040" stroke-width="0.8"/>
+  <line x1="${CX}" y1="${CY - 100}" x2="${CX}" y2="${CY + 100}" stroke="#5a5040" stroke-width="0.8"/>
+  <text x="${CX}" y="${CY - 26}" text-anchor="middle" class="core-title">璇玑</text>
+  <text x="${CX}" y="${CY + 4}" text-anchor="middle" class="core-text" font-size="13" letter-spacing="6">ARMILLA</text>
+  <text x="${CX}" y="${CY + 34}" text-anchor="middle" class="core-text" font-size="13">一九九〇 · 六月十五 · 午 · 男</text>
+  <circle cx="${CX}" cy="${CY + 62}" r="3.4" fill="#d8b45a" class="star-dot major"/>`;
+svg.appendChild(core);
+
+document.getElementById('board').appendChild(svg);
+</script>
+</body>
+</html>
