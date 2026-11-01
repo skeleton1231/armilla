@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>T07 · 环形十二宫 v2 精修版(泛光星曜 · 清漆青铜)</title>
 <style>
   :root {
@@ -45,7 +46,7 @@
   <h1>璇玑 · 环形十二宫 V2</h1>
   <p>泛光星曜 · 清漆青铜 · 环境反射</p>
 </div>
-<div id="hint">拖动旋转 · 滚轮缩放 · 点击宫位看解读</div>
+<div id="hint">拖动旋转 · 滚轮缩放 · 点击宫位看解读 · 双击复位视角</div>
 <aside id="panel">
   <div class="tag">PALACE</div>
   <h2 id="p-name">—</h2>
@@ -101,11 +102,20 @@ scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.06).texture;
 if ('environmentIntensity' in scene) scene.environmentIntensity = 0.38;
 
 const camera = new THREE.PerspectiveCamera(40, innerWidth / innerHeight, 0.1, 200);
-camera.position.set(0, 8.4, 11.6);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true; controls.dampingFactor = 0.05;
-controls.minDistance = 7; controls.maxDistance = 26;
+controls.zoomSpeed = 0.7; controls.rotateSpeed = 0.75;
+controls.minDistance = 9.5; controls.maxDistance = 30;
 controls.maxPolarAngle = Math.PI * 0.49; controls.target.set(0, 0, 0);
+// 初始/复位视角:按画幅自适应距离,保证整盘入画(竖屏拉远)
+function resetView() {
+  const aspect = innerWidth / innerHeight;
+  const k = aspect >= 1.15 ? 1 : aspect >= 0.75 ? 1.35 : 1.7;
+  camera.position.set(0, 10.8 * k, 14.2 * k);
+  controls.target.set(0, 0, 0);
+}
+resetView();
+renderer.domElement.addEventListener('dblclick', resetView);
 
 // ———— 灯光:暖主光 + 冷弱补 + 朱砂缘光 ————
 scene.add(new THREE.HemisphereLight(0x3a3226, 0x0c0a08, 0.5));
@@ -133,7 +143,7 @@ const engraveMat = new THREE.MeshStandardMaterial({ color: 0xb9a26b, metalness: 
 const darkPlate = new THREE.MeshPhysicalMaterial({ color: 0x2b241a, metalness: 0.75, roughness: 0.6, clearcoat: 0.3 });
 
 // 高分辨率文字贴片
-function textPlate(lines, opt = {}) {
+function textTexture(lines) {
   const W = 512, H = 256, dpr = 2;
   const c = document.createElement('canvas'); c.width = W * dpr; c.height = H * dpr;
   const g = c.getContext('2d'); g.scale(dpr, dpr);
@@ -146,9 +156,20 @@ function textPlate(lines, opt = {}) {
   const tex = new THREE.CanvasTexture(c);
   tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
   tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+function textPlate(lines, opt = {}) {
+  const tex = textTexture(lines);
   const w = opt.w ?? 1.5, h = opt.h ?? 0.75;
   return new THREE.Mesh(new THREE.PlaneGeometry(w, h),
     new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: opt.opacity ?? 0.96, depthWrite: false }));
+}
+// 广告牌文字:永远正对相机,任意视角不倒立(宫名用)
+function textSprite(lines, w, h) {
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({
+    map: textTexture(lines), transparent: true, opacity: 0.96, depthWrite: false }));
+  sp.scale.set(w, h, 1);
+  return sp;
 }
 // 星曜辉光贴片(additive)
 function glowSprite(colorHex, scale = 1) {
@@ -181,14 +202,12 @@ PALACES.forEach((p, i) => {
   seg.userData = { index: i };
   chart.add(seg); segs.push(seg);
 
-  // 宫名 + 地支:刻在环面,径向排布
-  const nm = textPlate([[p.name, 118, '#e6c87a', 0]], { w: 1.7, h: 0.85 });
-  nm.rotation.x = -Math.PI / 2; nm.rotation.z = -(mid) + Math.PI / 2;
-  nm.position.set(Math.cos(mid) * (R_IN + 1.15), 0.015, -Math.sin(mid) * (R_IN + 1.15));
+  // 宫名 + 地支:广告牌精灵(永远正立可读)
+  const nm = textSprite([[p.name, 118, '#dfc07a', 0]], 1.85, 0.92);
+  nm.position.set(Math.cos(mid) * (R_IN + 1.2), 0.3, -Math.sin(mid) * (R_IN + 1.2));
   chart.add(nm);
-  const br = textPlate([[p.branch, 78, '#b3a888', 0]], { w: 0.72, h: 0.36 });
-  br.rotation.x = -Math.PI / 2; br.rotation.z = -(mid) + Math.PI / 2;
-  br.position.set(Math.cos(mid) * (R_IN + 0.38), 0.015, -Math.sin(mid) * (R_IN + 0.38));
+  const br = textSprite([[p.branch, 78, '#b3a888', 0]], 0.8, 0.4);
+  br.position.set(Math.cos(mid) * (R_IN + 0.44), 0.3, -Math.sin(mid) * (R_IN + 0.44));
   chart.add(br);
 
   p.stars.forEach((s, j) => {
@@ -207,9 +226,8 @@ PALACES.forEach((p, i) => {
       mark.position.set(star.position.x, size + 0.5, star.position.z);
       chart.add(mark);
       const mg = glowSprite(0xff5a3c, 0.7); mg.position.copy(mark.position); chart.add(mg);
-      const ml = textPlate([['化' + s[2], 84, '#ff8a70', 0]], { w: 0.62, h: 0.31, opacity: 0.95 });
-      ml.rotation.x = -Math.PI / 2;
-      ml.position.set(mark.position.x, 0.02, mark.position.z - 0.42);
+      const ml = textSprite([['化' + s[2], 84, '#ff8a70', 0]], 0.62, 0.31);
+      ml.position.set(mark.position.x, mark.position.y + 0.3, mark.position.z);
       chart.add(ml);
     }
   });
