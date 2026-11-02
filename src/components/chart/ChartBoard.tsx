@@ -222,6 +222,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
                 aria-selected={isSelected}
                 aria-label={`${palaceLabel(p.name)} ${branchName} ${stars.map((s) => starLabel(s.name)).join(' ')}`}
                 className="cursor-pointer transition-opacity"
+                style={{ outline: 'none' }}
                 onClick={() => setSelected(isSelected ? -1 : i)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -234,7 +235,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
                   d={sectorPath(c0, c1)}
                   fill={`url(#${isSelected ? 'patinaHi' : i % 2 ? 'patinaAlt' : 'patina'})`}
                   stroke={isSelected ? 'var(--gold)' : 'color-mix(in oklab, var(--line) 70%, transparent)'}
-                  strokeWidth={isSelected ? 2 : 1}
+                  strokeWidth={isSelected ? 2.5 : 1}
                   className="transition-all duration-300 ease-qi hover:brightness-110"
                 />
                 <text x={f(nx)} y={f(ny + 8)} textAnchor="middle" className="fill-[var(--gold)] text-[25px] font-semibold" style={{ letterSpacing: '0.12em' }}>
@@ -249,22 +250,22 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
                   const isMajor = s.type === 'major';
                   const sihuaText = s.siHua ? ` ${s.siHua}` : '';
                   return (
-                    <g key={s.name}>
-                      <circle
-                        cx={f(sx)} cy={f(sy)} r={isMajor ? 6.5 : 4}
-                        className="fill-[var(--gold)]"
-                        style={{
-                          filter: `drop-shadow(0 0 ${isMajor ? 6 : 3}px rgba(216,180,90,${isMajor ? 0.55 : 0.35}))`,
-                          animation: `chartbreathe ${isMajor ? 4.5 : 5.5}s ease-in-out infinite`,
-                        }}
-                      />
-                      <text x={f(sx)} y={f(sy + 5.5)} textAnchor="middle" className="fill-[var(--foreground)] text-[16px] font-medium" style={{ paintOrder: 'stroke' }}>
-                        {starLabel(s.name)}
-                        {s.siHua && (
-                          <tspan className="fill-[var(--cinnabar)] text-[14px] font-semibold">{sihuaText}</tspan>
-                        )}
-                      </text>
-                    </g>
+                    <text
+                      key={s.name}
+                      x={f(sx)} y={f(sy)} textAnchor="middle"
+                      className={isMajor
+                        ? 'fill-[var(--gold-bright,#ecc87e)] text-[17px] font-semibold'
+                        : 'fill-[var(--muted-foreground)] text-[15px]'}
+                      style={{
+                        animation: isMajor ? 'chartbreathe 4.5s ease-in-out infinite' : undefined,
+                        textShadow: '0 0 8px rgba(216,180,90,0.3)',
+                      }}
+                    >
+                      {starLabel(s.name)}
+                      {s.siHua && (
+                        <tspan className="fill-[var(--cinnabar)] text-[15px] font-bold">{sihuaText}</tspan>
+                      )}
+                    </text>
                   );
                 })}
               </g>
