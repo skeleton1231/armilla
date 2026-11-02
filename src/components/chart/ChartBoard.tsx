@@ -49,7 +49,10 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
   const { chart, sections, lockedSections, paid, redeemedToken, stripeReady, chartQuery, locale, anchorKeys, palaceToDim, sameDays, famousMatch, unknownHour, shareUrl } = props;
   const t = useTranslations('chart');
   const tp = useTranslations('pay');
-  const [selected, setSelected] = useState<number>(-1);
+  // 默认选中命宫(用户第一眼看到最关键的宫位信息,不是空面板)
+  const [selected, setSelected] = useState<number>(() =>
+    chart.palaces.findIndex((p) => p.isMingGong) ?? -1,
+  );
   const [copied, setCopied] = useState(false);
   const [buying, setBuying] = useState(false);
   const [codeSaved, setCodeSaved] = useState(false);
