@@ -18,7 +18,8 @@ export default async function LandingPage(props: {
     <div className="py-10">
       {/* ———— 首屏:左叙事 右表单(T14)———— */}
       <section className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_400px]">
-        <div className="pt-6">
+        {/* 移动端表单优先(CTA 首屏可见),桌面叙事在左 */}
+        <div className="order-2 pt-6 lg:order-1">
           <p className="text-xs tracking-label text-[var(--muted-foreground)]">{tBrand('tagline')}</p>
           <h1 className="mt-4 text-4xl leading-snug font-semibold md:text-5xl">
             {zh ? '璇玑' : 'Armilla'}
@@ -30,7 +31,9 @@ export default async function LandingPage(props: {
             {tBrand('slogan')}
           </p>
         </div>
-        <BirthForm locale={locale} />
+        <div className="order-1 lg:order-2">
+          <BirthForm locale={locale} />
+        </div>
       </section>
 
       {/* ———— 是什么 / 不是什么 ———— */}
