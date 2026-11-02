@@ -54,9 +54,13 @@ export const COMBOS: ComboEntry[] = [
 export const COMBO_KEY = (star: string, palace: string): string => `${star}@${palace}`;
 export const COMBO_MAP = new Map(COMBOS.map((c) => [COMBO_KEY(c.star, c.palace), c]));
 
-/* ———— T27:en 付费层组合条目(batch 起草,持续扩充)———— */
+/* ———— T27:en 付费层组合条目(batch1 56 + batch2 112 = 168 满配)———— */
 export type EnComboSource = { star: string; palace: string; bright: string; dim: string; sihua: Record<'禄' | '权' | '科' | '忌', string> };
 export { EN_COMBOS_BATCH1 } from './combos-en.batch1';
+export { EN_COMBOS_BATCH2 } from './combos-en.batch2';
 
 import { EN_COMBOS_BATCH1 } from './combos-en.batch1';
-export const EN_COMBO_MAP = new Map(EN_COMBOS_BATCH1.map((c) => [COMBO_KEY(c.star, c.palace), c]));
+import { EN_COMBOS_BATCH2 } from './combos-en.batch2';
+export const EN_COMBO_MAP = new Map(
+  [...EN_COMBOS_BATCH1, ...EN_COMBOS_BATCH2].map((c) => [COMBO_KEY(c.star, c.palace), c]),
+);
