@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
+import { BackToTop } from '@/components/BackToTop';
 import './globals.css';
 
 /** 中文字体:站内字表子集化(T11)—— scripts/subset-fonts.py 生成;新增文案需重跑 */
@@ -89,6 +90,7 @@ export default async function LocaleLayout(props: {
           </header>
 
           <main className="mx-auto max-w-6xl px-6">{props.children}</main>
+          <BackToTop />
 
           <footer className="mt-24 border-t border-[var(--border)]">
             <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-6 py-10 text-xs text-[var(--muted-foreground)]">
