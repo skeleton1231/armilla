@@ -8,6 +8,7 @@ import { Link } from '@/i18n/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { BackToTop } from '@/components/BackToTop';
+import { AuthArea } from '@/components/auth/AuthButton';
 import './globals.css';
 
 /** 中文字体:站内字表子集化(T11)—— scripts/subset-fonts.py 生成;新增文案需重跑 */
@@ -85,6 +86,7 @@ export default async function LocaleLayout(props: {
                 <Link href="/famous" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('famous')}</Link>
                 <Link href="/method" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('method')}</Link>
                 <LocaleSwitcher locale={locale} />
+                <AuthArea />
               </nav>
             </div>
           </header>

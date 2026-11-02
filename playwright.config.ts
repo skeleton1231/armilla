@@ -11,14 +11,14 @@ export default defineConfig({
   retries: 0,
   workers: 1,
   use: {
-    baseURL: 'http://localhost:3320',
+    baseURL: 'http://localhost:3210',
     channel: 'chrome',
     locale: 'en-US',
     screenshot: 'only-on-failure',
   },
   webServer: {
-    command: 'npx next start -p 3320',
-    port: 3320,
+    command: 'npx next start -p 3210',
+    port: 3210,
     reuseExistingServer: true,
     timeout: 60_000,
   },
