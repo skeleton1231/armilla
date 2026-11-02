@@ -133,7 +133,7 @@ export const FAMOUS_PERSONS: FamousPerson[] = [
     year: 1971, month: 6, day: 28, hour: 4,  // 辰时（7:30AM 有文献记录）
     gender: 'male',
     notable: '杀破狼格局的极致体现，命盘中驿马星旺盛，一生在改变人类未来边界',
-    notableEn: 'An intense expression of the Sha Po Lang pattern, with a powerful Travel Horse star and a life devoted to pushing the boundaries of humanity’s future.',
+    notableEn: 'An intense expression of the Sha Po Lang pattern, with a commanding Travel Horse star and a life devoted to pushing the boundaries of humanity’s future.',
   },
 
   // ─── 体育明星 ─────────────────────────────────────────────
@@ -159,7 +159,7 @@ export const FAMOUS_PERSONS: FamousPerson[] = [
     year: 1982, month: 2, day: 26, hour: 2,  // 寅时
     gender: 'female',
     notable: '七杀化气，命中注定与人竞争，大限流年与法网夺冠时间点精准对应',
-    notableEn: 'Qi Sha channels a powerful competitive drive, while the major periods and annual cycles closely align with the timing of her French Open victory.',
+    notableEn: 'Qi Sha channels a commanding competitive drive, while the major periods and annual cycles closely align with the timing of her French Open victory.',
   },
 ];
 

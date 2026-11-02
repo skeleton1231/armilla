@@ -280,8 +280,9 @@ export function BirthForm({ locale }: { locale: string }): React.JSX.Element {
       </label>
 
       <div ref={cityRef} className="relative mt-3">
-        <span className={labelCls}>{t('city')}</span>
+        <label htmlFor="bf-city" className={labelCls}>{t('city')}</label>
         <input
+          id="bf-city"
           className="h-10 w-full rounded-md border border-[var(--border)] bg-[var(--input)] px-3 text-sm text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]/60 focus:border-[var(--gold)] focus:outline-none"
           name="city"
           placeholder={t('cityPlaceholder')}
