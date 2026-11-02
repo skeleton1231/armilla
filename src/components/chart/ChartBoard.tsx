@@ -13,11 +13,11 @@ const CX = 420;
 const CY = 420;
 const R_OUT = 318;
 const R_IN = 205;
-const R_TICK = 330;    // 拉进,给宫名留呼吸
-const R_LABEL = 378;   // 推出,与刻度拉开
-const R_BRANCH = 352;
-const R_STAR_BASE = 282; // 主星起始径向位
-const R_STAR_STEP = 28;  // 星与星的径向间距(星名不再水平重叠)
+const R_TICK = 328;
+const R_LABEL = 384;
+const R_BRANCH = 354;
+const R_STAR_BASE = 280;
+const R_STAR_STEP = 34;
 
 /** 极坐标:0° = 正下方(命宫),顺时针为正 */
 function pt(r: number, deg: number): [number, number] {
@@ -213,7 +213,11 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
             const [nx, ny] = pt(R_LABEL, mid);
             const [bx, by] = pt(R_BRANCH, mid);
             const branchName = (locale === 'zh' ? BRANCH_ZH : BRANCH_PINYIN)[p.branch];
-            const stars = p.stars.filter((s) => s.type === 'major' || s.type === 'minor' || s.type === 'lucky' || s.type === 'sha').slice(0, 3);
+            // 盘面只显示主星 + 有四化的星(其余辅曜在右栏面板看)—— 减密防挤
+            const majors = p.stars.filter((s) => s.type === 'major');
+            const withSihua = p.stars.filter((s) => s.type !== 'major' && s.siHua);
+            const minorRep = p.stars.filter((s) => s.type !== 'major' && !s.siHua).slice(0, 1);
+            const stars = [...majors, ...withSihua, ...minorRep].slice(0, 3);
             return (
               <g
                 key={p.branch}
