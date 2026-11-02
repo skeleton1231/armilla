@@ -11,12 +11,13 @@ import { palaceEntryByName } from '@/content/wiki/palaces';
 
 const CX = 420;
 const CY = 420;
-const R_OUT = 322;
+const R_OUT = 318;
 const R_IN = 205;
-const R_TICK = 341;
-const R_LABEL = 372;
-const R_BRANCH = 350;
-const R_STAR = 263;
+const R_TICK = 330;    // 拉进,给宫名留呼吸
+const R_LABEL = 378;   // 推出,与刻度拉开
+const R_BRANCH = 352;
+const R_STAR_BASE = 282; // 主星起始径向位
+const R_STAR_STEP = 28;  // 星与星的径向间距(星名不再水平重叠)
 
 /** 极坐标:0° = 正下方(命宫),顺时针为正 */
 function pt(r: number, deg: number): [number, number] {
@@ -157,7 +158,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
   const f = (n: number): string => n.toFixed(1);
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(300px,5fr)]">
+    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_400px]">
       {/* ———— 盘面 ———— */}
       <div className="relative">
         {unknownHour && (
@@ -212,7 +213,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
             const [nx, ny] = pt(R_LABEL, mid);
             const [bx, by] = pt(R_BRANCH, mid);
             const branchName = (locale === 'zh' ? BRANCH_ZH : BRANCH_PINYIN)[p.branch];
-            const stars = p.stars.filter((s) => s.type === 'major' || s.type === 'minor' || s.type === 'lucky' || s.type === 'sha').slice(0, 4);
+            const stars = p.stars.filter((s) => s.type === 'major' || s.type === 'minor' || s.type === 'lucky' || s.type === 'sha').slice(0, 3);
             return (
               <g
                 key={p.branch}
@@ -236,45 +237,33 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
                   strokeWidth={isSelected ? 2 : 1}
                   className="transition-all duration-300 ease-qi hover:brightness-110"
                 />
-                <text x={f(nx)} y={f(ny + 7)} textAnchor="middle" className="fill-[var(--gold)] text-[22px] font-semibold" style={{ letterSpacing: '0.12em' }}>
+                <text x={f(nx)} y={f(ny + 8)} textAnchor="middle" className="fill-[var(--gold)] text-[25px] font-semibold" style={{ letterSpacing: '0.12em' }}>
                   {alias(p.name).replace('宫', '')}
                 </text>
-                <text x={f(bx)} y={f(by + 5)} textAnchor="middle" className="fill-[var(--muted-foreground)] text-[13px]">
+                <text x={f(bx)} y={f(by + 5)} textAnchor="middle" className="fill-[var(--muted-foreground)] text-[14px]">
                   {branchName}
                 </text>
                 {stars.map((s, j) => {
-                  const off = (j - (stars.length - 1) / 2) * 8.4;
-                  const [sx, sy] = pt(R_STAR, mid + off);
+                  const starR = R_STAR_BASE - j * R_STAR_STEP;
+                  const [sx, sy] = pt(starR, mid);
                   const isMajor = s.type === 'major';
+                  const sihuaText = s.siHua ? ` ${s.siHua}` : '';
                   return (
                     <g key={s.name}>
                       <circle
-                        cx={f(sx)} cy={f(sy)} r={isMajor ? 7 : 4.2}
+                        cx={f(sx)} cy={f(sy)} r={isMajor ? 6.5 : 4}
                         className="fill-[var(--gold)]"
                         style={{
                           filter: `drop-shadow(0 0 ${isMajor ? 6 : 3}px rgba(216,180,90,${isMajor ? 0.55 : 0.35}))`,
                           animation: `chartbreathe ${isMajor ? 4.5 : 5.5}s ease-in-out infinite`,
                         }}
                       />
-                      <text x={f(sx)} y={f(sy + 22)} textAnchor="middle" className="fill-[var(--foreground)] text-[12.5px]">
+                      <text x={f(sx)} y={f(sy + 5.5)} textAnchor="middle" className="fill-[var(--foreground)] text-[16px] font-medium" style={{ paintOrder: 'stroke' }}>
                         {starLabel(s.name)}
+                        {s.siHua && (
+                          <tspan className="fill-[var(--cinnabar)] text-[14px] font-semibold">{sihuaText}</tspan>
+                        )}
                       </text>
-                      {s.siHua && (
-                        <>
-                          <rect
-                            x={f(sx - 3.4)} y={f(sy - 3.4 - (isMajor ? 15 : 12))} width={6.8} height={6.8}
-                            transform={`rotate(45 ${f(sx)} ${f(sy - (isMajor ? 15 : 12))})`}
-                            className="fill-[var(--cinnabar)]"
-                            style={{ filter: 'drop-shadow(0 0 4px rgba(192,61,46,0.6))' }}
-                          />
-                          <text
-                            x={f(sx)} y={f(sy - (isMajor ? 15 : 12) - 8)} textAnchor="middle"
-                            className="fill-[color-mix(in_oklab,var(--cinnabar)_75%,white)] text-[11px] font-semibold"
-                          >
-                            {s.siHua}
-                          </text>
-                        </>
-                      )}
                     </g>
                   );
                 })}
