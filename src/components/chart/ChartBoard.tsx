@@ -158,14 +158,15 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
-      {/* ———— 盘面:传统 4×4 方阵 ———— */}
-      <div>
-        {unknownHour && (
-          <p className="mb-3 rounded-[3px] border border-[color-mix(in_oklab,var(--cinnabar)_45%,transparent)] px-4 py-2 text-xs text-[var(--cinnabar)]">
-            {t('unknownHour')}
-          </p>
-        )}
+    <div>
+      {unknownHour && (
+        <p className="mb-3 rounded-[3px] border border-[color-mix(in_oklab,var(--cinnabar)_45%,transparent)] px-4 py-2 text-xs text-[var(--cinnabar)]">
+          {t('unknownHour')}
+        </p>
+      )}
+      {/* ———— 上层:盘面 + PALACE 面板(双栏) ———— */}
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+        <div>
         <div className="grid grid-cols-4 gap-1 rounded-[3px] border border-[var(--border)] bg-[var(--background)] p-1">
           {chart.palaces.map((p, idx) => (
             <PalaceCell key={p.branch} p={p} idx={idx} />
@@ -236,9 +237,9 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
         )}
       </div>
 
-      {/* ———— 右栏 ———— */}
-      <div>
-        <div className="sticky top-6 rounded-[3px] border border-[var(--border)] bg-[var(--card)] p-6">
+      {/* ———— PALACE 面板(右栏,不 sticky)———— */}
+      <div className="lg:sticky lg:top-6 lg:self-start">
+        <div className="rounded-[3px] border border-[var(--border)] bg-[var(--card)] p-6">
           {selectedPalace ? (
             <div>
               <p className="text-xs tracking-label text-[var(--muted-foreground)]">PALACE</p>
@@ -268,39 +269,40 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
             <p className="text-sm text-[var(--muted-foreground)]">{t('palacePanelHint')}</p>
           )}
         </div>
+      </div>
+      </div>
 
-        {/* 十三维手风琴 */}
-        <div className="mt-6 space-y-4">
-          <h2 className="text-xs tracking-label text-[var(--muted-foreground)]">{t('dimsTitle')}</h2>
-          <div className="divide-y divide-[var(--border)] rounded-[3px] border border-[var(--border)] bg-[var(--card)]">
-            {sections.map((sec, idx) => {
-              const open = sec.key === 'overview' || anchorKeys.includes(sec.key);
-              return (
-                <details key={sec.key} id={`dim-${sec.key}`} open={open} className="group px-5 py-3">
-                  <summary className="flex cursor-pointer list-none items-center justify-between">
-                    <span className="text-sm font-semibold text-[var(--foreground)]">
-                      <span className="mr-2 text-xs text-[var(--gold)]">{String(idx).padStart(2, '0')}</span>
-                      {sec.label}
-                      <span className="ml-2 text-xs font-normal text-[var(--muted-foreground)]">{sec.palaceName}</span>
-                    </span>
-                    <span className="text-[var(--muted-foreground)] transition-transform duration-300 ease-qi group-open:rotate-45">+</span>
-                  </summary>
-                  <div className="mt-3 space-y-3">
-                    {sec.paragraphs.map((para: Paragraph, k) => (
-                      <p key={k} className="text-[13px] leading-7 text-[color-mix(in_oklab,var(--foreground)_88%,var(--muted-foreground))]">
-                        <span className="mr-2 inline-block rounded-full border border-[var(--border)] px-2 py-0.5 align-middle text-[10px] text-[var(--muted-foreground)]">
-                          {t(SOURCE_TAG[para.source])}
-                        </span>
-                        {para.text}
-                      </p>
+      {/* ———— 下层:十三维解读 + 付费墙(全宽)———— */}
+      <div className="mt-8 space-y-6">
+        <h2 className="text-xs tracking-label text-[var(--muted-foreground)]">{t('dimsTitle')}</h2>
+        <div className="divide-y divide-[var(--border)] rounded-[3px] border border-[var(--border)] bg-[var(--card)]">
+          {sections.map((sec, idx) => {
+            const open = sec.key === 'overview' || anchorKeys.includes(sec.key);
+            return (
+              <details key={sec.key} id={`dim-${sec.key}`} open={open} className="group px-6 py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between">
+                  <span className="text-sm font-semibold text-[var(--foreground)]">
+                    <span className="mr-2 text-xs text-[var(--gold)]">{String(idx).padStart(2, '0')}</span>
+                    {sec.label}
+                    <span className="ml-2 text-xs font-normal text-[var(--muted-foreground)]">{sec.palaceName}</span>
+                  </span>
+                  <span className="text-[var(--muted-foreground)] transition-transform duration-300 ease-qi group-open:rotate-45">+</span>
+                </summary>
+                <div className="mt-3 space-y-3">
+                  {sec.paragraphs.map((para: Paragraph, k) => (
+                    <p key={k} className="text-[13px] leading-7 text-[color-mix(in_oklab,var(--foreground)_88%,var(--muted-foreground))]">
+                      <span className="mr-2 inline-block rounded-full border border-[var(--border)] px-2 py-0.5 align-middle text-[10px] text-[var(--muted-foreground)]">
+                        {t(SOURCE_TAG[para.source])}
+                      </span>
+                      {para.text}
+                    </p>
                     ))}
                   </div>
                 </details>
               );
             })}
-          </div>
-          <p className="text-xs text-[var(--muted-foreground)]">{t('attribution')}</p>
         </div>
+        <p className="text-xs text-[var(--muted-foreground)]">{t('attribution')}</p>
 
         {/* 付费墙 */}
         {!paid && lockedSections.length > 0 && (
