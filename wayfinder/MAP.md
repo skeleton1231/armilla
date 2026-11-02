@@ -53,7 +53,7 @@ status: complete
 - [T24 解读层 100% 数据源驱动](tickets/T24-reading-layer-100pct-dataset.md):**zh 十三维正文 100% 数据集**(每维 1200–4200 字全文,标签「数据集 v4.0」);自产段落退出 zh 主链路;窗外 = 引擎-only + 明示;en 保留双语知识库;实测冷读 1.25s/缓存 135ms。T08 知识库就此**仅服务 en 站**。
 - [T25 海外优先定位](tickets/T25-overseas-first-positioning.md)(2026-11-02 用户指令:推广海外+Stripe):**defaultLocale 改 en**;zh 全保留;部署等级须 Vercel Pro(商用)。
 - [T26 Stripe 商业化](tickets/T26-stripe-monetization.md)(**open,按用户指示暂缓**):单次买断 $5.99、免数据库(HMAC token+实时 session 验证)、免费层=总览+性格+同盘、付费正文服务端剪裁零泄漏、/terms 双语 —— **代码已实现并在防御模式验证**(未配 key 时入口禁用);剩余:Stripe 测试密钥端到端 → live → 随部署启用。
-- [T27 en 付费内容扩产](tickets/T27-en-content-production.md)(**open,未启动**):AI 按 T16 金样起草 168 条星×宫英文解读,红线 lint+人审,分批入库;优先序 命宫→财帛→夫妻→官禄。
+- [T27 en 付费内容扩产](tickets/T27-en-content-production.md)(**closed,168/168 满配**):batch1 56(命/财/妻/官)+ batch2 112(其余 8 宫);lint/tsc 全绿,en 组合页 170 静态页;疾厄宫医疗红线口径成文;遗留 10 条级人工复核建议。
 
 ## 🏁 地图完成 · 第二次(2026-11-01,转向后)
 
