@@ -9,6 +9,8 @@ import { PALACE_BY_NAME } from '@/content/wiki/palaces';
 import type { Palace, Star, ZiweiChart } from '@/lib/engine';
 import { palaceEntryByName } from '@/content/wiki/palaces';
 import { ChartSnapshot } from '@/components/chart/ChartSnapshot';
+import { YunxianBoard } from '@/components/chart/YunxianBoard';
+import type { YunxianReading } from '@/lib/interpret/yunxian';
 
 /** 地支索引 → 4×4 网格位置(传统盘:寅左下,顺时针) */
 const BRANCH_GRID: Record<number, { row: number; col: number }> = {
@@ -37,6 +39,8 @@ export interface ChartBoardProps {
   famousMatch: FamousMatchInfo[];
   unknownHour: boolean;
   shareUrl: string;
+  /** v1.1 运限预组装(服务端) */
+  yunxian: YunxianReading;
 }
 
 const SOURCE_TAG: Record<Paragraph['source'], string> = {
@@ -47,13 +51,15 @@ const SOURCE_TAG: Record<Paragraph['source'], string> = {
 const STAR_TYPE_ORDER = { major: 0, minor: 1, lucky: 2, sha: 3 } as const;
 
 export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
-  const { chart, sections, lockedSections, paid, redeemedToken, stripeReady, chartQuery, locale, anchorKeys, palaceToDim, sameDays, famousMatch, unknownHour, shareUrl } = props;
+  const { chart, sections, lockedSections, paid, redeemedToken, stripeReady, chartQuery, locale, anchorKeys, palaceToDim, sameDays, famousMatch, unknownHour, shareUrl, yunxian } = props;
   const t = useTranslations('chart');
   const tp = useTranslations('pay');
   // 默认选中命宫(用户第一眼看到最关键的宫位信息,不是空面板)
   const [selected, setSelected] = useState<number>(() =>
     chart.palaces.findIndex((p) => p.isMingGong) ?? -1,
   );
+  // v1.1 运限视图选中的宫(盘面描边联动)
+  const [activeBranch, setActiveBranch] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
   const [buying, setBuying] = useState(false);
   const [codeSaved, setCodeSaved] = useState(false);
@@ -112,7 +118,8 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
         type="button"
         onClick={() => setSelected(isSelected ? -1 : idx)}
         className={`relative flex flex-col overflow-hidden rounded-[2px] border p-2 text-left transition-colors duration-200 cursor-pointer ${
-          isSelected
+          p.branch === activeBranch && !isSelected ? 'outline outline-1 outline-[var(--gold)]' : ''
+        }${isSelected
             ? 'border-[var(--gold)] bg-[oklch(0.26_0.03_155)] shadow-[0_0_16px_rgba(216,180,90,0.18)]'
             : isMing
               ? 'border-[color-mix(in_oklab,var(--gold)_50%,var(--border))] bg-[oklch(0.22_0.02_150)]'
@@ -286,6 +293,9 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
       {/* ———— 三问速写(T0-1):盘面与十三维之间的顿悟层 ———— */}
       <ChartSnapshot chart={chart} locale={locale} />
 
+      {/* ———— 运限视图(v1.1):大限/流年,结构免费、正文随买断 ———— */}
+      <YunxianBoard chart={chart} yunxian={yunxian} locale={locale} paid={paid} onBranch={setActiveBranch} />
+
       {/* ———— 下层:十三维解读 + 付费墙(全宽)———— */}
       <div className="mt-8 space-y-6">
         <h2 className="text-xs tracking-label text-[var(--muted-foreground)]">{t('dimsTitle')}</h2>
@@ -320,7 +330,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
 
         {/* 付费墙 */}
         {!paid && lockedSections.length > 0 && (
-          <section className="mt-6 rounded-[3px] border border-[color-mix(in_oklab,var(--gold)_40%,var(--border))] bg-[var(--card)] p-6">
+          <section id="paywall" className="mt-6 rounded-[3px] border border-[color-mix(in_oklab,var(--gold)_40%,var(--border))] bg-[var(--card)] p-6">
             <h2 className="text-xs tracking-label text-[var(--gold)]">{tp('title')}</h2>
             <p className="mt-2 text-sm leading-7 text-[var(--muted-foreground)]">{tp('body')}</p>
             <ul className="mt-3 flex flex-wrap gap-2">

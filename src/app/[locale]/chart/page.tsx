@@ -9,6 +9,7 @@ import { encodeChartParams, parseChartParams, type ChartParams } from '@/lib/eng
 import { structureKey } from '@/lib/engine/structure';
 import { loadSameStructure } from '@/lib/engine/sameStructureData';
 import { assembleReading, buildEngineOnlySections, datasetParagraphs, DIMENSIONS, type AssembledReading, type ReadingSection } from '@/lib/interpret/assemble';
+import { assembleYunxian } from '@/lib/interpret/yunxian';
 import { fetchDatasetReading } from '@/lib/dataset';
 import { tokenMatches } from '@/lib/payments/token';
 import { isStripeConfigured, redeemSession } from '@/lib/payments/stripe';
@@ -242,6 +243,7 @@ export default async function ChartPage(props: {
         famousMatch={bundle.famousMatch}
         unknownHour={params.u === 1}
         shareUrl={shareUrl}
+        yunxian={assembleYunxian(bundle.chart, locale as 'zh' | 'en')}
       />
     </div>
   );

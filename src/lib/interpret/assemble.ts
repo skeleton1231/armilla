@@ -72,7 +72,7 @@ function majorStars(palace: Palace | undefined): Palace['stars'] {
   return []; // 空宫:借星由 generic 段说明
 }
 
-function comboParagraph(
+export function comboParagraph(
   starName: string,
   palaceName: string,
   bright: boolean,
@@ -86,7 +86,7 @@ function comboParagraph(
   return { text: pick(locale, bright ? combo.bright : combo.dim), source: 'combo' };
 }
 
-function genericStarParagraph(
+export function genericStarParagraph(
   starName: string,
   palaceName: string,
   locale: Locale,
