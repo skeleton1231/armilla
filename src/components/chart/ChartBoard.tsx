@@ -8,6 +8,7 @@ import { STAR_BY_NAME } from '@/content/wiki/stars';
 import { PALACE_BY_NAME } from '@/content/wiki/palaces';
 import type { Palace, Star, ZiweiChart } from '@/lib/engine';
 import { palaceEntryByName } from '@/content/wiki/palaces';
+import { ChartSnapshot } from '@/components/chart/ChartSnapshot';
 
 /** 地支索引 → 4×4 网格位置(传统盘:寅左下,顺时针) */
 const BRANCH_GRID: Record<number, { row: number; col: number }> = {
@@ -196,14 +197,21 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
           </div>
         </div>
 
-        {/* 分享 */}
-        <div className="mt-3 flex gap-3">
+        {/* 分享 + 合盘钩子(T0-3) */}
+        <div className="mt-3 flex flex-wrap gap-3">
           <button
             type="button" onClick={share}
             className="inline-flex h-9 cursor-pointer items-center rounded-md border border-[var(--gold-dim,var(--gold))] px-4 text-xs tracking-wider text-[var(--gold)] transition-colors duration-150 hover:bg-[var(--gold)] hover:text-[var(--primary-foreground)]"
           >
             {copied ? t('copied') : t('share')}
           </button>
+          <a
+            href={`/${locale}`}
+            className="inline-flex h-9 items-center rounded-md border border-[var(--border)] px-4 text-xs tracking-wider text-[var(--muted-foreground)] transition-colors duration-150 hover:border-[color-mix(in_oklab,var(--gold)_45%,var(--border))] hover:text-[var(--gold)]"
+            title={t('shareTogetherNote')}
+          >
+            {t('shareTogether')}
+          </a>
         </div>
 
         {/* 同盘之日 */}
@@ -275,6 +283,9 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
       </div>
       </div>
 
+      {/* ———— 三问速写(T0-1):盘面与十三维之间的顿悟层 ———— */}
+      <ChartSnapshot chart={chart} locale={locale} />
+
       {/* ———— 下层:十三维解读 + 付费墙(全宽)———— */}
       <div className="mt-8 space-y-6">
         <h2 className="text-xs tracking-label text-[var(--muted-foreground)]">{t('dimsTitle')}</h2>
@@ -320,7 +331,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
             <div className="mt-5 flex flex-wrap items-center gap-4">
               <button type="button" onClick={buy} disabled={!stripeReady || buying}
                 className="inline-flex h-11 cursor-pointer items-center rounded-md bg-[var(--gold)] px-7 text-sm tracking-[0.15em] text-[var(--primary-foreground)] transition-colors duration-150 hover:bg-[var(--gold-bright)] disabled:cursor-not-allowed disabled:opacity-50">
-                {buying ? tp('buying') : tp('buy', { price: '$5.99' })}
+                {buying ? tp('buying') : tp('buy', { price: '$9.99' })}
               </button>
               <button type="button" onClick={restore} className="text-sm text-[var(--muted-foreground)] underline-offset-4 hover:text-[var(--gold)] hover:underline cursor-pointer">
                 {tp('restore')}

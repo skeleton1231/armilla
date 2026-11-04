@@ -7,7 +7,7 @@ import Stripe from 'stripe';
  * 未配置 STRIPE_SECRET_KEY 时购买入口禁用(isStripeConfigured=false)。
  */
 
-export const REPORT_PRICE_USD = 5.99;
+export const REPORT_PRICE_USD = 9.99;
 
 let client: Stripe | null = null;
 
