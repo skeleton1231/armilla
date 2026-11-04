@@ -84,6 +84,7 @@ export default async function LocaleLayout(props: {
                 <Link href="/#palaces" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('palaces')}</Link>
                 <Link href="/#stars" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('stars')}</Link>
                 <Link href="/famous" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('famous')}</Link>
+                <Link href="/synastry" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('synastry')}</Link>
                 <Link href="/method" className="rounded px-2.5 py-2 transition-colors hover:text-[var(--gold)]">{tNav('method')}</Link>
                 <LocaleSwitcher locale={locale} />
                 <AuthArea />

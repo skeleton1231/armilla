@@ -213,7 +213,7 @@ export function ChartBoard(props: ChartBoardProps): React.JSX.Element {
             {copied ? t('copied') : t('share')}
           </button>
           <a
-            href={`/${locale}`}
+            href={`/${locale}/synastry`}
             className="inline-flex h-9 items-center rounded-md border border-[var(--border)] px-4 text-xs tracking-wider text-[var(--muted-foreground)] transition-colors duration-150 hover:border-[color-mix(in_oklab,var(--gold)_45%,var(--border))] hover:text-[var(--gold)]"
             title={t('shareTogetherNote')}
           >

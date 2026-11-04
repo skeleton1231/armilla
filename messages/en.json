@@ -1,4 +1,24 @@
 {
+  "synastry": {
+    "metaTitle": "Synastry · Armilla",
+    "title": "Synastry",
+    "intro": "Enter two birth dates and compare each core and each Marriage Palace. We present the traditional star lore of the structures only — no compatibility verdicts. The chart describes; the people decide.",
+    "you": "You",
+    "them": "Them",
+    "year": "Year", "month": "Month", "day": "Day", "hour": "Hour", "gender": "Gender",
+    "male": "M", "female": "F",
+    "cast": "Compare",
+    "noStar": "No major star (borrowed)",
+    "borrowedTag": "borrowed",
+    "coresLabel": "Two cores",
+    "seekALabel": "The intimacy you seek (your Marriage Palace)",
+    "seekBLabel": "The intimacy they seek (their Marriage Palace)",
+    "share": "Copy share link",
+    "copied": "Copied",
+    "viewYours": "Open your full thirteen-dimension report",
+    "viewTheirs": "Open their full thirteen-dimension report",
+    "disclaimer": "Synastry readings are assembled from engine structure and the knowledge base, source-tagged per paragraph; outside dataset coverage — no fortune or compatibility verdicts."
+  },
   "brand": {
     "name": "Armilla",
     "nameEn": "Armilla",
@@ -10,6 +30,7 @@
     "stars": "Stars",
     "palaces": "Palaces",
     "famous": "Famous Charts",
+    "synastry": "Synastry",
     "method": "Method & Sources",
     "switchLocale": "中文"
   },

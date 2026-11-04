@@ -1,4 +1,24 @@
 {
+  "synastry": {
+    "metaTitle": "合盘 · Armilla",
+    "title": "合盘",
+    "intro": "输入两人生辰,对照各自的命宫底色与夫妻宫期待。只呈现星曜结构的传统星情,不判断合不合——关系的事,盘说了不算,人说了算。",
+    "you": "你",
+    "them": "TA",
+    "year": "年", "month": "月", "day": "日", "hour": "时辰", "gender": "性别",
+    "male": "男", "female": "女",
+    "cast": "合参",
+    "noStar": "无主星(借对宫)",
+    "borrowedTag": "借对宫",
+    "coresLabel": "两张底色",
+    "seekALabel": "你期待的亲密(你的夫妻宫)",
+    "seekBLabel": "TA 期待的亲密(TA 的夫妻宫)",
+    "share": "复制分享链接",
+    "copied": "已复制",
+    "viewYours": "查看你的完整十三维报告",
+    "viewTheirs": "查看 TA 的完整十三维报告",
+    "disclaimer": "合盘解读由引擎结构与知识库生成,逐段标明来源;不在数据集覆盖范围内,不作祸福与配对断言。"
+  },
   "brand": {
     "name": "璇玑",
     "nameEn": "Armilla",
@@ -10,6 +30,7 @@
     "stars": "星曜",
     "palaces": "宫位",
     "famous": "名人盘",
+    "synastry": "合盘",
     "method": "方法与出处",
     "switchLocale": "English"
   },
