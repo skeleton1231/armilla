@@ -1,37 +1,41 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { createClient, isSupabaseConfigured } from '@/lib/supabase/client';
-import type { User } from '@supabase/supabase-js';
+import { isSupabaseConfigured, SUPABASE_URL } from '@/lib/supabase/client';
 
 /**
  * 登录/用户菜单(T30,可选增强)
  * 未配置 Supabase 或未登录 → 不渲染(匿名体验零降级)
+ *
+ * [T11 包体] 本组件禁止静态 import @supabase/ssr(≈100KB gz 会把全站 JS 撑爆
+ * 150KB 预算):会话探测走 /api/auth/me 服务端代理;OAuth 跳转手拼 URL;
+ * supabase-js 仅在登出时 dynamic import。
  */
 export function AuthButton(): React.JSX.Element {
-  const [user, setUser] = useState<User | null>(null);
-  const [ready, setReady] = useState(false);
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!isSupabaseConfigured()) { setReady(true); return; }
-    const supabase = createClient();
-    if (!supabase) { setReady(true); return; }
-
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user);
-      setReady(true);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-    return () => subscription.unsubscribe();
+    if (!isSupabaseConfigured()) return;
+    let alive = true;
+    fetch('/api/auth/me')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { email?: string } | null) => {
+        if (alive && d?.email) setEmail(d.email);
+      })
+      .catch(() => { /* 匿名静默 */ });
+    return () => { alive = false; };
   }, []);
 
-  if (!ready || !user) return <></>;
+  if (!email) return <></>;
 
-  const email = user.email ?? '';
   const initial = email[0]?.toUpperCase() ?? '?';
+
+  const signOut = async (): Promise<void> => {
+    const { createClient } = await import('@/lib/supabase/client');
+    const supabase = await createClient();
+    await supabase?.auth.signOut();
+    window.location.reload();
+  };
 
   return (
     <div className="group relative">
@@ -46,7 +50,7 @@ export function AuthButton(): React.JSX.Element {
         <p className="truncate text-xs text-[var(--muted-foreground)]">{email}</p>
         <button
           type="button"
-          onClick={() => createClient()?.auth.signOut()}
+          onClick={signOut}
           className="mt-3 w-full cursor-pointer rounded-md border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--muted-foreground)] transition-colors hover:border-[var(--cinnabar)] hover:text-[var(--cinnabar)]"
         >
           Sign out
@@ -57,16 +61,13 @@ export function AuthButton(): React.JSX.Element {
 }
 
 export function LoginButton(): React.JSX.Element {
-  if (!isSupabaseConfigured()) return <></>;
+  if (!isSupabaseConfigured() || !SUPABASE_URL) return <></>;
   return (
     <button
       type="button"
       onClick={() => {
-        const supabase = createClient();
-        supabase?.auth.signInWithOAuth({
-          provider: 'google',
-          options: { redirectTo: `${window.location.origin}/auth/callback` },
-        });
+        const redirect = encodeURIComponent(`${window.location.origin}/auth/callback`);
+        window.location.href = `${SUPABASE_URL}/auth/v1/authorize?provider=google&redirect_to=${redirect}`;
       }}
       className="flex cursor-pointer items-center gap-2 rounded-md border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--muted-foreground)] transition-colors duration-150 hover:border-[var(--gold)] hover:text-[var(--gold)]"
     >
@@ -81,21 +82,22 @@ export function LoginButton(): React.JSX.Element {
   );
 }
 
-/** 布局用:已登录显示头像菜单,未登录显示 Sign in,未配置不渲染 */
+/** 布局用:会话探测走 /api/auth/me(服务端),登录后显示头像菜单 */
 export function AuthArea(): React.JSX.Element {
-  const [user, setUser] = useState<User | null>(null);
-  const [ready, setReady] = useState(false);
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!isSupabaseConfigured()) { setReady(true); return; }
-    const supabase = createClient();
-    if (!supabase) { setReady(true); return; }
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user);
-      setReady(true);
-    });
+    if (!isSupabaseConfigured()) return;
+    let alive = true;
+    fetch('/api/auth/me')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { email?: string } | null) => {
+        if (alive) setEmail(d?.email ?? null);
+      })
+      .catch(() => { if (alive) setEmail(null); });
+    return () => { alive = false; };
   }, []);
 
-  if (!ready || !isSupabaseConfigured()) return <></>;
-  return user ? <AuthButton /> : <LoginButton />;
+  if (!isSupabaseConfigured()) return <></>;
+  return email ? <AuthButton /> : <LoginButton />;
 }
