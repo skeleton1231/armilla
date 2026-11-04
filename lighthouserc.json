@@ -1,0 +1,24 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run start",
+      "url": [
+        "http://localhost:3000/en",
+        "http://localhost:3000/zh",
+        "http://localhost:3000/en/method"
+      ],
+      "numberOfRuns": 1,
+      "settings": { "preset": "desktop" }
+    },
+    "assert": {
+      "assertions": {
+        "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+        "total-blocking-time": ["error", { "maxNumericValue": 300 }],
+        "resource-summary:script:size": ["error", { "maxNumericValue": 153600, "aggregationMethod": "optimistic" }],
+        "categories:performance": ["warn", { "minScore": 0.9 }],
+        "categories:accessibility": ["warn", { "minScore": 0.9 }]
+      }
+    }
+  }
+}

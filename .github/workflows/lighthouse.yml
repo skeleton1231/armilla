@@ -1,0 +1,38 @@
+# T28 · Lighthouse CI 硬门禁(T11 修订版预算:全站 JS ≤150kb gz,CWL 预算)
+# push/PR 触发:build → next start → LHCI 断言,任一 error 级断言失败即红
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "data/**"
+      - "**.md"
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "data/**"
+      - "**.md"
+
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          # 门禁跑无凭据防御模式:登录入口隐藏、Stripe 禁用,验证零配置可用
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Run Lighthouse CI
+        run: npx --yes @lhci/cli@0.14.x autorun --config=lighthouserc.json
