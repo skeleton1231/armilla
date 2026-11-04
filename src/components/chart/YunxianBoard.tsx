@@ -7,7 +7,8 @@ import type { YunxianReading } from '@/lib/interpret/yunxian';
 import { STAR_BY_NAME } from '@/content/wiki/stars';
 import { PALACE_BY_NAME } from '@/content/wiki/palaces';
 import { canonPalaceName } from '@/lib/interpret/canon';
-import { getSiHuaByStem } from '@/lib/ziwei/sihua';
+// 注意:客户端禁止 import '@/lib/ziwei/sihua'(传递依赖 lunar-javascript 会撑爆 JS 预算);
+// 年干四化已由服务端按 10 天干预计算,经 props.yearSihuaByStem 下发。
 
 type View = 'ben' | 'da' | 'liu';
 
@@ -54,15 +55,14 @@ export function YunxianBoard({ chart, yunxian, locale, paid, onBranch }: Props):
 
   const decade = yunxian.decades[dxIdx];
 
-  /* 流年:年支宫 + 年干四化(纯查表,getSiHuaByStem 返回 禄/权/科/忌 中文键) */
+  /* 流年:年支宫 + 年干四化(props 预计算表纯查表) */
   const liunian = useMemo(() => {
     const branch = ((year - 4) % 12 + 12) % 12;
     const reading = yunxian.byBranch.find((b) => b.branch === branch);
     const stem = ((year - 4) % 10 + 10) % 10;
-    const raw = getSiHuaByStem(stem);
-    const transforms = { lu: raw['禄'], quan: raw['权'], ke: raw['科'], ji: raw['忌'] };
+    const transforms = yunxian.yearSihuaByStem[stem];
     return { branch, reading, transforms };
-  }, [year, yunxian.byBranch]);
+  }, [year, yunxian.byBranch, yunxian.yearSihuaByStem]);
 
   const tab = (id: View, label: string, active: boolean): React.JSX.Element => (
     <button

@@ -13,6 +13,9 @@ import type { Locale } from '@/i18n/routing';
  * 结构与解读全部免费(裂变引擎);红线:不作合不合断言。
  */
 
+/** 双参驱动页:显式退出预渲染(searchParams 阻断式渲染,Next 16 Cache Components) */
+export const instant = false;
+
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {

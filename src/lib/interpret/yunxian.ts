@@ -5,6 +5,7 @@ import type { ZiweiChart } from '@/lib/engine';
 import { canonPalaceName } from '@/lib/interpret/canon';
 import { comboParagraph, genericStarParagraph, type Paragraph } from '@/lib/interpret/assemble';
 import { SIHUA_HOOKS } from '@/content/interpretations/sihua';
+import { getDaXianSiHua, getSiHuaByStem } from '@/lib/ziwei/sihua';
 import { getDaXianStartYear, getChildhoodYears } from '@/lib/ziwei/yunxian-context';
 
 /**
@@ -43,6 +44,9 @@ export interface YunxianReading {
   decades: YunxianDecade[];
   childhood: { years: number[] } | null;
   byBranch: YunxianBranchReading[];
+  /** 年干四化预计算(stem 索引 0-9 → 四化落星);客户端按 ((year-4)%10) 纯查表,
+   *  避免客户端 import sihua.ts(其传递依赖 lunar-javascript 会撑爆 JS 预算) */
+  yearSihuaByStem: Array<{ lu: string; quan: string; ke: string; ji: string }>;
 }
 
 const pick = (locale: Locale, pair: { zh: string; en: string }): string =>
@@ -87,6 +91,10 @@ export function assembleYunxian(chart: ZiweiChart, locale: Locale): YunxianReadi
     const borrowed = palace?.isEmpty ? (palace.borrowedStars ?? []) : [];
     const startYear = getDaXianStartYear(chart, index) ?? 0;
 
+    /* castChart 不填 DaXian.siHua → 统一由 getDaXianSiHua(宫干)现算 */
+    const built = getDaXianSiHua(chart, index);
+    const si = dx.siHua ?? (built ? { lu: built.transforms['禄'], quan: built.transforms['权'], ke: built.transforms['科'], ji: built.transforms['忌'] } : null);
+
     const paragraphs: Paragraph[] = [];
     paragraphs.push({
       text: locale === 'zh'
@@ -95,11 +103,8 @@ export function assembleYunxian(chart: ZiweiChart, locale: Locale): YunxianReadi
       source: 'summary',
     });
     paragraphs.push(...starParagraphs(own.length > 0 ? own : borrowed, canonical, locale));
-    if (dx.siHua) {
-      paragraphs.push(...siHuaParagraphs(
-        { lu: dx.siHua.lu, quan: dx.siHua.quan, ke: dx.siHua.ke, ji: dx.siHua.ji },
-        locale,
-      ));
+    if (si) {
+      paragraphs.push(...siHuaParagraphs(si, locale));
     }
 
     return {
@@ -112,9 +117,7 @@ export function assembleYunxian(chart: ZiweiChart, locale: Locale): YunxianReadi
       palaceName: canonical,
       stars: own,
       borrowedStars: borrowed,
-      siHua: dx.siHua
-        ? { lu: dx.siHua.lu, quan: dx.siHua.quan, ke: dx.siHua.ke, ji: dx.siHua.ji }
-        : null,
+      siHua: si,
       paragraphs,
     };
   });
@@ -138,10 +141,17 @@ export function assembleYunxian(chart: ZiweiChart, locale: Locale): YunxianReadi
 
   const childhoodYears = getChildhoodYears(chart);
 
+  /* 年干四化(0-9 天干预计算,甲=0) */
+  const yearSihuaByStem = Array.from({ length: 10 }, (_, stem) => {
+    const raw = getSiHuaByStem(stem);
+    return { lu: raw['禄'], quan: raw['权'], ke: raw['科'], ji: raw['忌'] };
+  });
+
   return {
     decades,
     childhood: childhoodYears.length > 0 ? { years: childhoodYears } : null,
     byBranch,
+    yearSihuaByStem,
   };
 }
 
